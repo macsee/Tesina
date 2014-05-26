@@ -522,7 +522,7 @@ public class Layer {
 	
 		
 		Config.OUT.add("");
-		System.out.println("****ASDASDASD*DSADSA*DASDSADSADSADDASD******ASDASD");
+
 	}
 	
 	/**********************************************************************************
