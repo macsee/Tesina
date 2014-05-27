@@ -44,6 +44,7 @@ public class ObjGeom implements Cloneable{
 	private String FORM = "";
 	private String TEXTURE = "";
 	private String DENSITY = "";
+	private String SAMEIND = "";
     
 	public ObjGeom() {
 		System.out.println("-------------------> Se creo un objeto nuevo");
@@ -337,6 +338,14 @@ public class ObjGeom implements Cloneable{
 
 	public void setDENSITY(String dENSITY) {
 		DENSITY = dENSITY;
+	}
+	
+	public String getSAMEIND() {
+		return SAMEIND;
+	}
+
+	public void setSAMEIND(String IND) {
+		SAMEIND = IND;
 	}
   
 }

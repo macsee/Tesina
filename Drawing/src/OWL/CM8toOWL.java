@@ -33,11 +33,15 @@ public class CM8toOWL {
 	private static String input_ontology = "/Users/Macsee/Desktop/Examples/Ontologies/input_ont.owl";
 	private static String output_ontology = "/Users/Macsee/Desktop/Examples/Ontologies/output_ont.owl";
 	private myOWL myOWL;
-	private Map<OWLNamedIndividual,Set<OWLClassExpression>> Relations = new HashMap<OWLNamedIndividual,Set<OWLClassExpression>>();
+	
+	private Map<OWLNamedIndividual,Set<OWLClassExpression>> ASSERTED_CLASS_RELS = new HashMap<OWLNamedIndividual,Set<OWLClassExpression>>();
+	private Map<OWLNamedIndividual, Set<OWLClassExpression>> ASSERTED_CLASS_OBJS = new HashMap<OWLNamedIndividual, Set<OWLClassExpression>>();
+	
+	private Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>> ASSERTED_PROP_OBJS = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
+	private Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>> ASSERTED_PROP_RELS = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
+	
 	private Map<OWLNamedIndividual, Integer> CountObjs = new HashMap<OWLNamedIndividual, Integer>();
 	private Map<OWLNamedIndividual, ObjGeom> IND_OBJ = new HashMap<OWLNamedIndividual, ObjGeom>();
-	private Map<OWLNamedIndividual, Set<OWLClassExpression>> ASSERTED_DATA_OBJS = new HashMap<OWLNamedIndividual, Set<OWLClassExpression>>();
-	private Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>> ASSERTED_RELS = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
 	
 	public CM8toOWL() {
 		// TODO Auto-generated constructor stub
@@ -48,10 +52,11 @@ public class CM8toOWL {
 	public OWLNamedIndividual assertIndividual(ObjGeom obj) {  // Convierto los poligonos en individuos
 	
 		Set<OWLClassExpression> set = new HashSet<OWLClassExpression>();
-		OWLNamedIndividual ind = myOWL.defineInstance("P"+obj.getId(), myOWL.getClass("GeoObject"));
-		set.add(myOWL.getClass("GeoObject"));
-		
+		OWLNamedIndividual ind = myOWL.getIndividual("P"+obj.getId());
 		String clase = obj.getCLASE();
+		
+		myOWL.addToIndividual(ind, myOWL.getClass("GeoObject"));
+		set.add(myOWL.getClass("GeoObject"));
 		
 		if (clase != "GeoObject") {	
 			myOWL.addToIndividual(ind, myOWL.getClass(clase));
@@ -60,10 +65,9 @@ public class CM8toOWL {
 			// PUEDO AGREGAR MAS TIPOS A UN INDIVIDUO CREANDO MUCHAS INSTANCIAS CON EL MISMO NOMBRE Y DISTINTOS TIPOS
 	
 		CountObjs.put(ind, 0); //Cuento la cantidad de veces que se relaciona con una clase
-		ASSERTED_DATA_OBJS.put(ind, set); // Guardo informaci—n de los individuos y sus clases
+		ASSERTED_CLASS_OBJS.put(ind, set); // Guardo informaci—n de los individuos y sus clases
 		IND_OBJ.put(ind, obj); // Guardo la relaci—n entre un ObjGeom y un OWLIndividual
-		return ind;
-		
+		return ind;	
 	} 
 
 	public OWLNamedIndividual getIndividual(ObjGeom obj) {
@@ -83,18 +87,16 @@ public class CM8toOWL {
 	*************************************************************************************************************/
 	
 	public void assertRelation(String cm8, ObjGeom obj1, ObjGeom obj2) {
+		
 		String rel = "SR_P"+obj1.getId()+"_P"+obj2.getId();
 		
-		OWLNamedIndividual indObj = getIndividual(obj2);
-		OWLNamedIndividual indRel = myOWL.getIndividual(rel); // si no existe el individuo se crea
 		OWLClassExpression relClass = myOWL.getClass(cm8);
-		
-		myOWL.addToIndividual(indRel, relClass); // hago un individuo representando la relacion CM8
+		OWLNamedIndividual indRel = myOWL.defineInstance(rel, relClass); // hago una instancia representando la relacion CM8
 		
 		Set<OWLClassExpression> setRel = new HashSet<OWLClassExpression>();
 		setRel.add(relClass);
 		
-		if (!Relations.containsKey(indRel)){
+		if (!ASSERTED_CLASS_RELS.containsKey(indRel)){
 			
 			Set<OWLNamedIndividual> setInd1 = new HashSet<OWLNamedIndividual>();
 			Set<OWLNamedIndividual> setInd2 = new HashSet<OWLNamedIndividual>();
@@ -118,20 +120,24 @@ public class CM8toOWL {
 			mapObj.put(from, setInd1);
 			mapObj.put(to, setInd2);
 					
-			ASSERTED_RELS.put(indRel, mapObj); // Guardo informacion sobre las relaciones entre las Spatial Relationships
+			ASSERTED_PROP_RELS.put(indRel, mapObj); // Guardo informacion sobre las relaciones entre las Spatial Relationships
 											// y los ObjGeom
 			
 			setRel.add(relRCC8); 
 			
-			Relations.put(indRel, setRel); // Guardo en un conjunto todas las clases a las que pertenece la relacion "indRel"
+			ASSERTED_CLASS_RELS.put(indRel, setRel); // Guardo en un conjunto todas las clases a las que pertenece la relacion "indRel"
 		}
 		
-		Relations.get(indRel).addAll(setRel);
+		ASSERTED_CLASS_RELS.get(indRel).addAll(setRel);
 
 	} 
 	
 	public void makeIndividualsDifferent() {
 		myOWL.assertDifferentIndividuals(myOWL.getAllInds());
+	}
+	
+	public void makeSameIndividual(ObjGeom ob1, String ob2) {
+		myOWL.assertSameIndividual(getIndividual(ob1), myOWL.getIndividual(ob2));
 	}
 	
 	public void assertMaxCard(ObjGeom ob, Integer cant, String clase, String prop) {
@@ -150,6 +156,23 @@ public class CM8toOWL {
 		
 		OWLClassExpression restrict = myOWL.assertExactRestriction(myOWL.getObjectProperty(prop), cant, myOWL.getClass(clase));
 		myOWL.defineInstance("P"+ob.getId(), restrict);
+	}
+	
+	public void assertProperty(ObjGeom ob, String prop, String value) {
+		
+		OWLNamedIndividual indObj = getIndividual(ob);
+		OWLObjectProperty indRel = myOWL.getObjectProperty(prop);
+		OWLNamedIndividual indValue = myOWL.getIndividual(value); // si no existe el individuo se crea
+		
+		myOWL.defineObjectProperty(indRel, indObj, indValue);
+		
+		Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> mapObj = new HashMap();
+		Set<OWLNamedIndividual> setInd = new HashSet<OWLNamedIndividual>();
+		
+		setInd.add(indValue);
+		mapObj.put(indRel, setInd);	
+		
+		ASSERTED_PROP_OBJS.put(indObj,mapObj);
 	}
 	
 	public void countObjsOfClass(String clase, String prop) {
@@ -171,7 +194,7 @@ public class CM8toOWL {
 		
 		for (OWLNamedIndividual ind : setRel) {
 			
-			Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_RELS.get(ind);
+			Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind);
 			Set<OWLNamedIndividual> setOWLInd = map.get(myOWL.getObjectProperty(propInv)); // Me quedo solo con los objetos geograficos que se relacionan mediante "to" con la primitiva CM8
 			
 			for (OWLNamedIndividual owlInd : setOWLInd)
@@ -192,14 +215,15 @@ public class CM8toOWL {
 				assertMaxCard(getObjGeom(entry.getKey()), entry.getValue(), cm8, prop);
 	}
 	
-	public void getAssertedDataForObjects(ObjGeom ob) {
+	public void getAssertedDataForObjects(ObjGeom obj) {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
-		//Set<OWLClassExpression> set = myOWL.getAssertedMembershipForInd(getIndividual(ob));
-		Set<OWLClassExpression> set = ASSERTED_DATA_OBJS.get(getIndividual(ob));
+
+		Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(getIndividual(obj));
+		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_OBJS.get(getIndividual(obj));
 		
-		printHeader("Polygon P"+ob.getId());
-		printClasses(set,null);
+		printAll(set, setRel, null, "Polygon P"+obj.getId());
+//		printClasses(set,null);
 
 	}
 	
@@ -218,10 +242,10 @@ public class CM8toOWL {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
 		
-		for (OWLNamedIndividual rel : Relations.keySet()) {
+		for (OWLNamedIndividual rel : ASSERTED_CLASS_RELS.keySet()) {
 		
-			Set<OWLClassExpression> set = Relations.get(rel);
-			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_RELS.get(rel);
+			Set<OWLClassExpression> set = ASSERTED_CLASS_RELS.get(rel);
+			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_RELS.get(rel);
 			
 			printAll(set, setRel, null, rel.getIRI().getFragment());
 			
@@ -233,7 +257,7 @@ public class CM8toOWL {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
 		
-		for (OWLNamedIndividual rel : Relations.keySet()) {
+		for (OWLNamedIndividual rel : ASSERTED_CLASS_RELS.keySet()) {
 			 
 	    	printHeader(rel.getIRI().getFragment());
 	    	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(rel);

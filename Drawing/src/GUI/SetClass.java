@@ -221,6 +221,10 @@ public class SetClass extends Dialog{
 		final Choice choiceSame = new Choice();
 		choiceSame.setBounds(100,330,100,30);
 		choiceSame.add("");
+		
+		for (ObjGeom objgeom : Config.ACTIVELAYER.getObjsGeom())
+			choiceSame.add("P"+objgeom.getId());
+		
 		choiceSame.setFocusable(false);
 		//choiceDensity.select(obj.getClase());
 		panel.add(choiceSame);

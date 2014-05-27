@@ -393,8 +393,7 @@ public class Layer {
 	
 	public void checkCM8PrimitivesForPolygon(ObjGeom ob1, CM8toOWL CM8) {
 		
-		int i = 1;
-		CM8.assertIndividual(ob1); //asserting ob1 as individual
+//		CM8.assertIndividual(ob1); //asserting ob1 as individual
 				
 		for (ObjGeom ob2 : SHPS) {
 			
@@ -403,7 +402,7 @@ public class Layer {
 						
 			if (ob2.getMyPolygon() != null & ob2.getId() != ob1.getId()) {
 			
-				CM8.assertIndividual(ob2);
+//				CM8.assertIndividual(ob2);
 				
 				outCM8 += "x = Polygon "+ob1.getId()+", y = Polygon "+ob2.getId()+" :: \n";
 				
@@ -460,6 +459,24 @@ public class Layer {
 
 	}
 	
+	
+	
+	
+	public void assertDataForObjGeom(ObjGeom obj, CM8toOWL CM8) {
+		
+		CM8.assertIndividual(obj); //asserting ob1 as individual
+		CM8.assertProperty(obj, "Elongation", obj.getELONGATION());
+		CM8.assertProperty(obj, "Width", obj.getWIDTH());
+		CM8.assertProperty(obj, "Length", obj.getLENGTH());
+		CM8.assertProperty(obj, "Forme", obj.getFORM());
+		CM8.assertProperty(obj, "Texture", obj.getTEXTURE());
+		CM8.assertProperty(obj, "Density", obj.getDENSITY());
+		CM8.assertProperty(obj, "Surface", obj.getSURFACE());
+		CM8.makeSameIndividual(obj, obj.getSAMEIND()); // VER COMO HACER PARA MANTENER LOS INDIVIDUOS IGUALES
+		checkCM8PrimitivesForPolygon(obj, CM8); // 
+	
+	}
+	
 	public void getDataForAllObjects(CM8toOWL CM8) {
 				
 		int i=1;
@@ -473,9 +490,15 @@ public class Layer {
 			return;
 		}
 		
-		for (ObjGeom objgeom : SHPS)
-			if (objgeom.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
-					checkCM8PrimitivesForPolygon(objgeom, CM8);
+		
+		/**
+		 * Realizo un assert en la ontología de todos los datos contenidos en cada ObjGeom
+		 **/
+		
+		for (ObjGeom obj : SHPS)
+			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
+					//checkCM8PrimitivesForPolygon(objgeom, CM8);
+					assertDataForObjGeom(obj, CM8);
 					if (i < SHPS.size())
 						Config.OUT.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 					i++;

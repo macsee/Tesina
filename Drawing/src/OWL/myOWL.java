@@ -126,7 +126,7 @@ public class myOWL {
      * Asserting disjunction class "name" in the ontology			*
      ****************************************************************/
     
-    public OWLClass defineDisjunctionClass(String name, ArrayList<OWLClass> list) {
+    public OWLClassExpression defineDisjunctionClass(String name, ArrayList<OWLClass> list) {
     	
     	Set<OWLClass> set = new HashSet<OWLClass>();
     	
@@ -161,7 +161,7 @@ public class myOWL {
     
     public OWLNamedIndividual defineInstance(String name, OWLClassExpression owlclass) {
     	
-    	OWLNamedIndividual owlind = this.getIndividual(name);
+    	OWLNamedIndividual owlind = getIndividual(name);
     	
     	MANAGER.addAxiom(ONTOLOGY, FACTORY.getOWLClassAssertionAxiom(owlclass, owlind));
     	//REASONER.flush();
@@ -289,6 +289,17 @@ public class myOWL {
     	MANAGER.addAxiom(ONTOLOGY, FACTORY.getOWLDifferentIndividualsAxiom(inds));
     	//REASONER.flush();
     } 
+   
+    
+    /****************************************************
+     * Asserting ind1 same as ind2						*
+     ****************************************************/
+    
+    public void assertSameIndividual(OWLNamedIndividual ind1, OWLNamedIndividual ind2) {
+    	MANAGER.addAxiom(ONTOLOGY, FACTORY.getOWLSameIndividualAxiom(ind1, ind2));
+    	//REASONER.flush();
+    }
+   
     
     /****************************************************
      * Get object property "op" from the ontology		*
