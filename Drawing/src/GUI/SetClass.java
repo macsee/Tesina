@@ -14,7 +14,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.LinkedList;
 
+import UTILS.Layer;
 import UTILS.ObjGeom;
 import UTILS.Config;
 
@@ -24,7 +26,7 @@ public class SetClass extends Dialog{
 	public static int locationX = 100;
 	public static int locationY = 100;
 	
-	public SetClass(final ObjGeom obj) {
+	public SetClass(final ObjGeom obj, final Layer layer) {
 		
 		super(new Frame(), "Define attributes");
 		setVisible(true);
@@ -222,15 +224,24 @@ public class SetClass extends Dialog{
 		choiceSame.setBounds(100,330,100,30);
 		choiceSame.add("");
 		
-		for (ObjGeom objgeom : Config.ACTIVELAYER.getObjsGeom())
+		final LinkedList<ObjGeom> listObjs = new LinkedList<ObjGeom>();
+		
+		listObjs.addAll(Config.THR1.getObjsGeom());
+		listObjs.addAll(Config.HR1.getObjsGeom());
+		listObjs.addAll(Config.HR2.getObjsGeom());	
+		
+		for (ObjGeom objgeom : listObjs)
 			choiceSame.add("P"+objgeom.getId());
 		
 		choiceSame.setFocusable(false);
-		//choiceDensity.select(obj.getClase());
+		ObjGeom same = obj.getSAMEIND();
+		
+		if (same != null)
+			choiceSame.select("P"+same.getId());
+		
 		panel.add(choiceSame);
 		
-		
-		
+
 		choiceClass.addItemListener(new ItemListener() {
 			
 			@Override
@@ -278,7 +289,12 @@ public class SetClass extends Dialog{
 				obj.setDENSITY(choiceDensity.getSelectedItem());
 				obj.setFORM(choiceForm.getSelectedItem());
 				
-				Config.ACTIVELAYER.updateDefaultList(obj);
+				if (choiceSame.getSelectedIndex() != 0)
+					obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1));
+				else
+					obj.setSAMEIND(null);
+				
+				layer.updateDefaultList(obj);
 				dispose();
 			}
 		});
@@ -293,7 +309,7 @@ public class SetClass extends Dialog{
 				if(arg0.getKeyCode() == KeyEvent.VK_ENTER)
 	            {
 					obj.setCLASE(choiceClass.getSelectedItem());
-					Config.ACTIVELAYER.updateDefaultList(obj);
+					layer.updateDefaultList(obj);
 					dispose();
 	            }
 			}
@@ -322,10 +338,5 @@ public class SetClass extends Dialog{
 	/**
 	 * @param args
 	 */
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new SetClass(null);
-	}
 
 }

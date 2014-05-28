@@ -244,10 +244,12 @@ public class LoadRasterShape extends JFrame {
 							shp2obj= new Shape2ObjGeom(textField_1.getText(), textField_2.getText());
 							if (shp2obj != null) {
 								try {
+									
 									layer.setImage(textField.getText());
 									layer.allowDrawing();
 									Config.ACTIVELAYER = layer;
-									layer.setObjsGeom(shp2obj.adjustProyection());		
+									layer.setObjsGeom(shp2obj.adjustProyection());
+									
 								} catch (MismatchedDimensionException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

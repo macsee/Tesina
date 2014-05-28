@@ -134,9 +134,9 @@ public class MouseActions implements MouseListener{
 			
 	}
 	
-	public static void setClass(ObjGeom obj) {
+	public static void setClass(ObjGeom obj, Layer layer) {
 		
-		SetClass set = new SetClass(obj);
+		SetClass set = new SetClass(obj,layer);
 		set = null;
 		
 	}

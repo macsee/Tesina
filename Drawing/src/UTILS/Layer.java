@@ -163,6 +163,7 @@ public class Layer {
 	
 	public void addObj(ObjGeom obj) {
 		obj.setId(Config.OBJCOUNT);
+		obj.setRESOLUTION(LAYERID);
 		Config.OBJCOUNT++;
 		obj.setLocalID(SHPS.size());
 		//SHPS.addFirst(obj);
@@ -472,6 +473,7 @@ public class Layer {
 		CM8.assertProperty(obj, "Texture", obj.getTEXTURE());
 		CM8.assertProperty(obj, "Density", obj.getDENSITY());
 		CM8.assertProperty(obj, "Surface", obj.getSURFACE());
+		CM8.assertProperty(obj, "Resolution", obj.getRESOLUTION());
 		CM8.makeSameIndividual(obj, obj.getSAMEIND()); // VER COMO HACER PARA MANTENER LOS INDIVIDUOS IGUALES
 		checkCM8PrimitivesForPolygon(obj, CM8); // 
 	

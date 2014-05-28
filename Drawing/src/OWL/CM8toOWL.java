@@ -136,8 +136,8 @@ public class CM8toOWL {
 		myOWL.assertDifferentIndividuals(myOWL.getAllInds());
 	}
 	
-	public void makeSameIndividual(ObjGeom ob1, String ob2) {
-		myOWL.assertSameIndividual(getIndividual(ob1), myOWL.getIndividual(ob2));
+	public void makeSameIndividual(ObjGeom ob1, ObjGeom ob2) {
+		myOWL.assertSameIndividual(getIndividual(ob1), getIndividual(ob2));
 	}
 	
 	public void assertMaxCard(ObjGeom ob, Integer cant, String clase, String prop) {

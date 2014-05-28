@@ -14,6 +14,12 @@ public class Config {
 	
 	public static Layer ACTIVELAYER = null;
 	
+	public static Layer THR1 = null;
+	
+	public static Layer HR1 = null;
+	
+	public static Layer HR2 = null;
+	
     public static Point MOUSE_POINT = null;
     
     public static int OBJCOUNT = 0;

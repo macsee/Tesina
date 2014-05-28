@@ -35,14 +35,18 @@ public class Simulator extends JFrame{
 	 */
 	private static MainPanel panelPrincipal;
 	private static Layer LAYER; 
+	private static Checkbox radioButtonTHR1;
+	private static Checkbox radioButtonHR1;
+	private static Checkbox radioButtonHR2;
 	
 	public Simulator() {
 	
-		final Layer LAYERTHR1 = new Layer("THR1");
-		LAYER = LAYERTHR1;
 		
-		final Layer LAYERHR1 = new Layer("HR1");
-		final Layer LAYERHR2 = new Layer("HR2");
+		Config.THR1 = new Layer("THR1");
+		Config.HR1 = new Layer("HR1");
+		Config.HR2 = new Layer("HR2");
+		
+//		LAYER = Config.THR1;
 		
 		setFocusable(true);
 		setTitle("Tesina");
@@ -69,9 +73,9 @@ public class Simulator extends JFrame{
 					
 					long startTime = System.currentTimeMillis();
 
-					LAYERTHR1.getDataForAllObjects(CM8);
-					LAYERHR1.getDataForAllObjects(CM8);
-					LAYERHR2.getDataForAllObjects(CM8);
+					Config.THR1.getDataForAllObjects(CM8);
+					Config.HR1.getDataForAllObjects(CM8);
+					Config.HR2.getDataForAllObjects(CM8);
 					
 					long endTime = System.currentTimeMillis();
 					Config.OUT.add("Total Time: "+(endTime - startTime)+" milliseconds");
@@ -103,9 +107,9 @@ public class Simulator extends JFrame{
 		Button btnCleanAll = new Button("Clean All");
 		btnCleanAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LAYERTHR1.clean();
-				LAYERHR1.clean();
-				LAYERHR2.clean();
+				Config.THR1.clean();
+				Config.HR1.clean();
+				Config.HR2.clean();
 				Config.OBJCOUNT = 0;
 				panelPrincipal.repaint();
 			}
@@ -125,15 +129,15 @@ public class Simulator extends JFrame{
 		panel_2.add(label);
 		
 		CheckboxGroup cg = new CheckboxGroup ();
-		final Checkbox radioButtonTHR1 = new Checkbox("THR1",cg,true);
+		radioButtonTHR1 = new Checkbox("THR1",cg,true);
 		radioButtonTHR1.setBounds(5, 50, 141, 23);
 		radioButtonTHR1.setFocusable(false);
 		
-		final Checkbox radioButtonHR2 = new Checkbox("HR2",cg,false);
+		radioButtonHR2 = new Checkbox("HR2",cg,false);
 		radioButtonHR2.setBounds(5, 230, 141, 23);
 		radioButtonHR2.setFocusable(false);
 		
-		final Checkbox radioButtonHR1 = new Checkbox("HR1",cg,false);
+		radioButtonHR1 = new Checkbox("HR1",cg,false);
 		radioButtonHR1.setBounds(5, 410, 141, 23);
 		radioButtonHR1.setFocusable(false);
 		
@@ -141,15 +145,15 @@ public class Simulator extends JFrame{
 		panel_2.add(radioButtonHR2);
 		panel_2.add(radioButtonHR1);
 		
-		final JList listTHR1 = new JList(LAYERTHR1.getDefaultList());
+		final JList listTHR1 = new JList(Config.THR1.getDefaultList());
 		listTHR1.setFont(new Font("",0,10));
 		listTHR1.setBounds(30, 80, 300, 120);
 		listTHR1.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
 		        if (evt.getClickCount() == 2) {
-		        	ObjGeom obj = LAYERTHR1.getObj(listTHR1.getSelectedIndex());
+		        	ObjGeom obj = Config.THR1.getObj(listTHR1.getSelectedIndex());
 		        	if (obj != null)
-		        		new SetClass(obj);
+		        		new SetClass(obj, Config.THR1);
 		        }
 		    }
 		});
@@ -159,15 +163,15 @@ public class Simulator extends JFrame{
 		scrollPaneTHR1.setBounds(30, 80, 300, 120);
 		panel_2.add(scrollPaneTHR1);
 		
-		final JList listHR2 = new JList(LAYERHR2.getDefaultList());
+		final JList listHR2 = new JList(Config.HR2.getDefaultList());
 		listHR2.setFont(new Font("",0,10));
 		listHR2.setBounds(30, 260, 300, 120);
 		listHR2.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
 		        if (evt.getClickCount() == 2) {
-		        	ObjGeom obj = LAYERHR2.getObj(listHR2.getSelectedIndex());
+		        	ObjGeom obj = Config.HR2.getObj(listHR2.getSelectedIndex());
 		        	if (obj != null)
-		        		new SetClass(obj);
+		        		new SetClass(obj, Config.HR2);
 		        }
 		    }
 		});
@@ -177,15 +181,15 @@ public class Simulator extends JFrame{
 		scrollPaneHR2.setBounds(30, 260, 300, 120);
 		panel_2.add(scrollPaneHR2);
 		
-		final JList listHR1 = new JList(LAYERHR1.getDefaultList());
+		final JList listHR1 = new JList(Config.HR1.getDefaultList());
 		listHR1.setFont(new Font("",0,10));
 		listHR1.setBounds(30, 440, 300, 120);
 		listHR1.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
 		        if (evt.getClickCount() == 2) {
-		        	ObjGeom obj = LAYERHR1.getObj(listHR1.getSelectedIndex());
+		        	ObjGeom obj = Config.HR1.getObj(listHR1.getSelectedIndex());
 		        	if (obj != null)
-		        		new SetClass(obj);
+		        		new SetClass(obj, Config.HR1);
 		        }
 		    }
 		});
@@ -204,7 +208,7 @@ public class Simulator extends JFrame{
 					radioButtonHR1.setState(false);
 					radioButtonHR2.setState(false);
 					System.out.println("THR1 selected!");
-					Config.ACTIVELAYER = LAYERTHR1;
+					Config.ACTIVELAYER = Config.THR1;
 					panelPrincipal.repaint();
 				}	
 			}
@@ -219,7 +223,7 @@ public class Simulator extends JFrame{
 							radioButtonTHR1.setState(false);
 							radioButtonHR2.setState(false);
 							System.out.println("HR1 selected!");
-							Config.ACTIVELAYER = LAYERHR1;
+							Config.ACTIVELAYER = Config.HR1;
 							panelPrincipal.repaint();
 						}	
 					}
@@ -234,15 +238,15 @@ public class Simulator extends JFrame{
 					radioButtonTHR1.setState(false);
 					radioButtonHR1.setState(false);
 					System.out.println("HR2 selected!");
-					Config.ACTIVELAYER = LAYERHR2;
+					Config.ACTIVELAYER = Config.HR2;
 					panelPrincipal.repaint();
 				}	
 			}
 		});
 				
 		addKeyListener(new KeyActions(this));
-		Config.ACTIVELAYER = LAYERTHR1;
-		setMenuBar(new MenuBarAWT(this,LAYERTHR1, LAYERHR1, LAYERHR2).createMenuBar());
+		Config.ACTIVELAYER = Config.THR1;
+		setMenuBar(new MenuBarAWT(this,Config.THR1, Config.HR1, Config.HR2).createMenuBar());
 		panelPrincipal = new MainPanel(800, 600);
 		panel.add(panelPrincipal);
 		
@@ -251,6 +255,13 @@ public class Simulator extends JFrame{
 	
 	public void paint(Graphics g) {		
 		paintComponents(g);
+		
+		if (Config.ACTIVELAYER == Config.THR1)
+			radioButtonTHR1.setState(true);
+		else if (Config.ACTIVELAYER == Config.HR1)
+			radioButtonHR1.setState(true);
+		else if (Config.ACTIVELAYER == Config.HR2) 
+			radioButtonHR2.setState(true);
     }
 
 	public static void main(String[] args) {
@@ -260,10 +271,10 @@ public class Simulator extends JFrame{
 		Shape2ObjGeom shp2obj;
 		try {
 			shp2obj = new Shape2ObjGeom("/Users/Macsee/Desktop/Examples/Raster+Shp/polygons.shp", "/Users/Macsee/Desktop/Examples/Raster+Shp/tabla.points");
-			LAYER.setImage("/Users/Macsee/Desktop/Examples/Raster+Shp/image.png");
-			LAYER.allowDrawing();
-			Config.ACTIVELAYER = LAYER;
-			LAYER.setObjsGeom(shp2obj.adjustProyection());
+			Config.ACTIVELAYER.setImage("/Users/Macsee/Desktop/Examples/Raster+Shp/image.png");
+			Config.ACTIVELAYER.allowDrawing();
+			//Config.ACTIVELAYER = LAYER;
+			Config.ACTIVELAYER.setObjsGeom(shp2obj.adjustProyection());
 			panelPrincipal.repaint();
 			
 		} catch (IOException e) {

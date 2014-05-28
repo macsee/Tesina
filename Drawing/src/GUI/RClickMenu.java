@@ -49,7 +49,7 @@ public class RClickMenu {
 	    		
 	    		 if ( obj != null) {
 	    			 System.out.println("Setting class for Polygon: "+obj.getId());
-	    			 MouseActions.setClass(obj);
+	    			 MouseActions.setClass(obj,Config.ACTIVELAYER);
 	    		 }	
 	    	 }
 	     });
