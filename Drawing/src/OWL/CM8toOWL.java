@@ -30,7 +30,7 @@ public class CM8toOWL {
 	 * @param args
 	 */
 	
-	private static String input_ontology = "/Users/Macsee/Desktop/Examples/Ontologies/input_ont.owl";
+	private static String input_ontology = "/Users/Macsee/Desktop/Examples/Ontologies/input_onto.owl";
 	private static String output_ontology = "/Users/Macsee/Desktop/Examples/Ontologies/output_ont.owl";
 	private myOWL myOWL;
 	
@@ -132,12 +132,14 @@ public class CM8toOWL {
 
 	} 
 	
-	public void makeIndividualsDifferent() {
-		myOWL.assertDifferentIndividuals(myOWL.getAllInds());
+	public void makeIndividualsDifferent(ObjGeom ob1, ObjGeom ob2) {
+		
+		myOWL.assertDifferentFrom(getIndividual(ob1), getIndividual(ob2));
 	}
 	
 	public void makeSameIndividual(ObjGeom ob1, ObjGeom ob2) {
-		myOWL.assertSameIndividual(getIndividual(ob1), getIndividual(ob2));
+		if (ob2 != null)
+			myOWL.assertSameIndividual(getIndividual(ob1), getIndividual(ob2));
 	}
 	
 	public void assertMaxCard(ObjGeom ob, Integer cant, String clase, String prop) {
@@ -160,9 +162,12 @@ public class CM8toOWL {
 	
 	public void assertProperty(ObjGeom ob, String prop, String value) {
 		
+		if (value == "")
+			return;
+		
 		OWLNamedIndividual indObj = getIndividual(ob);
 		OWLObjectProperty indRel = myOWL.getObjectProperty(prop);
-		OWLNamedIndividual indValue = myOWL.getIndividual(value); // si no existe el individuo se crea
+		OWLNamedIndividual indValue = myOWL.getIndividual("i"+value); // si no existe el individuo se crea
 		
 		myOWL.defineObjectProperty(indRel, indObj, indValue);
 		
@@ -215,71 +220,91 @@ public class CM8toOWL {
 				assertMaxCard(getObjGeom(entry.getKey()), entry.getValue(), cm8, prop);
 	}
 	
-	public void getAssertedDataForObjects(ObjGeom obj) {
+	public ArrayList<String> getAssertedDataForObjects() {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
 
-		Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(getIndividual(obj));
-		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_OBJS.get(getIndividual(obj));
+		ArrayList<String> out = new ArrayList<String>();
 		
-		printAll(set, setRel, null, "Polygon P"+obj.getId());
-//		printClasses(set,null);
-
+		for (OWLNamedIndividual ind : IND_OBJ.keySet()) {
+			Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(ind);
+			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_OBJS.get(ind);
+			ObjGeom obj = IND_OBJ.get(ind);
+			out.addAll(printAll(set, setRel, null, "Polygon P"+obj.getId()));
+		}	
+		
+		return out;
 	}
 	
-	public void getInferredDataForObjects(ObjGeom obj) {
+	public ArrayList<String> getInferredDataForObjects(ObjGeom obj) {
 		
-			OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
-			
-			Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(getIndividual(obj));
-			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = myOWL.getInferredObjPropertiesFor(getIndividual(obj));
-				
-			printAll(set, setRel, obj, "Polygon P"+obj.getId()); //Imprimo todos los resultados
+		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
+		
+		ArrayList<String> out = new ArrayList<String>();
+		
+		for (OWLNamedIndividual ind : IND_OBJ.keySet()) {
+			Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(ind);
+			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = myOWL.getInferredObjPropertiesFor(ind);
+			out.addAll(printAll(set, setRel, obj, "Polygon P"+obj.getId())); //Imprimo todos los resultados
+		}
+		
+		return out;
 	    	
 	}
 	
-	public void getAssertedDataForSpatialRelations() {
+	public ArrayList<String> getAssertedDataForSpatialRelations() {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
+		
+		ArrayList<String> out = new ArrayList<String>();
 		
 		for (OWLNamedIndividual rel : ASSERTED_CLASS_RELS.keySet()) {
 		
 			Set<OWLClassExpression> set = ASSERTED_CLASS_RELS.get(rel);
 			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_RELS.get(rel);
 			
-			printAll(set, setRel, null, rel.getIRI().getFragment());
+			out.addAll(printAll(set, setRel, null, rel.getIRI().getFragment()));
 			
 		}
+		
+		return out;
 	    	
 	}
 	
-	public void getInferredDataForSpatialRelations() {
+	public ArrayList<String> getInferredDataForSpatialRelations() {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
+		ArrayList<String> out = new ArrayList<String>();
 		
 		for (OWLNamedIndividual rel : ASSERTED_CLASS_RELS.keySet()) {
 			 
 	    	printHeader(rel.getIRI().getFragment());
 	    	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(rel);
-	    	printClasses(set,null);
+	    	out.addAll(printClasses(set,null));
 	    	
 		}
+		
+		return out;
 	}
 	
-	void printHeader(String header) {
-		Config.OUT.add("############################################## "+header+" ##############################################");
+	ArrayList<String> printHeader(String header) {
+		ArrayList<String> out = new ArrayList<String>();
+		out.add("############################################## "+header+" ##############################################");
+		return out;
 	}
 	
-	void printClasses(Set<OWLClassExpression> set, ObjGeom obj) {
+	ArrayList<String> printClasses(Set<OWLClassExpression> set, ObjGeom obj) {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
 		
-    	Config.OUT.add("Classes: ");
-    	Config.OUT.add("");
+		ArrayList<String> out = new ArrayList<String>();
+		
+    	out.add("Classes: ");
+    	out.add("");
     	
     	if (set != null)
     		for (OWLClassExpression owlClass : set) {
-    			Config.OUT.add(renderer.render(owlClass));
+    			out.add(renderer.render(owlClass));
     			
     			if (obj != null){ // Imprimo el resultado en la lista de la capa activa
     				obj.setCLASE(owlClass. asOWLClass().getIRI().getFragment());
@@ -287,40 +312,45 @@ public class CM8toOWL {
     			}	
     		}	
     	else
-    		Config.OUT.add("Inconsistent");
+    		out.add("Inconsistent");
     			
-    	Config.OUT.add("");
-    	Config.OUT.add("");
+    	out.add("");
     	
+    	return out;
 	}
 	
-	void printRelations(Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel) {
+	ArrayList<String> printRelations(Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel) {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
 		
-		Config.OUT.add("Object Properties: ");
-    	Config.OUT.add("");
+		ArrayList<String> out = new ArrayList<String>();
+		
+		out.add("Object Properties: ");
+    	out.add("");
     	
 		if (setRel != null)
 			for (Entry<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> entry : setRel.entrySet())
 				for (OWLObject ind : entry.getValue())
-	    			Config.OUT.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
+	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
 		else
-			Config.OUT.add("Inconsistent");
+			out.add("Inconsistent");
 		
+		out.add("");
 		
-		Config.OUT.add("");
-		Config.OUT.add("");
-		
+		return out;
 	}
 	
-	void printAll(Set<OWLClassExpression> set, Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel, ObjGeom obj, String header) {
+	ArrayList<String> printAll(Set<OWLClassExpression> set, Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel, ObjGeom obj, String header) {
 		
-		printHeader(header);
-		printClasses(set,obj);
-		Config.OUT.add("...........................................................................................................");
-		Config.OUT.add("");
-		printRelations(setRel);
+		ArrayList<String> out = new ArrayList<String>();
+		
+		out.addAll(printHeader(header));
+		out.addAll(printClasses(set,obj));
+		out.add("...........................................................................................................");
+		out.add("");
+		out.addAll(printRelations(setRel));
+		
+		return out;
 	}
 		
 	

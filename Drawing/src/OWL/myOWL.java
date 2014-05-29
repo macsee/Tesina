@@ -299,6 +299,15 @@ public class myOWL {
     	MANAGER.addAxiom(ONTOLOGY, FACTORY.getOWLSameIndividualAxiom(ind1, ind2));
     	//REASONER.flush();
     }
+    
+    /****************************************************
+     * Asserting ind1 different from ind2				*
+     ****************************************************/
+    
+    public void assertDifferentFrom(OWLNamedIndividual ind1, OWLNamedIndividual ind2) {
+    	MANAGER.addAxiom(ONTOLOGY, FACTORY.getOWLDifferentIndividualsAxiom(ind1,ind2));
+    	//REASONER.flush();
+    }
    
     
     /****************************************************

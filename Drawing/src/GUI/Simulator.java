@@ -73,9 +73,21 @@ public class Simulator extends JFrame{
 					
 					long startTime = System.currentTimeMillis();
 
-					Config.THR1.getDataForAllObjects(CM8);
-					Config.HR1.getDataForAllObjects(CM8);
-					Config.HR2.getDataForAllObjects(CM8);
+					Config.THR1.assertDataForObjsInLayer(CM8);
+					Config.HR1.assertDataForObjsInLayer(CM8);
+					Config.HR2.assertDataForObjsInLayer(CM8);
+					
+					Config.THR1.getAssertedDataInLayer(CM8);
+					Config.HR1.getAssertedDataInLayer(CM8);
+					Config.HR2.getAssertedDataInLayer(CM8);
+					
+					Config.THR1.getInferredDataInLayer(CM8);
+					Config.HR1.getInferredDataInLayer(CM8);
+					Config.HR2.getInferredDataInLayer(CM8);
+					
+					Config.OUT.addAll(Config.THR1.OUT);
+					Config.OUT.addAll(Config.HR1.OUT);
+					Config.OUT.addAll(Config.HR2.OUT);
 					
 					long endTime = System.currentTimeMillis();
 					Config.OUT.add("Total Time: "+(endTime - startTime)+" milliseconds");

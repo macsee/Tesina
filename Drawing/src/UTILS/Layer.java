@@ -35,6 +35,7 @@ public class Layer {
 	private DefaultListModel DISPLAYLIST = new DefaultListModel();
     private LinkedList<Shape> INTERSECTIONS = new LinkedList<Shape> ();
     private LinkedList<Shape> DIFFERENCES = new LinkedList<Shape> ();
+    public static ArrayList<String> RELATIONS = new ArrayList<String>();
     
     private Geometry LINE;
     private Point ACTUAL_POINT;
@@ -53,6 +54,8 @@ public class Layer {
     private boolean DRAW_DIFFERENCE;
     
     private Geometry DIBUJO;
+    
+    public static ArrayList<String> OUT = new ArrayList<String>();
     
 //    private CM8toOWL CM8;
     
@@ -451,8 +454,8 @@ public class Layer {
 					CM8.assertRelation("NA", ob1, ob2);
 				}
 				
-				Config.OUT.add(outCM8);
-				Config.OUT.add(outTXT);
+				OUT.add(outCM8);
+				OUT.add(outTXT);
 				
 			}
 			
@@ -466,29 +469,29 @@ public class Layer {
 	public void assertDataForObjGeom(ObjGeom obj, CM8toOWL CM8) {
 		
 		CM8.assertIndividual(obj); //asserting ob1 as individual
-		CM8.assertProperty(obj, "Elongation", obj.getELONGATION());
-		CM8.assertProperty(obj, "Width", obj.getWIDTH());
-		CM8.assertProperty(obj, "Length", obj.getLENGTH());
-		CM8.assertProperty(obj, "Forme", obj.getFORM());
-		CM8.assertProperty(obj, "Texture", obj.getTEXTURE());
-		CM8.assertProperty(obj, "Density", obj.getDENSITY());
-		CM8.assertProperty(obj, "Surface", obj.getSURFACE());
-		CM8.assertProperty(obj, "Resolution", obj.getRESOLUTION());
+		CM8.assertProperty(obj, "hasElongation", obj.getELONGATION());
+		CM8.assertProperty(obj, "hasWidth", obj.getWIDTH());
+		CM8.assertProperty(obj, "hasLength", obj.getLENGTH());
+		CM8.assertProperty(obj, "hasShape", obj.getFORM());
+		CM8.assertProperty(obj, "hasTexture", obj.getTEXTURE());
+		CM8.assertProperty(obj, "hasDensity", obj.getDENSITY());
+		CM8.assertProperty(obj, "hasSurface", obj.getSURFACE());
+		CM8.assertProperty(obj, "hasResolution", obj.getRESOLUTION());
 		CM8.makeSameIndividual(obj, obj.getSAMEIND()); // VER COMO HACER PARA MANTENER LOS INDIVIDUOS IGUALES
 		checkCM8PrimitivesForPolygon(obj, CM8); // 
 	
 	}
 	
-	public void getDataForAllObjects(CM8toOWL CM8) {
+	public void assertDataForObjsInLayer(CM8toOWL CM8) {
 				
 		int i=1;
-		Config.OUT.add("*********************************************** LAYER "+LAYERID+" ***********************************************");
-		Config.OUT.add("*********************************************************************************************************\n");
+		OUT.add("*********************************************** LAYER "+LAYERID+" ***********************************************");
+		OUT.add("*********************************************************************************************************\n");
 		
 		if (SHPS.isEmpty()) {
-			Config.OUT.add("");
-			Config.OUT.add("No objects detected on this layer");
-			Config.OUT.add("");
+			OUT.add("");
+			OUT.add("No objects detected on this layer");
+			OUT.add("");
 			return;
 		}
 		
@@ -502,54 +505,62 @@ public class Layer {
 					//checkCM8PrimitivesForPolygon(objgeom, CM8);
 					assertDataForObjGeom(obj, CM8);
 					if (i < SHPS.size())
-						Config.OUT.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+						OUT.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 					i++;
 			}			
 		
-		CM8.makeIndividualsDifferent();
+		//CM8.makeIndividualsDifferent();
 		CM8.countObjsOfClass("P","to-1");
 		CM8.countObjsOfClass("EC","to-1");
-			
-		Config.OUT.add("*********************************************************************************************************");
-		Config.OUT.add("*************************************** Asserted Data for Objects ***************************************");
-		Config.OUT.add("*********************************************************************************************************\n");
-		
-		
-		for (ObjGeom objgeom : SHPS)
-			CM8.getAssertedDataForObjects(objgeom);
-		
-		
-		Config.OUT.add("*********************************************************************************************************");
-		Config.OUT.add("******************************** Asserted Data for Spatial Relationships ********************************");
-		Config.OUT.add("*********************************************************************************************************\n");
-		
-		
-		CM8.getAssertedDataForSpatialRelations();
-		
-		
-		Config.OUT.add("");
-		Config.OUT.add("*********************************************************************************************************");
-		Config.OUT.add("*************************************** Inferred Data for Objects ****************************************");
-		Config.OUT.add("**********************************************************************************************************\n");
-		
-		
-		for (ObjGeom objgeom : SHPS)
-				CM8.getInferredDataForObjects(objgeom);
-		
-		
-		Config.OUT.add("");
-		Config.OUT.add("*********************************************************************************************************");
-		Config.OUT.add("******************************* Inferred Data for Spatial Relationships *********************************");
-		Config.OUT.add("*********************************************************************************************************\n");
-		
-		
-		CM8.getInferredDataForSpatialRelations();
+	}	
 	
+	
+	public void getAssertedDataInLayer(CM8toOWL CM8) {
 		
-		Config.OUT.add("");
-
+		OUT.add("*********************************************************************************************************");
+		OUT.add("*************************************** Asserted Data for Objects ***************************************");
+		OUT.add("*********************************************************************************************************\n");
+		
+		
+//		for (ObjGeom objgeom : SHPS)
+		OUT.addAll(CM8.getAssertedDataForObjects());
+		
+		
+		OUT.add("*********************************************************************************************************");
+		OUT.add("******************************** Asserted Data for Spatial Relationships ********************************");
+		OUT.add("*********************************************************************************************************\n");
+		
+		
+		OUT.addAll(CM8.getAssertedDataForSpatialRelations());
+		
 	}
 	
+	public void getInferredDataInLayer(CM8toOWL CM8) {
+		
+		OUT.add("");
+		OUT.add("*********************************************************************************************************");
+		OUT.add("*************************************** Inferred Data for Objects ****************************************");
+		OUT.add("**********************************************************************************************************\n");
+		
+		
+		for (ObjGeom objgeom : SHPS)
+				OUT.addAll(CM8.getInferredDataForObjects(objgeom));
+		
+		
+		OUT.add("");
+		OUT.add("*********************************************************************************************************");
+		OUT.add("******************************* Inferred Data for Spatial Relationships *********************************");
+		OUT.add("*********************************************************************************************************\n");
+		
+		
+		OUT.addAll(CM8.getInferredDataForSpatialRelations());
+	
+		
+		OUT.add("");
+
+		
+	}
+		
 	/**********************************************************************************
 	 * DRAWING FUNCTIONS
 	 * @param g
@@ -635,6 +646,12 @@ public class Layer {
     	}
 		
 		System.out.println();
+	}
+	
+	public void printLayer() {
+		for (String str : OUT) {
+    		System.out.println(str);
+    	}
 	}
 	
 	public void printMatrix(IntersectionMatrix patern, ObjGeom ob1, ObjGeom ob2) {
