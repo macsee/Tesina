@@ -86,7 +86,7 @@ public class CM8toOWL {
 	*	o si lo dejo asi. También tengo que investigar como agregar mas de una clase a una instancia			*
 	*************************************************************************************************************/
 	
-	public void assertRelation(String cm8, ObjGeom obj1, ObjGeom obj2) {
+	public String assertRelation(String cm8, ObjGeom obj1, ObjGeom obj2) {
 		
 		String rel = "SR_P"+obj1.getId()+"_P"+obj2.getId();
 		
@@ -130,6 +130,7 @@ public class CM8toOWL {
 		
 		ASSERTED_CLASS_RELS.get(indRel).addAll(setRel);
 
+		return rel;
 	} 
 	
 	public void makeIndividualsDifferent(ObjGeom ob1, ObjGeom ob2) {
@@ -220,71 +221,43 @@ public class CM8toOWL {
 				assertMaxCard(getObjGeom(entry.getKey()), entry.getValue(), cm8, prop);
 	}
 	
-	public ArrayList<String> getAssertedDataForObjects() {
+	public ArrayList<String> getAssertedDataForObject(ObjGeom obj) {
 		
-		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
-
-		ArrayList<String> out = new ArrayList<String>();
+		OWLNamedIndividual ind = getIndividual(obj);
+		Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(ind);
+		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_OBJS.get(ind);
 		
-		for (OWLNamedIndividual ind : IND_OBJ.keySet()) {
-			Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(ind);
-			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_OBJS.get(ind);
-			ObjGeom obj = IND_OBJ.get(ind);
-			out.addAll(printAll(set, setRel, null, "Polygon P"+obj.getId()));
-		}	
+		return printAll(set, setRel, null, "Polygon P"+obj.getId());
 		
-		return out;
 	}
 	
-	public ArrayList<String> getInferredDataForObjects(ObjGeom obj) {
+	public ArrayList<String> getInferredDataForObject(ObjGeom obj) {
 		
-		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
+		OWLNamedIndividual ind = getIndividual(obj);
+		Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(ind);
+		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = myOWL.getInferredObjPropertiesFor(ind);
 		
-		ArrayList<String> out = new ArrayList<String>();
-		
-		for (OWLNamedIndividual ind : IND_OBJ.keySet()) {
-			Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(ind);
-			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = myOWL.getInferredObjPropertiesFor(ind);
-			out.addAll(printAll(set, setRel, obj, "Polygon P"+obj.getId())); //Imprimo todos los resultados
-		}
-		
-		return out;
+		return printAll(set, setRel, obj, "Polygon P"+obj.getId()); //Imprimo todos los resultados
 	    	
 	}
 	
-	public ArrayList<String> getAssertedDataForSpatialRelations() {
+	public ArrayList<String> getAssertedDataForSpatialRelation(String rel) {
 		
-		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
+		OWLNamedIndividual relInd = myOWL.getIndividual(rel);
+		Set<OWLClassExpression> set = ASSERTED_CLASS_RELS.get(relInd);
+		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_RELS.get(relInd);
 		
-		ArrayList<String> out = new ArrayList<String>();
-		
-		for (OWLNamedIndividual rel : ASSERTED_CLASS_RELS.keySet()) {
-		
-			Set<OWLClassExpression> set = ASSERTED_CLASS_RELS.get(rel);
-			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_RELS.get(rel);
+		return printAll(set, setRel, null, relInd.getIRI().getFragment());
 			
-			out.addAll(printAll(set, setRel, null, rel.getIRI().getFragment()));
-			
-		}
-		
-		return out;
-	    	
 	}
 	
-	public ArrayList<String> getInferredDataForSpatialRelations() {
-		
-		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
-		ArrayList<String> out = new ArrayList<String>();
-		
-		for (OWLNamedIndividual rel : ASSERTED_CLASS_RELS.keySet()) {
-			 
-	    	printHeader(rel.getIRI().getFragment());
-	    	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(rel);
-	    	out.addAll(printClasses(set,null));
-	    	
-		}
-		
-		return out;
+	public ArrayList<String> getInferredDataForSpatialRelation(String rel) {
+			
+		OWLNamedIndividual relInd = myOWL.getIndividual(rel);
+    	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(relInd);
+    	
+    	return printAll(set,null,null,relInd.getIRI().getFragment());
+	
 	}
 	
 	ArrayList<String> printHeader(String header) {
@@ -345,10 +318,13 @@ public class CM8toOWL {
 		ArrayList<String> out = new ArrayList<String>();
 		
 		out.addAll(printHeader(header));
-		out.addAll(printClasses(set,obj));
+		if (set != null)
+			out.addAll(printClasses(set,obj));
+		out.add("");
 		out.add("...........................................................................................................");
 		out.add("");
-		out.addAll(printRelations(setRel));
+		if (setRel != null)
+			out.addAll(printRelations(setRel));
 		
 		return out;
 	}

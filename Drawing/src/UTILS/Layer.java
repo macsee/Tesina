@@ -35,7 +35,7 @@ public class Layer {
 	private DefaultListModel DISPLAYLIST = new DefaultListModel();
     private LinkedList<Shape> INTERSECTIONS = new LinkedList<Shape> ();
     private LinkedList<Shape> DIFFERENCES = new LinkedList<Shape> ();
-    public static ArrayList<String> RELATIONS = new ArrayList<String>();
+    private ArrayList<String> RELATIONS = new ArrayList<String>();
     
     private Geometry LINE;
     private Point ACTUAL_POINT;
@@ -55,7 +55,7 @@ public class Layer {
     
     private Geometry DIBUJO;
     
-    public static ArrayList<String> OUT = new ArrayList<String>();
+    public ArrayList<String> OUT = new ArrayList<String>();
     
 //    private CM8toOWL CM8;
     
@@ -396,8 +396,6 @@ public class Layer {
 	}
 	
 	public void checkCM8PrimitivesForPolygon(ObjGeom ob1, CM8toOWL CM8) {
-		
-//		CM8.assertIndividual(ob1); //asserting ob1 as individual
 				
 		for (ObjGeom ob2 : SHPS) {
 			
@@ -405,53 +403,51 @@ public class Layer {
 			String outTXT = "";
 						
 			if (ob2.getMyPolygon() != null & ob2.getId() != ob1.getId()) {
-			
-//				CM8.assertIndividual(ob2);
-				
+							
 				outCM8 += "x = Polygon "+ob1.getId()+", y = Polygon "+ob2.getId()+" :: \n";
 				
 				if (interiorDifference(ob1, ob2)) {
 					outTXT += "xº - yº ≠ Ø ==> x is not contained in y \n";
 					outCM8 += "NP(x,y) - ";
-					CM8.assertRelation("NP", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("NP", ob1, ob2));
 				}	
 				else {
 					outTXT += "xº - yº = Ø ==> x is contained in y \n";
 					outCM8 += "P(x,y) - ";
-					CM8.assertRelation("P", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("P", ob1, ob2));
 				}	
 				
 				if (interiorDifference(ob2, ob1)) {
 					outTXT += "yº - xº ≠ Ø ==> x does not contain y \n";
 					outCM8 += "NP-1(x,y) - ";
-					CM8.assertRelation("NPi", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("NPi", ob1, ob2));
 				}	
 				else {
 					outTXT += "yº - xº = Ø ==> x contains y \n";
 					outCM8 += "P-1(x,y) - ";
-					CM8.assertRelation("Pi", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("Pi", ob1, ob2));
 				}	
 				
 				if (interiorIntersection(ob1, ob2)) {
 					outTXT += "xº INTERSECT yº ≠ Ø ==> x overlaps y \n";
 					outCM8 += "O(x,y) - ";
-					CM8.assertRelation("O", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("O", ob1, ob2));
 				}	
 				else {
 					outTXT += "xº INTERSECT yº = Ø ==> x interior disjoint from y \n";
 					outCM8 += "DR(x,y) - ";
-					CM8.assertRelation("DR", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("DR", ob1, ob2));
 				}	
 				
 				if (boundaryIntersection(ob1, ob2)) {
 					outTXT += "∂x INTERSECT ∂y ≠ Ø ==> x share boundary with y \n";
 					outCM8 += "A(x,y)\n";
-					CM8.assertRelation("A", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("A", ob1, ob2));
 				}	
 				else {
 					outTXT += "∂x INTERSECT ∂y = Ø ==> x does not share boundary with y \n";
 					outCM8 += "NA(x,y)\n";
-					CM8.assertRelation("NA", ob1, ob2);
+					RELATIONS.add(CM8.assertRelation("NA", ob1, ob2));
 				}
 				
 				OUT.add(outCM8);
@@ -502,14 +498,12 @@ public class Layer {
 		
 		for (ObjGeom obj : SHPS)
 			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
-					//checkCM8PrimitivesForPolygon(objgeom, CM8);
 					assertDataForObjGeom(obj, CM8);
 					if (i < SHPS.size())
 						OUT.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 					i++;
 			}			
 		
-		//CM8.makeIndividualsDifferent();
 		CM8.countObjsOfClass("P","to-1");
 		CM8.countObjsOfClass("EC","to-1");
 	}	
@@ -520,45 +514,45 @@ public class Layer {
 		OUT.add("*********************************************************************************************************");
 		OUT.add("*************************************** Asserted Data for Objects ***************************************");
 		OUT.add("*********************************************************************************************************\n");
+	
 		
+		for (ObjGeom objgeom : SHPS)
+			OUT.addAll(CM8.getAssertedDataForObject(objgeom));
 		
-//		for (ObjGeom objgeom : SHPS)
-		OUT.addAll(CM8.getAssertedDataForObjects());
-		
+		OUT.add("");
 		
 		OUT.add("*********************************************************************************************************");
 		OUT.add("******************************** Asserted Data for Spatial Relationships ********************************");
 		OUT.add("*********************************************************************************************************\n");
 		
+		for (String rel : RELATIONS)
+			OUT.addAll(CM8.getAssertedDataForSpatialRelation(rel));
 		
-		OUT.addAll(CM8.getAssertedDataForSpatialRelations());
+		OUT.add("");
 		
 	}
 	
 	public void getInferredDataInLayer(CM8toOWL CM8) {
 		
-		OUT.add("");
 		OUT.add("*********************************************************************************************************");
 		OUT.add("*************************************** Inferred Data for Objects ****************************************");
 		OUT.add("**********************************************************************************************************\n");
 		
 		
 		for (ObjGeom objgeom : SHPS)
-				OUT.addAll(CM8.getInferredDataForObjects(objgeom));
-		
+				OUT.addAll(CM8.getInferredDataForObject(objgeom));
 		
 		OUT.add("");
+		
 		OUT.add("*********************************************************************************************************");
 		OUT.add("******************************* Inferred Data for Spatial Relationships *********************************");
 		OUT.add("*********************************************************************************************************\n");
 		
-		
-		OUT.addAll(CM8.getInferredDataForSpatialRelations());
+		for (String rel : RELATIONS)
+			OUT.addAll(CM8.getInferredDataForSpatialRelation(rel));
 	
-		
 		OUT.add("");
-
-		
+	
 	}
 		
 	/**********************************************************************************

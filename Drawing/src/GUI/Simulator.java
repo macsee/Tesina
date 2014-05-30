@@ -78,13 +78,13 @@ public class Simulator extends JFrame{
 					Config.HR2.assertDataForObjsInLayer(CM8);
 					
 					Config.THR1.getAssertedDataInLayer(CM8);
-					Config.HR1.getAssertedDataInLayer(CM8);
-					Config.HR2.getAssertedDataInLayer(CM8);
+//					Config.HR1.getAssertedDataInLayer(CM8);
+//					Config.HR2.getAssertedDataInLayer(CM8);
 					
-					Config.THR1.getInferredDataInLayer(CM8);
-					Config.HR1.getInferredDataInLayer(CM8);
-					Config.HR2.getInferredDataInLayer(CM8);
-					
+//					Config.THR1.getInferredDataInLayer(CM8);
+//					Config.HR1.getInferredDataInLayer(CM8);
+//					Config.HR2.getInferredDataInLayer(CM8);
+//					
 					Config.OUT.addAll(Config.THR1.OUT);
 					Config.OUT.addAll(Config.HR1.OUT);
 					Config.OUT.addAll(Config.HR2.OUT);
