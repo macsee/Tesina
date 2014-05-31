@@ -11,8 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -35,7 +37,7 @@ public class Layer {
 	private DefaultListModel DISPLAYLIST = new DefaultListModel();
     private LinkedList<Shape> INTERSECTIONS = new LinkedList<Shape> ();
     private LinkedList<Shape> DIFFERENCES = new LinkedList<Shape> ();
-    private ArrayList<String> RELATIONS = new ArrayList<String>();
+    private Set<String> RELATIONS = new HashSet<String>();
     
     private Geometry LINE;
     private Point ACTUAL_POINT;
@@ -56,6 +58,7 @@ public class Layer {
     private Geometry DIBUJO;
     
     public ArrayList<String> OUT = new ArrayList<String>();
+    public ArrayList<String> AUX = new ArrayList<String>();
     
 //    private CM8toOWL CM8;
     
@@ -399,7 +402,7 @@ public class Layer {
 				
 		for (ObjGeom ob2 : SHPS) {
 			
-			String outCM8 = "\n";
+			String outCM8 = "";
 			String outTXT = "";
 						
 			if (ob2.getMyPolygon() != null & ob2.getId() != ob1.getId()) {
@@ -450,13 +453,15 @@ public class Layer {
 					RELATIONS.add(CM8.assertRelation("NA", ob1, ob2));
 				}
 				
-				OUT.add(outCM8);
-				OUT.add(outTXT);
+				AUX.add(outCM8);
+				AUX.add(outTXT);
 				
 			}
 			
 		}
 
+		AUX.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		AUX.add("");
 	}
 	
 	
@@ -481,6 +486,24 @@ public class Layer {
 	public void assertDataForObjsInLayer(CM8toOWL CM8) {
 				
 		int i=1;
+		
+		/**
+		 * Realizo un assert en la ontología de todos los datos contenidos en cada ObjGeom
+		 **/
+		
+		for (ObjGeom obj : SHPS)
+			if (obj.getMyPolygon() != null) //Hago esto para evitar que un click accidental sea considerado como ObjGeom
+					assertDataForObjGeom(obj, CM8);
+		
+		CM8.countObjsOfClass("P","to-1");
+		CM8.countObjsOfClass("EC","to-1");
+	}	
+	
+	
+	public void getAssertedDataInLayer(CM8toOWL CM8) {
+		
+		int i;
+		
 		OUT.add("*********************************************** LAYER "+LAYERID+" ***********************************************");
 		OUT.add("*********************************************************************************************************\n");
 		
@@ -491,25 +514,8 @@ public class Layer {
 			return;
 		}
 		
-		
-		/**
-		 * Realizo un assert en la ontología de todos los datos contenidos en cada ObjGeom
-		 **/
-		
-		for (ObjGeom obj : SHPS)
-			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
-					assertDataForObjGeom(obj, CM8);
-					if (i < SHPS.size())
-						OUT.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-					i++;
-			}			
-		
-		CM8.countObjsOfClass("P","to-1");
-		CM8.countObjsOfClass("EC","to-1");
-	}	
-	
-	
-	public void getAssertedDataInLayer(CM8toOWL CM8) {
+		for (i=0;i<AUX.size()-2;i++)
+			OUT.add(AUX.get(i));
 		
 		OUT.add("*********************************************************************************************************");
 		OUT.add("*************************************** Asserted Data for Objects ***************************************");
@@ -533,6 +539,9 @@ public class Layer {
 	}
 	
 	public void getInferredDataInLayer(CM8toOWL CM8) {
+		
+		if (SHPS.isEmpty())
+			return;
 		
 		OUT.add("*********************************************************************************************************");
 		OUT.add("*************************************** Inferred Data for Objects ****************************************");

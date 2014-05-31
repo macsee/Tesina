@@ -146,19 +146,38 @@ public class CM8toOWL {
 	public void assertMaxCard(ObjGeom ob, Integer cant, String clase, String prop) {
 		
 		OWLClassExpression restrict = myOWL.assertMaxRestriction(myOWL.getObjectProperty(prop), cant, myOWL.getClass(clase));
-		myOWL.defineInstance("P"+ob.getId(), restrict);
+		OWLNamedIndividual ind = getIndividual(ob);
+		myOWL.addToIndividual(ind, restrict);
+		
+		Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(ind);
+		set.add(restrict);
+		
+		ASSERTED_CLASS_OBJS.put(ind, set);
 	}
 	
 	public void assertMinCard(ObjGeom ob, Integer cant, String clase, String prop) {
 		
 		OWLClassExpression restrict = myOWL.assertMinRestriction(myOWL.getObjectProperty(prop), cant, myOWL.getClass(clase));
-		myOWL.defineInstance("P"+ob.getId(), restrict);
+		
+		OWLNamedIndividual ind = getIndividual(ob);
+		myOWL.addToIndividual(ind, restrict);
+		
+		Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(ind);
+		set.add(restrict);
+		
+		ASSERTED_CLASS_OBJS.put(ind, set);
 	}
 	
 	public void assertExactCard(ObjGeom ob, Integer cant, String clase, String prop) {
 		
 		OWLClassExpression restrict = myOWL.assertExactRestriction(myOWL.getObjectProperty(prop), cant, myOWL.getClass(clase));
-		myOWL.defineInstance("P"+ob.getId(), restrict);
+		OWLNamedIndividual ind = getIndividual(ob);
+		myOWL.addToIndividual(ind, restrict);
+		
+		Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(ind);
+		set.add(restrict);
+		
+		ASSERTED_CLASS_OBJS.put(ind, set);
 	}
 	
 	public void assertProperty(ObjGeom ob, String prop, String value) {
@@ -200,7 +219,7 @@ public class CM8toOWL {
 		
 		for (OWLNamedIndividual ind : setRel) {
 			
-			Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind);
+			Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind); // Obtengo las object properties y los individuos relacionados con ind
 			Set<OWLNamedIndividual> setOWLInd = map.get(myOWL.getObjectProperty(propInv)); // Me quedo solo con los objetos geograficos que se relacionan mediante "to" con la primitiva CM8
 			
 			for (OWLNamedIndividual owlInd : setOWLInd)
@@ -218,7 +237,7 @@ public class CM8toOWL {
 	public void assertCardinalityRestriccions(Map<OWLNamedIndividual,Integer> count, String cm8, String prop) {
 		
 		for (Entry<OWLNamedIndividual, Integer> entry : count.entrySet())
-				assertMaxCard(getObjGeom(entry.getKey()), entry.getValue(), cm8, prop);
+			assertMaxCard(getObjGeom(entry.getKey()), entry.getValue(), cm8, prop);
 	}
 	
 	public ArrayList<String> getAssertedDataForObject(ObjGeom obj) {
