@@ -60,7 +60,7 @@ public class Layer {
     public ArrayList<String> OUT = new ArrayList<String>();
     public ArrayList<String> AUX = new ArrayList<String>();
     
-//    private CM8toOWL CM8;
+    private CM8toOWL CM8;
     
     public Layer(String layerid) {
     	LINE = null;
@@ -393,12 +393,12 @@ public class Layer {
 	
 	public void checkCM8FromRClick(ObjGeom ob1) {
 		
-		//CM8 = new CM8toOWL();
-		this.checkCM8PrimitivesForPolygon(ob1, new CM8toOWL());
-		//CM8 = null;
+		CM8 = new CM8toOWL();
+		this.checkCM8PrimitivesForPolygon(ob1);
+		CM8 = null;
 	}
 	
-	public void checkCM8PrimitivesForPolygon(ObjGeom ob1, CM8toOWL CM8) {
+	public void checkCM8PrimitivesForPolygon(ObjGeom ob1) {
 				
 		for (ObjGeom ob2 : SHPS) {
 			
@@ -467,7 +467,7 @@ public class Layer {
 	
 	
 	
-	public void assertDataForObjGeom(ObjGeom obj, CM8toOWL CM8) {
+	public void assertDataForObjGeom(ObjGeom obj) {
 		
 		CM8.assertIndividual(obj); //asserting ob1 as individual
 		CM8.assertProperty(obj, "hasElongation", obj.getELONGATION());
@@ -479,11 +479,11 @@ public class Layer {
 		CM8.assertProperty(obj, "hasSurface", obj.getSURFACE());
 		CM8.assertProperty(obj, "hasResolution", obj.getRESOLUTION());
 		CM8.makeSameIndividual(obj, obj.getSAMEIND()); // VER COMO HACER PARA MANTENER LOS INDIVIDUOS IGUALES
-		checkCM8PrimitivesForPolygon(obj, CM8); // 
+		checkCM8PrimitivesForPolygon(obj); // 
 	
 	}
 	
-	public void assertDataForObjsInLayer(CM8toOWL CM8) {
+	public void assertDataForObjsInLayer() {
 				
 		int i=1;
 		
@@ -493,14 +493,18 @@ public class Layer {
 		
 		for (ObjGeom obj : SHPS)
 			if (obj.getMyPolygon() != null) //Hago esto para evitar que un click accidental sea considerado como ObjGeom
-					assertDataForObjGeom(obj, CM8);
+					assertDataForObjGeom(obj);
 		
 		CM8.countObjsOfClass("P","to-1");
 		CM8.countObjsOfClass("EC","to-1");
 	}	
 	
+	public void  makeObjsDifferent () {
+		for (ObjGeom obj : SHPS)
+			CM8.makeAllIndsDifferentFrom(obj);
+	}
 	
-	public void getAssertedDataInLayer(CM8toOWL CM8) {
+	public void getAssertedDataInLayer() {
 		
 		int i;
 		
@@ -538,18 +542,22 @@ public class Layer {
 		
 	}
 	
-	public void getInferredDataInLayer(CM8toOWL CM8) {
+	public void getInferredDataInLayer() {
 		
 		if (SHPS.isEmpty())
 			return;
 		
+		boolean ok = CM8.checkConsistency(); 
+	
 		OUT.add("*********************************************************************************************************");
 		OUT.add("*************************************** Inferred Data for Objects ****************************************");
 		OUT.add("**********************************************************************************************************\n");
 		
-		
-		for (ObjGeom objgeom : SHPS)
-				OUT.addAll(CM8.getInferredDataForObject(objgeom));
+		if (!ok)
+			OUT.add("Inconsistent");
+		else
+			for (ObjGeom objgeom : SHPS)
+					OUT.addAll(CM8.getInferredDataForObject(objgeom));
 		
 		OUT.add("");
 		
@@ -557,11 +565,16 @@ public class Layer {
 		OUT.add("******************************* Inferred Data for Spatial Relationships *********************************");
 		OUT.add("*********************************************************************************************************\n");
 		
-		for (String rel : RELATIONS)
-			OUT.addAll(CM8.getInferredDataForSpatialRelation(rel));
+		if (!ok)
+			OUT.add("Inconsistent");
+		else
+			for (String rel : RELATIONS)
+				OUT.addAll(CM8.getInferredDataForSpatialRelation(rel));
 	
 		OUT.add("");
-	
+		
+		if (!ok)
+			return;
 	}
 		
 	/**********************************************************************************
@@ -655,6 +668,10 @@ public class Layer {
 		for (String str : OUT) {
     		System.out.println(str);
     	}
+	}
+	
+	public void setCM8(CM8toOWL cm8) {
+		CM8 = cm8;
 	}
 	
 	public void printMatrix(IntersectionMatrix patern, ObjGeom ob1, ObjGeom ob2) {

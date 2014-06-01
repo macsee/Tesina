@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.xml.crypto.dsig.TransformException;
@@ -68,28 +69,41 @@ public class Simulator extends JFrame{
 		Button btnRun = new Button("Run");
 		btnRun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					CM8toOWL CM8 = new CM8toOWL();
 					Config.OUT.clear();
+					CM8toOWL CM8 = new CM8toOWL();
+			
+					Config.THR1.setCM8(CM8);
+					Config.HR1.setCM8(CM8);
+					Config.HR2.setCM8(CM8);
 					
 					long startTime = System.currentTimeMillis();
 
-					Config.THR1.assertDataForObjsInLayer(CM8);
-					Config.HR1.assertDataForObjsInLayer(CM8);
-					Config.HR2.assertDataForObjsInLayer(CM8);
+					Config.THR1.assertDataForObjsInLayer();
+					Config.HR1.assertDataForObjsInLayer();
+					Config.HR2.assertDataForObjsInLayer();
 					
-					Config.THR1.getAssertedDataInLayer(CM8);
-					Config.HR1.getAssertedDataInLayer(CM8);
-					Config.HR2.getAssertedDataInLayer(CM8);
+					Config.THR1.makeObjsDifferent();
+					Config.HR1.makeObjsDifferent();
+					Config.HR2.makeObjsDifferent();
 					
-					Config.THR1.getInferredDataInLayer(CM8);
-					Config.HR1.getInferredDataInLayer(CM8);
-					Config.HR2.getInferredDataInLayer(CM8);
-
+					Config.THR1.getAssertedDataInLayer();
+					Config.HR1.getAssertedDataInLayer();
+					Config.HR2.getAssertedDataInLayer();
+					
+					Config.THR1.getInferredDataInLayer();
+					Config.HR1.getInferredDataInLayer();
+					Config.HR2.getInferredDataInLayer();
+					
+					if (!CM8.checkConsistency())
+						JOptionPane.showMessageDialog(null,"Inconsistent Ontology","Erro",JOptionPane.ERROR_MESSAGE);
+						//new ErrorOWL(panelPrincipal,"Inconsistent Ontology. Please check!");
+						
 					Config.OUT.addAll(Config.THR1.OUT);
 					Config.OUT.addAll(Config.HR1.OUT);
 					Config.OUT.addAll(Config.HR2.OUT);
 					
 					long endTime = System.currentTimeMillis();
+					
 					Config.OUT.add("Total Time: "+(endTime - startTime)+" milliseconds");
 					
 					CM8.saveOnto();

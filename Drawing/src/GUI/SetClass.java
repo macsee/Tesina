@@ -312,6 +312,10 @@ public class SetClass extends Dialog{
 					layer.updateDefaultList(obj);
 					dispose();
 	            }
+				if(arg0.getKeyCode() == KeyEvent.VK_ESCAPE)
+				{
+					dispose();
+				}	
 			}
 
 			@Override

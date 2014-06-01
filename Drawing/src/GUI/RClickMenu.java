@@ -70,7 +70,7 @@ public class RClickMenu {
 	    			 System.out.println("Checking spatial relationships for Polygon: "+obj.getId());
 	    			 Config.OUT.clear();
 	    			 //Config.ACTIVELAYER.checkCM8FromRClick(obj);
-	    			 Config.ACTIVELAYER.checkCM8PrimitivesForPolygon(obj, new CM8toOWL());
+	    			 Config.ACTIVELAYER.checkCM8PrimitivesForPolygon(obj);
 	    			 //new ResultWindow();
 	    		 }	
 	    	 }

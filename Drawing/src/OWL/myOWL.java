@@ -1,4 +1,6 @@
 package OWL;
+import java.awt.Dialog;
+import java.awt.Frame;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +8,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import javax.swing.plaf.OptionPaneUI;
+import javax.swing.text.html.Option;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
@@ -29,6 +34,7 @@ import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
 import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
+import GUI.ErrorOWL;
 import UTILS.Config;
 import UTILS.ObjGeom;
 
@@ -176,14 +182,10 @@ public class myOWL {
      ****************************************************/
     
     public Set<OWLNamedIndividual> getAllInds() {
-    	Set<OWLNamedIndividual> lala = ONTOLOGY.getIndividualsInSignature();
+    	Set<OWLNamedIndividual> setInds = ONTOLOGY.getIndividualsInSignature();
     	OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
-    	
-    	for (OWLNamedIndividual ind : lala){
-    		//System.out.println(renderer.render(ind));
-    	}
-    	
-    	return lala;
+    		
+    	return setInds;
     }
     
     
@@ -258,13 +260,17 @@ public class myOWL {
     public Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> getInferredObjPropertiesFor(OWLNamedIndividual ind) {
     	
     	OWLReasoner REASONER = getReasoner();
-    	Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setInds = new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>();
     	
-    	for (OWLObjectPropertyExpression obj : ONTOLOGY.getObjectPropertiesInSignature()) {
-    		setInds.put(obj,REASONER.getObjectPropertyValues(ind, obj).getFlattened());
+    	if (REASONER.isConsistent()) { 
+    		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setInds = new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>();
+   
+	    	for (OWLObjectPropertyExpression obj : ONTOLOGY.getObjectPropertiesInSignature())
+	    		setInds.put(obj,REASONER.getObjectPropertyValues(ind, obj).getFlattened());
+    	
+	    	return setInds;
     	}
-    	
-    	return setInds;
+    	else
+    		return null;
     }
     
     /********************************************************************
@@ -274,12 +280,19 @@ public class myOWL {
     public Set<OWLNamedIndividual> getInferredIndRelThrProp(OWLNamedIndividual ind, OWLObjectProperty prop) {
     	
     	Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> set = getInferredObjPropertiesFor(ind); 
-    	if (!set.isEmpty())
+    	if (set != null)
     		return set.get(prop);
     	else
-    		return new HashSet<OWLNamedIndividual>();
+    		return null;
     }
     
+    
+    public boolean checkConsistency() {
+    	
+    	OWLReasoner REASONER = getReasoner();
+    	return REASONER.isConsistent();
+    		
+    }
     
     /****************************************************
      * Asserting all individuals as different			*
@@ -392,32 +405,27 @@ public class myOWL {
     	    	
     	Set<OWLClassExpression> set = new HashSet<OWLClassExpression>();
     	OWLReasoner REASONER = getReasoner();
+    	
+    	if (REASONER.isConsistent()) {
     		
-    	if (ind != null) {
-        	
-        	Set<OWLClassExpression> assertedClasses = ind.getTypes(ONTOLOGY);
-        	
-        	if (REASONER.isConsistent()) {
-        	
-	            for (OWLClass c : REASONER.getTypes(ind, false).getFlattened()) { 
+	    	if (ind != null) {
+	        	
+	        	Set<OWLClassExpression> assertedClasses = ind.getTypes(ONTOLOGY);
+	        	
+	        	for (OWLClass c : REASONER.getTypes(ind, false).getFlattened()) 
         			
 	            	if (!assertedClasses.contains(c))
 	            			set.add(c);
-	            	
-	            }
-	            
-        	}
-        	else
-        		return null;
-        	
-        	
-            return set;
+	        	
+	        	return set;
+		            
+	    	}
+	    	else
+	    		return null;
+	        	      
     	}	
-    	else {
-    		System.out.println("Error: "+ind+" is not a valid individual");
+    	else
     		return null;
-    	}
-    	    	
     }
     
     
@@ -425,8 +433,6 @@ public class myOWL {
     	
     	OWLReasoner REASONER = getReasoner();
     		       	
-    	//Set<OWLClassExpression> assertedClasses = ind.getTypes(ONTOLOGY);
-    	
     	if (REASONER.isConsistent())
     		return REASONER.getInstances(clase, false).getFlattened();
     	else

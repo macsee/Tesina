@@ -136,6 +136,18 @@ public class CM8toOWL {
 	public void makeIndividualsDifferent(ObjGeom ob1, ObjGeom ob2) {
 		
 		myOWL.assertDifferentFrom(getIndividual(ob1), getIndividual(ob2));
+
+	}
+	
+	public void makeAllIndsDifferentFrom(ObjGeom ob1) {
+		
+		for (OWLNamedIndividual ind: IND_OBJ.keySet()) {
+			ObjGeom ob2 = IND_OBJ.get(ind);
+			if (ob1 != ob2)
+				if (ob1.getSAMEIND() != ob2)
+					makeIndividualsDifferent(ob1, ob2); //TERMINAR ESTO!!!!!!!!!
+		}
+		
 	}
 	
 	public void makeSameIndividual(ObjGeom ob1, ObjGeom ob2) {
@@ -153,6 +165,7 @@ public class CM8toOWL {
 		set.add(restrict);
 		
 		ASSERTED_CLASS_OBJS.put(ind, set);
+		
 	}
 	
 	public void assertMinCard(ObjGeom ob, Integer cant, String clase, String prop) {
@@ -217,19 +230,21 @@ public class CM8toOWL {
 		
 		Set<OWLNamedIndividual> setRel = myOWL.getInstancesOf(myOWL.getClass(clase)); // Busco los primitivas CM8 que son miembros de la clase "clase"
 		
-		for (OWLNamedIndividual ind : setRel) {
+		if (setRel != null) {
+			for (OWLNamedIndividual ind : setRel) {
+				
+				Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind); // Obtengo las object properties y los individuos relacionados con ind
+				Set<OWLNamedIndividual> setOWLInd = map.get(myOWL.getObjectProperty(propInv)); // Me quedo solo con los objetos geograficos que se relacionan mediante "to" con la primitiva CM8
+				
+				for (OWLNamedIndividual owlInd : setOWLInd)
+					if (!count.containsKey(owlInd))
+						count.put(owlInd, 1);
+					else
+						count.put(owlInd, count.get(owlInd)+1);
+			}
 			
-			Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind); // Obtengo las object properties y los individuos relacionados con ind
-			Set<OWLNamedIndividual> setOWLInd = map.get(myOWL.getObjectProperty(propInv)); // Me quedo solo con los objetos geograficos que se relacionan mediante "to" con la primitiva CM8
-			
-			for (OWLNamedIndividual owlInd : setOWLInd)
-				if (!count.containsKey(owlInd))
-					count.put(owlInd, 1);
-				else
-					count.put(owlInd, count.get(owlInd)+1);
-		}
-		
-			assertCardinalityRestriccions(count, clase, prop);
+				assertCardinalityRestriccions(count, clase, prop);
+		}	
 		
 	}
 	
@@ -260,6 +275,10 @@ public class CM8toOWL {
 	    	
 	}
 	
+	public boolean checkConsistency() {
+		return myOWL.checkConsistency();
+	}
+	
 	public ArrayList<String> getAssertedDataForSpatialRelation(String rel) {
 		
 		OWLNamedIndividual relInd = myOWL.getIndividual(rel);
@@ -275,7 +294,7 @@ public class CM8toOWL {
 		OWLNamedIndividual relInd = myOWL.getIndividual(rel);
     	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(relInd);
     	
-    	return printAll(set,null,null,relInd.getIRI().getFragment());
+    	return printAll(set,new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>(),null,relInd.getIRI().getFragment());
 	
 	}
 	
@@ -294,18 +313,27 @@ public class CM8toOWL {
     	out.add("Classes: ");
     	out.add("");
     	
-    	if (set != null)
-    		for (OWLClassExpression owlClass : set) {
-    			out.add(renderer.render(owlClass));
-    			
-    			if (obj != null){ // Imprimo el resultado en la lista de la capa activa
-    				obj.setCLASE(owlClass. asOWLClass().getIRI().getFragment());
-    				Config.ACTIVELAYER.updateDefaultList(obj);
-    			}	
-    		}	
-    	else
+    	if (set == null) {
     		out.add("Inconsistent");
-    			
+    		out.add("");
+    		return out;
+    	}
+    	
+    	if (set.isEmpty()) {
+    		out.add("Nothing to infer");
+    		out.add("");
+    		return out;
+    	}
+    
+		for (OWLClassExpression owlClass : set) {
+			out.add(renderer.render(owlClass));
+			
+			if (Config.ONTCLASSES.contains(renderer.render(owlClass)) & obj != null){ // Imprimo el resultado en la lista de la capa activa
+				obj.setCLASE(renderer.render(owlClass));
+				Config.ACTIVELAYER.updateDefaultList(obj);
+			}	
+		}	
+ 
     	out.add("");
     	
     	return out;
@@ -320,12 +348,21 @@ public class CM8toOWL {
 		out.add("Object Properties: ");
     	out.add("");
     	
-		if (setRel != null)
-			for (Entry<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> entry : setRel.entrySet())
-				for (OWLObject ind : entry.getValue())
-	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
-		else
-			out.add("Inconsistent");
+    	if (setRel == null) {
+    		out.add("Inconsistent");
+    		out.add("");
+    		return out;
+    	}
+    	
+    	if (setRel.isEmpty()) {
+    		out.add("Nothing to infer");
+    		out.add("");
+    		return out;
+    	}
+    	
+		for (Entry<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> entry : setRel.entrySet())
+			for (OWLObject ind : entry.getValue())
+    			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
 		
 		out.add("");
 		
@@ -337,22 +374,15 @@ public class CM8toOWL {
 		ArrayList<String> out = new ArrayList<String>();
 		
 		out.addAll(printHeader(header));
-		if (set != null)
-			out.addAll(printClasses(set,obj));
+		out.addAll(printClasses(set,obj));
 		out.add("");
 		out.add("...........................................................................................................");
 		out.add("");
-		if (setRel != null)
-			out.addAll(printRelations(setRel));
+		out.addAll(printRelations(setRel));
 		
 		return out;
 	}
 		
-	
-	void printToList(ObjGeom obj) {
-		
-		
-	}
 	public void saveOnto() {
 		myOWL.saveOntologyOWLFormat(new File(output_ontology));
 	}
