@@ -244,6 +244,10 @@ public class CM8toOWL {
 			}
 			
 				assertCardinalityRestriccions(count, clase, prop);
+				if (clase == "EC")
+					assertCardinalityRestriccions(count,"GeoObject", "is_adjacent_to");
+				if (clase == "P")
+					assertCardinalityRestriccions(count,"GeoObject", "includes");
 		}	
 		
 	}
