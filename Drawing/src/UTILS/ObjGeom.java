@@ -36,7 +36,7 @@ public class ObjGeom implements Cloneable{
 	private int id;
 	private int localID;
 	
-	private String CLASE = "GeoObject";
+	private String CLASE = Config.BASIC_CLASS;
 	private String WIDTH = "";
 	private String LENGTH = "";
 	private String SURFACE = "";

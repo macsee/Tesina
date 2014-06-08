@@ -393,9 +393,9 @@ public class Layer {
 	
 	public void checkCM8FromRClick(ObjGeom ob1) {
 		
-		CM8 = new CM8toOWL();
-		this.checkCM8PrimitivesForPolygon(ob1);
-		CM8 = null;
+		setCM8(new CM8toOWL());
+		assertDataForObjGeom(ob1);
+
 	}
 	
 	public void checkCM8PrimitivesForPolygon(ObjGeom ob1) {
@@ -484,19 +484,18 @@ public class Layer {
 	}
 	
 	public void assertDataForObjsInLayer() {
-				
-		int i=1;
-		
+						
 		/**
 		 * Realizo un assert en la ontología de todos los datos contenidos en cada ObjGeom
 		 **/
 		
 		for (ObjGeom obj : SHPS)
-			if (obj.getMyPolygon() != null) //Hago esto para evitar que un click accidental sea considerado como ObjGeom
+			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
 					assertDataForObjGeom(obj);
+					CM8.countObjsRelatedWith(obj, "isAdjacentTo");
+					CM8.countObjsRelatedWith(obj, "isComposedOf");
+			}			
 		
-		CM8.countObjsOfClass("P","to-1");
-		CM8.countObjsOfClass("EC","to-1");
 	}	
 	
 	public void  makeObjsDifferent () {

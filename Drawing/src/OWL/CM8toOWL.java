@@ -30,8 +30,8 @@ public class CM8toOWL {
 	 * @param args
 	 */
 	
-	private static String input_ontology = "/Users/Macsee/Desktop/Examples/Ontologies/input_onto.owl";
-	private static String output_ontology = "/Users/Macsee/Desktop/Examples/Ontologies/output_ont.owl";
+	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/Ontology.owl";
+	private static String output_ontology = "/Users/Macsee/Desktop/Examples/New/Out_Ontology.owl";
 	private myOWL myOWL;
 	
 	private Map<OWLNamedIndividual,Set<OWLClassExpression>> ASSERTED_CLASS_RELS = new HashMap<OWLNamedIndividual,Set<OWLClassExpression>>();
@@ -55,10 +55,10 @@ public class CM8toOWL {
 		OWLNamedIndividual ind = myOWL.getIndividual("P"+obj.getId());
 		String clase = obj.getCLASE();
 		
-		myOWL.addToIndividual(ind, myOWL.getClass("GeoObject"));
-		set.add(myOWL.getClass("GeoObject"));
+		myOWL.addToIndividual(ind, myOWL.getClass(Config.BASIC_CLASS));
+		set.add(myOWL.getClass(Config.BASIC_CLASS));
 		
-		if (clase != "GeoObject") {	
+		if (clase != Config.BASIC_CLASS) {	
 			myOWL.addToIndividual(ind, myOWL.getClass(clase));
 			set.add(myOWL.getClass(clase));
 		}	
@@ -244,13 +244,35 @@ public class CM8toOWL {
 			}
 			
 				assertCardinalityRestriccions(count, clase, prop);
-				if (clase == "EC")
-					assertCardinalityRestriccions(count,"GeoObject", "is_adjacent_to");
-				if (clase == "P")
-					assertCardinalityRestriccions(count,"GeoObject", "includes");
+//				if (clase == "EC")
+//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "is_adjacent_to");
+//				if (clase == "P")
+//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "includes");
 		}	
 		
 	}
+	
+public void countObjsRelatedWith(ObjGeom obj, String prop) {
+		
+		Map<OWLNamedIndividual,Integer> count = new HashMap<OWLNamedIndividual,Integer>();
+		
+		OWLNamedIndividual ind = getIndividual(obj);
+		
+		Set<OWLNamedIndividual> indSet = myOWL.getInferredIndRelThrProp(ind, myOWL.getObjectProperty(prop));
+		
+		if (indSet != null) {
+			
+			count.put(ind, indSet.size());
+	
+				assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
+//				if (clase == "EC")
+//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "is_adjacent_to");
+//				if (clase == "P")
+//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "includes");
+		}	
+		
+	}
+	
 	
 	
 	public void assertCardinalityRestriccions(Map<OWLNamedIndividual,Integer> count, String cm8, String prop) {

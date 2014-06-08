@@ -64,6 +64,8 @@ public class myOWL {
 			this.FACTORY = MANAGER.getOWLDataFactory();
 	        this.VARBASEIRI = DEFAULT_VARIABLES_BASE_IRI;
 	        this.FILE = file;
+	        System.out.println(IRI.getNamespace());
+	        System.out.println(IRI.getFragment());
 	        
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
@@ -265,7 +267,7 @@ public class myOWL {
     		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setInds = new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>();
    
 	    	for (OWLObjectPropertyExpression obj : ONTOLOGY.getObjectPropertiesInSignature())
-	    		setInds.put(obj,REASONER.getObjectPropertyValues(ind, obj).getFlattened());
+	    			setInds.put(obj,REASONER.getObjectPropertyValues(ind, obj).getFlattened());
     	
 	    	return setInds;
     	}
@@ -285,6 +287,24 @@ public class myOWL {
     	else
     		return null;
     }
+    
+    
+    /********************************************************************
+     * Getting inferred data											*
+     ********************************************************************/
+    
+    public Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>> getInferredData() {
+    	
+    	Set<OWLNamedIndividual> setInds = getAllInds();
+    	Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>> resultSet = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
+    	
+    	for (OWLNamedIndividual ind : setInds) {
+    		resultSet.put(ind, getInferredObjPropertiesFor(ind));
+    	}
+    		
+    	return resultSet;
+    }
+    
     
     
     public boolean checkConsistency() {
@@ -439,6 +459,7 @@ public class myOWL {
     		return null;
     }
     
+ 
     public void saveOntologyOWLFormat(File f) {
         try {
             MANAGER.saveOntology(ONTOLOGY, new OWLXMLOntologyFormat(), IRI.create(f.toURI()));

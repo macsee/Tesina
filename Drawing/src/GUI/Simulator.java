@@ -81,7 +81,7 @@ public class Simulator extends JFrame{
 					Config.THR1.assertDataForObjsInLayer();
 					Config.HR1.assertDataForObjsInLayer();
 					Config.HR2.assertDataForObjsInLayer();
-					
+
 					Config.THR1.makeObjsDifferent();
 					Config.HR1.makeObjsDifferent();
 					Config.HR2.makeObjsDifferent();
@@ -95,7 +95,7 @@ public class Simulator extends JFrame{
 					Config.HR2.getInferredDataInLayer();
 					
 					if (!CM8.checkConsistency())
-						JOptionPane.showMessageDialog(null,"Inconsistent Ontology","Erro",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null,"Inconsistent Ontology","Error",JOptionPane.ERROR_MESSAGE);
 						//new ErrorOWL(panelPrincipal,"Inconsistent Ontology. Please check!");
 						
 					Config.OUT.addAll(Config.THR1.OUT);
