@@ -278,7 +278,8 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
 	public void assertCardinalityRestriccions(Map<OWLNamedIndividual,Integer> count, String cm8, String prop) {
 		
 		for (Entry<OWLNamedIndividual, Integer> entry : count.entrySet())
-			assertMaxCard(getObjGeom(entry.getKey()), entry.getValue(), cm8, prop);
+			if (entry.getValue() != 0)
+				assertMaxCard(getObjGeom(entry.getKey()), entry.getValue(), cm8, prop);
 	}
 	
 	public ArrayList<String> getAssertedDataForObject(ObjGeom obj) {
