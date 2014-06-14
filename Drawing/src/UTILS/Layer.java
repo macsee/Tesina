@@ -477,10 +477,16 @@ public class Layer {
 		CM8.assertObjProperty(obj, "hasTexture", obj.getTEXTURE());
 		CM8.assertObjProperty(obj, "hasDensity", obj.getDENSITY());
 		CM8.assertObjProperty(obj, "hasSurface", obj.getSURFACE());
-		CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+		
+		// Hago esto para asegurarme de solo afirmar la resolucion en aquellos objetos en los que estoy interesado en clasificar
+		// De otra forma, si lo coloco en todos, puedo tener inconsistencias.
+		
+		if ((obj.getELONGATION() != "") | (obj.getWIDTH() != "") | (obj.getLENGTH() != "") | (obj.getFORM() != "") | (obj.getTEXTURE() != "") | (obj.getDENSITY() != "") | (obj.getSURFACE() != "")) 
+			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+		
 		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
 		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
-		CM8.makeSameIndividual(obj, obj.getSAMEIND()); // VER COMO HACER PARA MANTENER LOS INDIVIDUOS IGUALES
+		CM8.makeSameIndividual(obj, obj.getSAMEIND());
 		checkCM8PrimitivesForPolygon(obj); // 
 	
 	}

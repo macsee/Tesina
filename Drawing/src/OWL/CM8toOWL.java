@@ -398,21 +398,16 @@ public class CM8toOWL {
     	out.add("");
     	
     	if (setRel == null) {
-    		out.add("Inconsistent");
-    		out.add("");
-    		return out;
-    	}
-    	
-    	if (setRel.isEmpty()) {
     		out.add("Nothing to infer");
     		out.add("");
     		return out;
     	}
-    	
+    		
 		for (Entry<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> entry : setRel.entrySet())
 			for (OWLObject ind : entry.getValue())
     			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
 		
+		out.add("");
 		out.add("");
 		out.add("Data Properties: ");
     	out.add("");
