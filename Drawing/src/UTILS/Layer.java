@@ -470,14 +470,16 @@ public class Layer {
 	public void assertDataForObjGeom(ObjGeom obj) {
 		
 		CM8.assertIndividual(obj); //asserting ob1 as individual
-		CM8.assertProperty(obj, "hasElongation", obj.getELONGATION());
-		CM8.assertProperty(obj, "hasWidth", obj.getWIDTH());
-		CM8.assertProperty(obj, "hasLength", obj.getLENGTH());
-		CM8.assertProperty(obj, "hasShape", obj.getFORM());
-		CM8.assertProperty(obj, "hasTexture", obj.getTEXTURE());
-		CM8.assertProperty(obj, "hasDensity", obj.getDENSITY());
-		CM8.assertProperty(obj, "hasSurface", obj.getSURFACE());
-		CM8.assertProperty(obj, "hasResolution", obj.getRESOLUTION());
+		CM8.assertObjProperty(obj, "hasElongation", obj.getELONGATION());
+		CM8.assertObjProperty(obj, "hasWidth", obj.getWIDTH());
+		CM8.assertObjProperty(obj, "hasLength", obj.getLENGTH());
+		CM8.assertObjProperty(obj, "hasShape", obj.getFORM());
+		CM8.assertObjProperty(obj, "hasTexture", obj.getTEXTURE());
+		CM8.assertObjProperty(obj, "hasDensity", obj.getDENSITY());
+		CM8.assertObjProperty(obj, "hasSurface", obj.getSURFACE());
+		CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
+		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
 		CM8.makeSameIndividual(obj, obj.getSAMEIND()); // VER COMO HACER PARA MANTENER LOS INDIVIDUOS IGUALES
 		checkCM8PrimitivesForPolygon(obj); // 
 	

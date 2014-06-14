@@ -31,7 +31,7 @@ public class SetClass extends Dialog{
 		super(new Frame(), "Define attributes");
 		setVisible(true);
 		setLocation(locationX, locationY);
-		setSize(400, 450);
+		setSize(400, 550);
 		setResizable(false);
 		Panel panel = new Panel();
 		panel.setLayout(null);
@@ -184,6 +184,32 @@ public class SetClass extends Dialog{
 		
 		panel.add(choiceSame);
 		
+		Label labelAlign = new Label("Alignment:");
+		labelAlign.setBounds(10,375,90,20);
+		panel.add(labelAlign);
+		
+		final Choice choiceAlign = new Choice();
+		choiceAlign.setFocusable(false);
+		choiceAlign.setBounds(100,370,100,30);
+		choiceAlign.add("");
+		choiceAlign.add("True");
+		choiceAlign.add("False");
+		choiceAlign.select(obj.getALIGN());
+		panel.add(choiceAlign);
+		
+		Label labelDisc = new Label("Discontinue:");
+		labelDisc.setBounds(10,415,90,20);
+		panel.add(labelDisc);
+		
+		final Choice choiceDisc = new Choice();
+		choiceDisc.setFocusable(false);
+		choiceDisc.setBounds(100,410,100,30);
+		choiceDisc.add("");
+		choiceDisc.add("True");
+		choiceDisc.add("False");
+		choiceDisc.select(obj.getDISCONTINUE());
+		panel.add(choiceDisc);
+		
 
 		choiceClass.addItemListener(new ItemListener() {
 			
@@ -192,7 +218,7 @@ public class SetClass extends Dialog{
 				
 				choiceClass.setFocusable(false);
 				
-				if (choiceClass.getSelectedItem() != "Unknown Class") {
+				if (choiceClass.getSelectedItem() != Config.BASIC_CLASS) {
 					choiceSurface.setEnabled(false);
 					choiceWidth.setEnabled(false);
 					choiceLength.setEnabled(false);
@@ -201,6 +227,8 @@ public class SetClass extends Dialog{
 					choiceForm.setEnabled(false);
 					choiceTexture.setEnabled(false);
 					choiceSame.setEnabled(false);
+					choiceAlign.setEnabled(false);
+					choiceDisc.setEnabled(false);
 				}
 				else {
 					choiceSurface.setEnabled(true);
@@ -211,6 +239,8 @@ public class SetClass extends Dialog{
 					choiceForm.setEnabled(true);
 					choiceTexture.setEnabled(true);
 					choiceSame.setEnabled(true);
+					choiceAlign.setEnabled(true);
+					choiceDisc.setEnabled(true);
 				}
 				
 			}
@@ -231,6 +261,8 @@ public class SetClass extends Dialog{
 				obj.setTEXTURE(choiceTexture.getSelectedItem());
 				obj.setDENSITY(choiceDensity.getSelectedItem());
 				obj.setFORM(choiceForm.getSelectedItem());
+				obj.setALIGN(choiceAlign.getSelectedItem());
+				obj.setDISCONTINUE(choiceDisc.getSelectedItem());
 				
 				if (choiceSame.getSelectedIndex() != 0)
 					obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1));
@@ -285,5 +317,8 @@ public class SetClass extends Dialog{
 	/**
 	 * @param args
 	 */
+	public static void main(String[] args) {
+		new SetClass(null, null);
+	}
 
 }

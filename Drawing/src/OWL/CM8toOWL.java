@@ -14,7 +14,10 @@ import org.mindswap.pellet.DependencySet;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
+import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLIndividual;
+import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLObject;
 import org.semanticweb.owlapi.model.OWLObjectProperty;
@@ -38,7 +41,9 @@ public class CM8toOWL {
 	private Map<OWLNamedIndividual, Set<OWLClassExpression>> ASSERTED_CLASS_OBJS = new HashMap<OWLNamedIndividual, Set<OWLClassExpression>>();
 	
 	private Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>> ASSERTED_PROP_OBJS = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
+	private Map<OWLNamedIndividual, Map<OWLDataPropertyExpression, OWLLiteral>> ASSERTED_DATA_OBJS = new HashMap<OWLNamedIndividual, Map<OWLDataPropertyExpression, OWLLiteral>>();
 	private Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>> ASSERTED_PROP_RELS = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
+	
 	
 	private Map<OWLNamedIndividual, Integer> CountObjs = new HashMap<OWLNamedIndividual, Integer>();
 	private Map<OWLNamedIndividual, ObjGeom> IND_OBJ = new HashMap<OWLNamedIndividual, ObjGeom>();
@@ -193,7 +198,7 @@ public class CM8toOWL {
 		ASSERTED_CLASS_OBJS.put(ind, set);
 	}
 	
-	public void assertProperty(ObjGeom ob, String prop, String value) {
+	public void assertObjProperty(ObjGeom ob, String prop, String value) {
 		
 		if (value == "")
 			return;
@@ -207,10 +212,33 @@ public class CM8toOWL {
 		Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> mapObj = new HashMap();
 		Set<OWLNamedIndividual> setInd = new HashSet<OWLNamedIndividual>();
 		
+		if ( ASSERTED_PROP_OBJS.containsKey(indObj)) {
+			if ( ASSERTED_PROP_OBJS.get(indObj).containsKey(indRel)) {
+				setInd = ASSERTED_PROP_OBJS.get(indObj).get(indRel);
+			}
+		}
+		
 		setInd.add(indValue);
-		mapObj.put(indRel, setInd);	
+		mapObj.put(indRel, setInd);
 		
 		ASSERTED_PROP_OBJS.put(indObj,mapObj);
+	}
+	
+	public void assertBooleanProperty(ObjGeom ob, String prop, String value) {
+		
+		if (value == "")
+			return;
+		
+		OWLNamedIndividual indObj = getIndividual(ob);
+		OWLDataProperty indRel = myOWL.getDataProperty(prop);
+		Map<OWLDataPropertyExpression, OWLLiteral> mapObj = new HashMap();
+		
+		OWLLiteral lit = myOWL.getBooleanLiteral(Boolean.valueOf(value));
+		
+		myOWL.defineDataProperty(indRel, indObj, lit);	
+	
+		mapObj.put(indRel, lit);
+		ASSERTED_DATA_OBJS.put(indObj,mapObj);
 	}
 	
 	public void countObjsOfClass(String clase, String prop) {
@@ -244,15 +272,12 @@ public class CM8toOWL {
 			}
 			
 				assertCardinalityRestriccions(count, clase, prop);
-//				if (clase == "EC")
-//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "is_adjacent_to");
-//				if (clase == "P")
-//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "includes");
+
 		}	
 		
 	}
 	
-public void countObjsRelatedWith(ObjGeom obj, String prop) {
+	public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		
 		Map<OWLNamedIndividual,Integer> count = new HashMap<OWLNamedIndividual,Integer>();
 		
@@ -265,15 +290,10 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
 			count.put(ind, indSet.size());
 	
 				assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
-//				if (clase == "EC")
-//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "is_adjacent_to");
-//				if (clase == "P")
-//					assertCardinalityRestriccions(count,Config.BASIC_CLASS, "includes");
+
 		}	
 		
 	}
-	
-	
 	
 	public void assertCardinalityRestriccions(Map<OWLNamedIndividual,Integer> count, String cm8, String prop) {
 		
@@ -287,8 +307,9 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		OWLNamedIndividual ind = getIndividual(obj);
 		Set<OWLClassExpression> set = ASSERTED_CLASS_OBJS.get(ind);
 		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_OBJS.get(ind);
+		Map<OWLDataPropertyExpression, OWLLiteral> setLit = ASSERTED_DATA_OBJS.get(ind);
 		
-		return printAll(set, setRel, null, "Polygon P"+obj.getId());
+		return printAll(set, setRel, setLit, null, "Polygon P"+obj.getId());
 		
 	}
 	
@@ -297,8 +318,9 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		OWLNamedIndividual ind = getIndividual(obj);
 		Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(ind);
 		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = myOWL.getInferredObjPropertiesFor(ind);
+		Map<OWLDataPropertyExpression, OWLLiteral> setLit = myOWL.getInferredDataPropertiesFor(ind);
 		
-		return printAll(set, setRel, obj, "Polygon P"+obj.getId()); //Imprimo todos los resultados
+		return printAll(set, setRel, setLit, obj, "Polygon P"+obj.getId()); //Imprimo todos los resultados
 	    	
 	}
 	
@@ -312,7 +334,7 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		Set<OWLClassExpression> set = ASSERTED_CLASS_RELS.get(relInd);
 		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = ASSERTED_PROP_RELS.get(relInd);
 		
-		return printAll(set, setRel, null, relInd.getIRI().getFragment());
+		return printAll(set, setRel, new HashMap<OWLDataPropertyExpression, OWLLiteral>(), null, relInd.getIRI().getFragment());
 			
 	}
 	
@@ -321,7 +343,7 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		OWLNamedIndividual relInd = myOWL.getIndividual(rel);
     	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(relInd);
     	
-    	return printAll(set,new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>(),null,relInd.getIRI().getFragment());
+    	return printAll(set,new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>(), new HashMap<OWLDataPropertyExpression, OWLLiteral>(), null,relInd.getIRI().getFragment());
 	
 	}
 	
@@ -366,7 +388,7 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
     	return out;
 	}
 	
-	ArrayList<String> printRelations(Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel) {
+	ArrayList<String> printRelations(Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel, Map<OWLDataPropertyExpression, OWLLiteral> setLit) {
 		
 		OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
 		
@@ -392,11 +414,23 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
     			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
 		
 		out.add("");
+		out.add("Data Properties: ");
+    	out.add("");
+    	
+    	if (setLit == null) {
+    		out.add("");
+    		return out;
+    	}
 		
+    	for (Entry<OWLDataPropertyExpression, OWLLiteral> entry : setLit.entrySet())
+    			out.add(renderer.render(entry.getKey())+" "+renderer.render(entry.getValue()));
+		
+		out.add("");
+    	
 		return out;
 	}
 	
-	ArrayList<String> printAll(Set<OWLClassExpression> set, Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel, ObjGeom obj, String header) {
+	ArrayList<String> printAll(Set<OWLClassExpression> set, Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel, Map<OWLDataPropertyExpression, OWLLiteral> setLit, ObjGeom obj, String header) {
 		
 		ArrayList<String> out = new ArrayList<String>();
 		
@@ -405,7 +439,7 @@ public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		out.add("");
 		out.add("...........................................................................................................");
 		out.add("");
-		out.addAll(printRelations(setRel));
+		out.addAll(printRelations(setRel,setLit));
 		
 		return out;
 	}

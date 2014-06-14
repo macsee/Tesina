@@ -20,6 +20,7 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLDataProperty;
+import org.semanticweb.owlapi.model.OWLDataPropertyExpression;
 import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLLiteral;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
@@ -73,6 +74,10 @@ public class myOWL {
 		}
     }
     
+    
+    public OWLLiteral getBooleanLiteral(Boolean a) {
+    	return FACTORY.getOWLLiteral(a);
+    }
     
     /****************************************************
      * Config the reasoner to be used					*
@@ -273,6 +278,31 @@ public class myOWL {
     	}
     	else
     		return null;
+    }
+    
+    /********************************************************************
+     * Getting inferred object properties for individual "ind"			*
+     ********************************************************************/
+    
+    public Map<OWLDataPropertyExpression, OWLLiteral> getInferredDataPropertiesFor(OWLNamedIndividual ind) {
+    	
+    	OWLReasoner REASONER = getReasoner();
+    	
+    	if (REASONER.isConsistent()) { 
+    		Map<OWLDataPropertyExpression, OWLLiteral> setInds = new HashMap<OWLDataPropertyExpression, OWLLiteral>();
+   
+	    	for (OWLDataProperty obj : ONTOLOGY.getDataPropertiesInSignature()) {
+	    		Set<OWLLiteral> set = REASONER.getDataPropertyValues(ind, obj);
+	    		for (OWLLiteral lit : set)
+	    			setInds.put(obj,lit);
+	    			
+	    	}
+	    	
+	    	return setInds;
+    	}
+    	else
+    		return null;
+    	
     }
     
     /********************************************************************

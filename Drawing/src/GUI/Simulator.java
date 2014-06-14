@@ -294,31 +294,31 @@ public class Simulator extends JFrame{
 		new Simulator();
 		System.gc();
 		
-		Shape2ObjGeom shp2obj;
-		try {
-			shp2obj = new Shape2ObjGeom("/Users/Macsee/Desktop/Examples/Raster+Shp/polygons.shp", "/Users/Macsee/Desktop/Examples/Raster+Shp/tabla.points");
-			Config.ACTIVELAYER.setImage("/Users/Macsee/Desktop/Examples/Raster+Shp/image.png");
-			Config.ACTIVELAYER.allowDrawing();
-			//Config.ACTIVELAYER = LAYER;
-			Config.ACTIVELAYER.setObjsGeom(shp2obj.adjustProyection());
-			panelPrincipal.repaint();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MismatchedDimensionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (TransformException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FactoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (org.opengis.referencing.operation.TransformException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		Shape2ObjGeom shp2obj;
+//		try {
+//			shp2obj = new Shape2ObjGeom("/Users/Macsee/Desktop/Examples/Raster+Shp/polygons.shp", "/Users/Macsee/Desktop/Examples/Raster+Shp/tabla.points");
+//			Config.ACTIVELAYER.setImage("/Users/Macsee/Desktop/Examples/Raster+Shp/image.png");
+//			Config.ACTIVELAYER.allowDrawing();
+//			//Config.ACTIVELAYER = LAYER;
+//			Config.ACTIVELAYER.setObjsGeom(shp2obj.adjustProyection());
+//			panelPrincipal.repaint();
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (MismatchedDimensionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (TransformException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (FactoryException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (org.opengis.referencing.operation.TransformException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 				
 	}
