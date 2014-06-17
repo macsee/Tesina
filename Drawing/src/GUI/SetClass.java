@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Button;
+import java.awt.Checkbox;
 import java.awt.Choice;
 import java.awt.Dialog;
 import java.awt.Frame;
@@ -23,7 +24,7 @@ import UTILS.Config;
 
 public class SetClass extends Dialog{
 	
-	public static int locationX = 100;
+	public static int locationX = 700;
 	public static int locationY = 100;
 	
 	public SetClass(final ObjGeom obj, final Layer layer) {
@@ -211,40 +212,50 @@ public class SetClass extends Dialog{
 		panel.add(choiceDisc);
 		
 
-		choiceClass.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent arg0) {
-				
-				choiceClass.setFocusable(false);
-				
-				if (choiceClass.getSelectedItem() != Config.BASIC_CLASS) {
-					choiceSurface.setEnabled(false);
-					choiceWidth.setEnabled(false);
-					choiceLength.setEnabled(false);
-					choiceElongation.setEnabled(false);
-					choiceDensity.setEnabled(false);
-					choiceForm.setEnabled(false);
-					choiceTexture.setEnabled(false);
-					choiceSame.setEnabled(false);
-					choiceAlign.setEnabled(false);
-					choiceDisc.setEnabled(false);
-				}
-				else {
-					choiceSurface.setEnabled(true);
-					choiceWidth.setEnabled(true);
-					choiceLength.setEnabled(true);
-					choiceElongation.setEnabled(true);
-					choiceDensity.setEnabled(true);
-					choiceForm.setEnabled(true);
-					choiceTexture.setEnabled(true);
-					choiceSame.setEnabled(true);
-					choiceAlign.setEnabled(true);
-					choiceDisc.setEnabled(true);
-				}
-				
-			}
-		});
+		Label labelInput = new Label("Use it as input:");
+		labelInput.setBounds(10,455,100,20);
+		panel.add(labelInput);
+		
+		final Checkbox checkInput = new Checkbox();
+		checkInput.setFocusable(false);
+		checkInput.setBounds(120,450,30,30);
+		checkInput.setState(obj.getUSE());
+		panel.add(checkInput);
+		
+//		choiceClass.addItemListener(new ItemListener() {
+//			
+//			@Override
+//			public void itemStateChanged(ItemEvent arg0) {
+//				
+//				choiceClass.setFocusable(false);
+//				
+//				if (choiceClass.getSelectedItem() != Config.BASIC_CLASS) {
+//					choiceSurface.setEnabled(false);
+//					choiceWidth.setEnabled(false);
+//					choiceLength.setEnabled(false);
+//					choiceElongation.setEnabled(false);
+//					choiceDensity.setEnabled(false);
+//					choiceForm.setEnabled(false);
+//					choiceTexture.setEnabled(false);
+//					choiceSame.setEnabled(false);
+//					choiceAlign.setEnabled(false);
+//					choiceDisc.setEnabled(false);
+//				}
+//				else {
+//					choiceSurface.setEnabled(true);
+//					choiceWidth.setEnabled(true);
+//					choiceLength.setEnabled(true);
+//					choiceElongation.setEnabled(true);
+//					choiceDensity.setEnabled(true);
+//					choiceForm.setEnabled(true);
+//					choiceTexture.setEnabled(true);
+//					choiceSame.setEnabled(true);
+//					choiceAlign.setEnabled(true);
+//					choiceDisc.setEnabled(true);
+//				}
+//				
+//			}
+//		});
 		
 		
 		Button button = new Button("Aceptar");
@@ -263,6 +274,7 @@ public class SetClass extends Dialog{
 				obj.setFORM(choiceForm.getSelectedItem());
 				obj.setALIGN(choiceAlign.getSelectedItem());
 				obj.setDISCONTINUE(choiceDisc.getSelectedItem());
+				obj.setUSE(checkInput.getState());
 				
 				if (choiceSame.getSelectedIndex() != 0)
 					obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1));

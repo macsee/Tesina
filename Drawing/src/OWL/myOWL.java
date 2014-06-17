@@ -65,8 +65,7 @@ public class myOWL {
 			this.FACTORY = MANAGER.getOWLDataFactory();
 	        this.VARBASEIRI = DEFAULT_VARIABLES_BASE_IRI;
 	        this.FILE = file;
-	        System.out.println(IRI.getNamespace());
-	        System.out.println(IRI.getFragment());
+	        System.out.println(IRI.getNamespace()+IRI.getFragment());
 	        
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block
@@ -267,13 +266,17 @@ public class myOWL {
     public Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> getInferredObjPropertiesFor(OWLNamedIndividual ind) {
     	
     	OWLReasoner REASONER = getReasoner();
+    	OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
+    	
     	
     	if (REASONER.isConsistent()) { 
     		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setInds = new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>();
    
-	    	for (OWLObjectPropertyExpression obj : ONTOLOGY.getObjectPropertiesInSignature())
-	    			setInds.put(obj,REASONER.getObjectPropertyValues(ind, obj).getFlattened());
-    	
+	    	for (OWLObjectPropertyExpression obj : ONTOLOGY.getObjectPropertiesInSignature()) {
+	    		Set<OWLNamedIndividual> set = REASONER.getObjectPropertyValues(ind, obj).getFlattened();
+	    		setInds.put(obj,set);
+	    	}
+	    	
 	    	return setInds;
     	}
     	else
@@ -455,17 +458,19 @@ public class myOWL {
     	    	
     	Set<OWLClassExpression> set = new HashSet<OWLClassExpression>();
     	OWLReasoner REASONER = getReasoner();
-    	
+    		
     	if (REASONER.isConsistent()) {
     		
 	    	if (ind != null) {
 	        	
 	        	Set<OWLClassExpression> assertedClasses = ind.getTypes(ONTOLOGY);
 	        	
-	        	for (OWLClass c : REASONER.getTypes(ind, false).getFlattened()) 
-        			
+	        	for (OWLClass c : REASONER.getTypes(ind, false).getFlattened()) { 
 	            	if (!assertedClasses.contains(c))
-	            			set.add(c);
+	            		set.add(c);
+	        		//if (c.isDefined(ONTOLOGY)) // Solo defined classes, es decir, aquellas que son clases de equivalencia
+	            		
+	        	}
 	        	
 	        	return set;
 		            
@@ -476,6 +481,16 @@ public class myOWL {
     	}	
     	else
     		return null;
+    }
+    
+     
+    public boolean isSuperClass(OWLClassExpression cla1, OWLClassExpression cla2) {
+    	
+    	OWLClass SuperClase = cla1.asOWLClass();
+    	OWLClass SubClase = cla2.asOWLClass();
+    	
+    	return SuperClase.getSubClasses(ONTOLOGY).contains(cla2);
+    	
     }
     
     
@@ -489,7 +504,7 @@ public class myOWL {
     		return null;
     }
     
- 
+    
     public void saveOntologyOWLFormat(File f) {
         try {
             MANAGER.saveOntology(ONTOLOGY, new OWLXMLOntologyFormat(), IRI.create(f.toURI()));
@@ -512,12 +527,15 @@ public class myOWL {
     	Config.OUT.add("############################################### Polygon P"+ob.getId()+" ###############################################");
 		Config.OUT.add("Classes: ");
     	Config.OUT.add("");
-    	
+  	 	
 		for (OWLClassExpression clase : set) {
 			if (Config.ONTCLASSES.contains(clase.asOWLClass().getIRI().getFragment())) {
-				ob.setCLASE(clase. asOWLClass().getIRI().getFragment());
-				Config.ACTIVELAYER.updateDefaultList(ob);
-				Config.OUT.add(clase.asOWLClass().getIRI().getFragment());
+//				if (isSuperClass(getClass(ob.getCLASE()), clase)) {
+//					System.out.println(ob.getCLASE()+ " es superclase de "+clase.asOWLClass().getIRI().getFragment());
+//					ob.setCLASE(clase. asOWLClass().getIRI().getFragment());
+//					Config.ACTIVELAYER.updateDefaultList(ob); // ACAAAAAAAAAAAAAAAAAAAAAAA
+//					Config.OUT.add(clase.asOWLClass().getIRI().getFragment());
+//				}
 			}	
 		}
 		

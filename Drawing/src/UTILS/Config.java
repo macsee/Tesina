@@ -91,7 +91,7 @@ public class Config {
     		"Zone_Ind_Com_Tert",
     		"Zone_Sportif_Loisir",
     		"Surface_Vegetal",
-    		"Ensamble_Arbres",
+    		"Ensemble_Arbres",
     		"Alignement_Arbres",
     		"Groupe_Arbres",
     		"Parc",

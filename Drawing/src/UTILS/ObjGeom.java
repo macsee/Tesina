@@ -48,6 +48,7 @@ public class ObjGeom implements Cloneable{
 	private String RESOLUTION = "";
 	private String DISCONTINUE = "";
 	private String ALIGNED = "";
+	private boolean USE = false;
     
 	public ObjGeom() {
 		System.out.println("-------------------> Se creo un objeto nuevo");
@@ -373,6 +374,14 @@ public class ObjGeom implements Cloneable{
 
 	public void setDISCONTINUE(String disc) {
 		DISCONTINUE = disc;
+	}
+	
+	public boolean getUSE() {
+		return USE;
+	}
+
+	public void setUSE(boolean value) {
+		USE = value;
 	}
   
 }

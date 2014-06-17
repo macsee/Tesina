@@ -69,6 +69,7 @@ public class Simulator extends JFrame{
 		Button btnRun = new Button("Run");
 		btnRun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+					System.out.println("Running.....");
 					Config.OUT.clear();
 					CM8toOWL CM8 = new CM8toOWL();
 			

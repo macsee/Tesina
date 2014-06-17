@@ -288,8 +288,7 @@ public class CM8toOWL {
 		if (indSet != null) {
 			
 			count.put(ind, indSet.size());
-	
-				assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
+			assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
 
 		}	
 		
@@ -376,13 +375,15 @@ public class CM8toOWL {
     
 		for (OWLClassExpression owlClass : set) {
 			out.add(renderer.render(owlClass));
-			
-			if (Config.ONTCLASSES.contains(renderer.render(owlClass)) & obj != null){ // Imprimo el resultado en la lista de la capa activa
-				obj.setCLASE(renderer.render(owlClass));
-				Config.ACTIVELAYER.updateDefaultList(obj);
+				if (Config.ONTCLASSES.contains(renderer.render(owlClass)) & obj != null){ // Imprimo el resultado en la lista de la capa activa
+					if (myOWL.isSuperClass(myOWL.getClass(obj.getCLASE()), owlClass)) {
+						System.out.println(obj.getCLASE()+ " es superclase de "+owlClass.asOWLClass().getIRI().getFragment());
+						obj.setCLASE(renderer.render(owlClass));
+						Config.ACTIVELAYER.updateDefaultList(obj);
+					}	
+				}
 			}	
-		}	
- 
+				
     	out.add("");
     	
     	return out;
@@ -400,13 +401,13 @@ public class CM8toOWL {
     	if (setRel == null) {
     		out.add("Nothing to infer");
     		out.add("");
-    		return out;
     	}
-    		
-		for (Entry<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> entry : setRel.entrySet())
-			for (OWLObject ind : entry.getValue())
-    			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
-		
+    	else {	
+			for (Entry<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> entry : setRel.entrySet())
+				for (OWLObject ind : entry.getValue())
+	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
+    	}
+    	
 		out.add("");
 		out.add("");
 		out.add("Data Properties: ");
@@ -416,9 +417,10 @@ public class CM8toOWL {
     		out.add("");
     		return out;
     	}
-		
-    	for (Entry<OWLDataPropertyExpression, OWLLiteral> entry : setLit.entrySet())
-    			out.add(renderer.render(entry.getKey())+" "+renderer.render(entry.getValue()));
+    	else {
+	    	for (Entry<OWLDataPropertyExpression, OWLLiteral> entry : setLit.entrySet())
+	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(entry.getValue()));
+    	}	
 		
 		out.add("");
     	

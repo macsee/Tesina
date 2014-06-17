@@ -481,7 +481,8 @@ public class Layer {
 		// Hago esto para asegurarme de solo afirmar la resolucion en aquellos objetos en los que estoy interesado en clasificar
 		// De otra forma, si lo coloco en todos, puedo tener inconsistencias.
 		
-		if ((obj.getELONGATION() != "") | (obj.getWIDTH() != "") | (obj.getLENGTH() != "") | (obj.getFORM() != "") | (obj.getTEXTURE() != "") | (obj.getDENSITY() != "") | (obj.getSURFACE() != "")) 
+//		if ((obj.getELONGATION() != "") | (obj.getWIDTH() != "") | (obj.getLENGTH() != "") | (obj.getFORM() != "") | (obj.getTEXTURE() != "") | (obj.getDENSITY() != "") | (obj.getSURFACE() != "")) 
+		if (obj.getUSE())
 			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
 		
 		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
@@ -498,11 +499,17 @@ public class Layer {
 		 **/
 		
 		for (ObjGeom obj : SHPS)
+			if (obj.getMyPolygon() != null)//Hago esto para evitar que un click accidental sea considerado como ObjGeom
+				assertDataForObjGeom(obj);
+		
+		// Lo tengo que hacer por separado porque sino no puedo utilizar la información de todos los objetos para el cálculo
+		// de isComposedOf
+		
+		for (ObjGeom obj : SHPS)
 			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
-					assertDataForObjGeom(obj);
-					CM8.countObjsRelatedWith(obj, "isAdjacentTo");
-					CM8.countObjsRelatedWith(obj, "isComposedOf");
-			}			
+				CM8.countObjsRelatedWith(obj, "isAdjacentTo");
+				CM8.countObjsRelatedWith(obj, "isComposedOf");
+			}
 		
 	}	
 	
