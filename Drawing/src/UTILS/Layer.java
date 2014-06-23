@@ -481,9 +481,10 @@ public class Layer {
 		// Hago esto para asegurarme de solo afirmar la resolucion en aquellos objetos en los que estoy interesado en clasificar
 		// De otra forma, si lo coloco en todos, puedo tener inconsistencias.
 		
-//		if ((obj.getELONGATION() != "") | (obj.getWIDTH() != "") | (obj.getLENGTH() != "") | (obj.getFORM() != "") | (obj.getTEXTURE() != "") | (obj.getDENSITY() != "") | (obj.getSURFACE() != "")) 
-		if (obj.getUSE())
+		if ((obj.getELONGATION() != "") | (obj.getWIDTH() != "") | (obj.getLENGTH() != "") | (obj.getFORM() != "") | (obj.getTEXTURE() != "") | (obj.getDENSITY() != "") | (obj.getSURFACE() != ""))
 			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+		//if (obj.getUSE())
+			
 		
 		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
 		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
@@ -509,6 +510,7 @@ public class Layer {
 			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
 				CM8.countObjsRelatedWith(obj, "isAdjacentTo");
 				CM8.countObjsRelatedWith(obj, "isComposedOf");
+				CM8.countObjsRelatedWith(obj, "isIncludedIn");
 			}
 		
 	}	

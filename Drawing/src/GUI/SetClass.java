@@ -212,16 +212,16 @@ public class SetClass extends Dialog{
 		panel.add(choiceDisc);
 		
 
-		Label labelInput = new Label("Use it as input:");
-		labelInput.setBounds(10,455,100,20);
-		panel.add(labelInput);
-		
-		final Checkbox checkInput = new Checkbox();
-		checkInput.setFocusable(false);
-		checkInput.setBounds(120,450,30,30);
-		checkInput.setState(obj.getUSE());
-		panel.add(checkInput);
-		
+//		Label labelInput = new Label("Use it as input:");
+//		labelInput.setBounds(10,455,100,20);
+//		panel.add(labelInput);
+//		
+//		final Checkbox checkInput = new Checkbox();
+//		checkInput.setFocusable(false);
+//		checkInput.setBounds(120,450,30,30);
+//		checkInput.setState(obj.getUSE());
+//		panel.add(checkInput);
+//		
 //		choiceClass.addItemListener(new ItemListener() {
 //			
 //			@Override
@@ -274,7 +274,7 @@ public class SetClass extends Dialog{
 				obj.setFORM(choiceForm.getSelectedItem());
 				obj.setALIGN(choiceAlign.getSelectedItem());
 				obj.setDISCONTINUE(choiceDisc.getSelectedItem());
-				obj.setUSE(checkInput.getState());
+				//obj.setUSE(checkInput.getState());
 				
 				if (choiceSame.getSelectedIndex() != 0)
 					obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1));

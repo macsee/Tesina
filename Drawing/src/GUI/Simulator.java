@@ -160,17 +160,17 @@ public class Simulator extends JFrame{
 		radioButtonTHR1.setBounds(5, 50, 141, 23);
 		radioButtonTHR1.setFocusable(false);
 		
-		radioButtonHR2 = new Checkbox("HR2",cg,false);
-		radioButtonHR2.setBounds(5, 230, 141, 23);
-		radioButtonHR2.setFocusable(false);
-		
 		radioButtonHR1 = new Checkbox("HR1",cg,false);
-		radioButtonHR1.setBounds(5, 410, 141, 23);
+		radioButtonHR1.setBounds(5, 230, 141, 23);
 		radioButtonHR1.setFocusable(false);
 		
+		radioButtonHR2 = new Checkbox("HR2",cg,false);
+		radioButtonHR2.setBounds(5, 410, 141, 23);
+		radioButtonHR2.setFocusable(false);
+		
 		panel_2.add(radioButtonTHR1);
-		panel_2.add(radioButtonHR2);
 		panel_2.add(radioButtonHR1);
+		panel_2.add(radioButtonHR2);
 		
 		final JList listTHR1 = new JList(Config.THR1.getDefaultList());
 		listTHR1.setFont(new Font("",0,10));
@@ -190,24 +190,6 @@ public class Simulator extends JFrame{
 		scrollPaneTHR1.setBounds(30, 80, 300, 120);
 		panel_2.add(scrollPaneTHR1);
 		
-		final JList listHR2 = new JList(Config.HR2.getDefaultList());
-		listHR2.setFont(new Font("",0,10));
-		listHR2.setBounds(30, 260, 300, 120);
-		listHR2.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        if (evt.getClickCount() == 2) {
-		        	ObjGeom obj = Config.HR2.getObj(listHR2.getSelectedIndex());
-		        	if (obj != null)
-		        		new SetClass(obj, Config.HR2);
-		        }
-		    }
-		});
-		
-		ScrollPane scrollPaneHR2 = new ScrollPane();
-		scrollPaneHR2.add(listHR2);
-		scrollPaneHR2.setBounds(30, 260, 300, 120);
-		panel_2.add(scrollPaneHR2);
-		
 		final JList listHR1 = new JList(Config.HR1.getDefaultList());
 		listHR1.setFont(new Font("",0,10));
 		listHR1.setBounds(30, 440, 300, 120);
@@ -223,8 +205,27 @@ public class Simulator extends JFrame{
 		
 		ScrollPane scrollPaneHR1 = new ScrollPane();
 		scrollPaneHR1.add(listHR1);
-		scrollPaneHR1.setBounds(30, 440, 300, 120);
+		scrollPaneHR1.setBounds(30, 260, 300, 120);
 		panel_2.add(scrollPaneHR1);
+		
+		final JList listHR2 = new JList(Config.HR2.getDefaultList());
+		listHR2.setFont(new Font("",0,10));
+		listHR2.setBounds(30, 260, 300, 120);
+		listHR2.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        if (evt.getClickCount() == 2) {
+		        	ObjGeom obj = Config.HR2.getObj(listHR2.getSelectedIndex());
+		        	if (obj != null)
+		        		new SetClass(obj, Config.HR2);
+		        }
+		    }
+		});
+		
+		ScrollPane scrollPaneHR2 = new ScrollPane();
+		scrollPaneHR2.add(listHR2);
+		scrollPaneHR2.setBounds(30, 440, 300, 120);
+		panel_2.add(scrollPaneHR2);
+		
 		
 		radioButtonTHR1.addItemListener(new ItemListener() {
 			

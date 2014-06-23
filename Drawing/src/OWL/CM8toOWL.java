@@ -45,7 +45,7 @@ public class CM8toOWL {
 	private Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>> ASSERTED_PROP_RELS = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
 	
 	
-	private Map<OWLNamedIndividual, Integer> CountObjs = new HashMap<OWLNamedIndividual, Integer>();
+	//private Map<OWLNamedIndividual, Integer> CountObjs = new HashMap<OWLNamedIndividual, Integer>();
 	private Map<OWLNamedIndividual, ObjGeom> IND_OBJ = new HashMap<OWLNamedIndividual, ObjGeom>();
 	
 	public CM8toOWL() {
@@ -69,7 +69,7 @@ public class CM8toOWL {
 		}	
 			// PUEDO AGREGAR MAS TIPOS A UN INDIVIDUO CREANDO MUCHAS INSTANCIAS CON EL MISMO NOMBRE Y DISTINTOS TIPOS
 	
-		CountObjs.put(ind, 0); //Cuento la cantidad de veces que se relaciona con una clase
+		//CountObjs.put(ind, 0); //Cuento la cantidad de veces que se relaciona con una clase
 		ASSERTED_CLASS_OBJS.put(ind, set); // Guardo informaci—n de los individuos y sus clases
 		IND_OBJ.put(ind, obj); // Guardo la relaci—n entre un ObjGeom y un OWLIndividual
 		return ind;	
@@ -241,41 +241,41 @@ public class CM8toOWL {
 		ASSERTED_DATA_OBJS.put(indObj,mapObj);
 	}
 	
-	public void countObjsOfClass(String clase, String prop) {
-		
-		String propInv = "";
-		
-		if (prop.contentEquals("to"))
-			propInv = "to-1";
-		else if (prop.contentEquals("to-1"))
-			propInv = "to";
-		if (prop.contentEquals("from"))
-			propInv = "from-1";
-		else if (prop.contentEquals("from-1"))
-			propInv = "from";
-		
-		Map<OWLNamedIndividual,Integer> count = new HashMap<OWLNamedIndividual,Integer>();
-		
-		Set<OWLNamedIndividual> setRel = myOWL.getInstancesOf(myOWL.getClass(clase)); // Busco los primitivas CM8 que son miembros de la clase "clase"
-		
-		if (setRel != null) {
-			for (OWLNamedIndividual ind : setRel) {
-				
-				Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind); // Obtengo las object properties y los individuos relacionados con ind
-				Set<OWLNamedIndividual> setOWLInd = map.get(myOWL.getObjectProperty(propInv)); // Me quedo solo con los objetos geograficos que se relacionan mediante "to" con la primitiva CM8
-				
-				for (OWLNamedIndividual owlInd : setOWLInd)
-					if (!count.containsKey(owlInd))
-						count.put(owlInd, 1);
-					else
-						count.put(owlInd, count.get(owlInd)+1);
-			}
-			
-				assertCardinalityRestriccions(count, clase, prop);
-
-		}	
-		
-	}
+//	public void countObjsOfClass(String clase, String prop) {
+//		
+//		String propInv = "";
+//		
+//		if (prop.contentEquals("to"))
+//			propInv = "to-1";
+//		else if (prop.contentEquals("to-1"))
+//			propInv = "to";
+//		if (prop.contentEquals("from"))
+//			propInv = "from-1";
+//		else if (prop.contentEquals("from-1"))
+//			propInv = "from";
+//		
+//		Map<OWLNamedIndividual,Integer> count = new HashMap<OWLNamedIndividual,Integer>();
+//		
+//		Set<OWLNamedIndividual> setRel = myOWL.getInstancesOf(myOWL.getClass(clase)); // Busco los primitivas CM8 que son miembros de la clase "clase"
+//		
+//		if (setRel != null) {
+//			for (OWLNamedIndividual ind : setRel) {
+//				
+//				Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind); // Obtengo las object properties y los individuos relacionados con ind
+//				Set<OWLNamedIndividual> setOWLInd = map.get(myOWL.getObjectProperty(propInv)); // Me quedo solo con los objetos geograficos que se relacionan mediante "to" con la primitiva CM8
+//				
+//				for (OWLNamedIndividual owlInd : setOWLInd)
+//					if (!count.containsKey(owlInd))
+//						count.put(owlInd, 1);
+//					else
+//						count.put(owlInd, count.get(owlInd)+1);
+//			}
+//			
+//				assertCardinalityRestriccions(count, clase, prop);
+//
+//		}	
+//		
+//	}
 	
 	public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		
