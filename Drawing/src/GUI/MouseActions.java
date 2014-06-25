@@ -124,7 +124,7 @@ public class MouseActions implements MouseListener{
 			//reseteo los clicks para que vuelva a empezar todo
 			
 			Config.ACTIVELAYER.reset();
-			Config.ACTIVELAYER.addToDefaultList(obj);
+			Config.addToDefaultList(obj);
 			
 			System.out.println("Cerrando poligono");
 			obj.printPoints();

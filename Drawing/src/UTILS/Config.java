@@ -3,14 +3,22 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 import org.semanticweb.owlapi.model.OWLClassExpression;
 
 
 public class Config {
+	
+	public static LinkedList<Layer> LAYERS = new LinkedList<Layer>();
+	
+	public static DefaultListModel LISTLAYERS = new DefaultListModel();
+	
+	public static DefaultListModel OBJSLIST = new DefaultListModel();
 	
 	public static Layer ACTIVELAYER = null;
 	
@@ -33,7 +41,69 @@ public class Config {
     public static ArrayList<String> OUT = new ArrayList<String>();
     
     public static String BASIC_CLASS = "SpatialObject";
-      
+    
+    public static Layer getLayer(Integer index) {
+    	Layer layer = LAYERS.get(index);
+    	ACTIVELAYER = layer;
+    	fillDefaultList();
+    	layer.allowDrawing();
+    	return layer;
+    }
+    
+    public static void addLayer(String name, String type) {
+    	Layer layer = new Layer(name,type);
+    	LISTLAYERS.add(LAYERS.size(), name+" - "+type);
+    	LAYERS.add(layer);
+    	ACTIVELAYER = layer;
+    }
+    
+    public static void removeLayer(Integer index) {
+    	LAYERS.remove(LAYERS.get(index));
+    	LISTLAYERS.remove(index);
+    	getLayer(0);
+    }
+    
+    public static void refreshLayerList(Layer layer) {
+    	int index = LAYERS.indexOf(layer);
+    	LISTLAYERS.remove(index);
+		LISTLAYERS.add(index, layer.LAYERID+" - "+layer.LAYER_RESOLUTION);
+    }
+        
+    public static void fillDefaultList() { 
+    	
+    	OBJSLIST.removeAllElements();
+    	
+    	for (ObjGeom obj : ACTIVELAYER.getObjsGeom())
+    		OBJSLIST.addElement("Polygon"+obj.getId()+" - "+obj.getCLASE());
+    	
+    }
+        
+    public static void addToDefaultList(ObjGeom obj) {
+		
+		int i;
+		for (i=0;i < OBJSLIST.size();i++) {
+			if (((String) OBJSLIST.get(i)).contains(String.valueOf(obj.getId()))) //Compruebo que el objeto no este agregado a la lista
+				return;																 // esto ocurre al deshacer acciones	
+		}
+		
+		OBJSLIST.addElement("Polygon "+obj.getId()+" - "+obj.getCLASE());
+	}
+    
+    public static void removeFromDefaultList(Integer index) {
+    	OBJSLIST.remove(index);
+    }
+    
+    
+    public static void updateDefaultList(ObjGeom obj) { //Para cuando se cambia una clase
+		OBJSLIST.remove(obj.getLocalID());
+		OBJSLIST.add(obj.getLocalID(), "Polygon "+obj.getId()+" - "+obj.getCLASE());
+	}
+    
+    public static void cleanDefaultList() {
+    	OBJSLIST.removeAllElements();
+    }
+    
+    
     public static Set<String> ONTCLASSES = new HashSet<String>(Arrays.asList(new String[] {
 //    		"GeoObject",
 //    		"House",

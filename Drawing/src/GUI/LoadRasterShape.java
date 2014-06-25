@@ -1,15 +1,14 @@
 package GUI;
 import java.awt.Button;
-import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
+import java.awt.Choice;
 import java.awt.FileDialog;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -25,7 +24,9 @@ import javax.xml.crypto.dsig.TransformException;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.FactoryException;
 
-import UTILS.*;
+import UTILS.Config;
+import UTILS.Layer;
+import UTILS.Shape2ObjGeom;
 
 
 public class LoadRasterShape extends JFrame {
@@ -36,7 +37,7 @@ public class LoadRasterShape extends JFrame {
 	private Frame ventana;
 	private String resolution = "";
 	
-	public LoadRasterShape(Frame frame, final Layer thr1, final Layer hr1, final Layer hr2) {
+	public LoadRasterShape(Frame frame) {
 		ventana = frame;
 		setTitle("Load Images");
 		setResizable(false);
@@ -161,61 +162,23 @@ public class LoadRasterShape extends JFrame {
 		});
 		panel.add(button_2);
 		
-		CheckboxGroup cg = new CheckboxGroup ();
 		
-		final Checkbox checkTHR1 = new Checkbox("THR1",cg,false);
-		checkTHR1.setBounds(10, 185, 80, 18);
-		getContentPane().add(checkTHR1);
+		Label labelLayer = new Label("Select Layer");
+		labelLayer.setBounds(20, 185, 50, 30);
+		getContentPane().add(labelLayer);
 		
-		final Checkbox checkHR1 = new Checkbox("HR1",cg,false);
-		checkHR1.setBounds(100, 185, 80, 18);
-		getContentPane().add(checkHR1);
+		final Choice choiceLayer = new Choice();
 		
-		final Checkbox checkHR2 = new Checkbox("HR2",cg,false);
-		checkHR2.setBounds(190, 185, 80, 18);
-		getContentPane().add(checkHR2);
+		int index;
 		
-		checkTHR1.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getStateChange() == e.SELECTED) {
-					checkHR1.setState(false);
-					checkHR2.setState(false);
-					System.out.println("THR1 selected!");
-					resolution = "THR1";
-				}	
-			}
-		});
+		choiceLayer.add("");
+		for (index = 0; index < Config.LISTLAYERS.getSize(); index++)
+			choiceLayer.add(Config.LISTLAYERS.get(index).toString());
 		
-		checkHR1.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getStateChange() == e.SELECTED) {
-					checkTHR1.setState(false);
-					checkHR2.setState(false);
-					System.out.println("HR1 selected!");
-					resolution = "HR1";
-				}	
-			}
-		});
 		
-		checkHR2.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getStateChange() == e.SELECTED) {
-					checkTHR1.setState(false);
-					checkHR1.setState(false);
-					resolution = "HR2";
-				}	
-			}
-		});
-		
+		choiceLayer.setBounds(105,180,200,30);
+		getContentPane().add(choiceLayer);
+				
 		Button button_3 = new Button("Aceptar");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -227,60 +190,58 @@ public class LoadRasterShape extends JFrame {
 					JOptionPane.showMessageDialog(null, "Some raster file must be selected!");
 					return;
 				}
-				else {
 						
-					if (resolution.contentEquals("THR1"))
-						layer = thr1;
-					else if (resolution.contentEquals("HR1"))
-						layer = hr1;
-					else if (resolution.contentEquals("HR2"))
-						layer = hr2;
-					else if (resolution == "") {
-						JOptionPane.showMessageDialog(null, "Some Layer must be selected!");
-						return;
-					}
-					
-					if (!textField_1.getText().equals("") & !textField_2.getText().equals("")) {
-						try {
-							shp2obj= new Shape2ObjGeom(textField_1.getText(), textField_2.getText());
-							if (shp2obj != null) {
-								try {
-									
-									layer.setImage(textField.getText());
-									layer.allowDrawing();
-									Config.ACTIVELAYER = layer;
-									layer.setObjsGeom(shp2obj.adjustProyection());
-									
-								} catch (MismatchedDimensionException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (TransformException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (FactoryException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (org.opengis.referencing.operation.TransformException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							
-							}
-							
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					else if (textField_1.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Shape file must be selected!");
-						return;
-					}	
-					else if	(textField_2.getText().equals("")){
-						JOptionPane.showMessageDialog(null, "File with coordinate points must be selected!");
-						return;
-					}
+				if (textField_1.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Shape file must be selected!");
+					return;
 				}
+				
+				if (textField_2.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "File with coordinate points must be selected!");
+					return;
+				}
+				
+				if (choiceLayer.getSelectedItem() == "") {
+					if (Config.LISTLAYERS.isEmpty())
+						JOptionPane.showMessageDialog(null, "Please create a Layer first!");
+					else
+						JOptionPane.showMessageDialog(null, "Some Layer must be selected!");
+					
+					return;
+				}
+							
+//				if (!textField_1.getText().equals("") & !textField_2.getText().equals("")) {
+					try {
+						shp2obj= new Shape2ObjGeom(textField_1.getText(), textField_2.getText());
+						if (shp2obj != null) {
+							try {
+								layer = Config.getLayer(choiceLayer.getSelectedIndex()-1); //OBTENGO LA CAPA DE LA LISTA
+								layer.setImage(textField.getText());
+								layer.setObjsGeom(shp2obj.adjustProyection());
+								//layer.allowDrawing();
+								Config.fillDefaultList();
+								
+							} catch (MismatchedDimensionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (TransformException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (FactoryException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (org.opengis.referencing.operation.TransformException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						
+						}
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+//				}
 				
 				ventana.repaint();
 				dispose();
@@ -304,7 +265,6 @@ public class LoadRasterShape extends JFrame {
 		
 		addWindowListener(new WindowListener() {
 			
-			@Override
 			public void windowOpened(WindowEvent e) {
 				// TODO Auto-generated method stub
 				
@@ -347,9 +307,36 @@ public class LoadRasterShape extends JFrame {
 			}
 		});
 		
+		addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+
+				if(arg0.getKeyCode() == KeyEvent.VK_ESCAPE)
+				{
+					dispose();
+				}
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+			
+		});
+		
+		this.setFocusable(true);
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new LoadRasterShape(null, null, null, null).setVisible(true);
+		new LoadRasterShape(null).setVisible(true);
 	}
 }

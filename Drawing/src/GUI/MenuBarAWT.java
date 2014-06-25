@@ -20,12 +20,10 @@ public class MenuBarAWT {
 	private Layer hr1;
 	private Layer hr2;
 	
-	public MenuBarAWT (Frame frame, Layer thr1, Layer hr1, Layer hr2) {
+	public MenuBarAWT (Frame frame) {
 		
 		ventana = frame;
-		this.thr1 = thr1;
-		this.hr1 = hr1;
-		this.hr2 = hr2;
+
 	}
 
     public MenuBar createMenuBar()
@@ -42,7 +40,7 @@ public class MenuBarAWT {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				new LoadImages(ventana,thr1,hr1,hr2);
+				new LoadImages(ventana);
 				
 			}
 		});
@@ -54,7 +52,7 @@ public class MenuBarAWT {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new LoadRasterShape(ventana, thr1, hr1, hr2);
+				new LoadRasterShape(ventana);
 				
 			}
 		});

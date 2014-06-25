@@ -39,16 +39,12 @@ public class Simulator extends JFrame{
 	private static Checkbox radioButtonTHR1;
 	private static Checkbox radioButtonHR1;
 	private static Checkbox radioButtonHR2;
+	private static JFrame ventana;
 	
 	public Simulator() {
-	
 		
-		Config.THR1 = new Layer("THR1");
-		Config.HR1 = new Layer("HR1");
-		Config.HR2 = new Layer("HR2");
-		
-//		LAYER = Config.THR1;
-		
+		Config.addLayer("Layer0", "THR1"); // Capa inicial
+		ventana = this;
 		setFocusable(true);
 		setTitle("Tesina");
 		setResizable(false);
@@ -72,37 +68,30 @@ public class Simulator extends JFrame{
 					System.out.println("Running.....");
 					Config.OUT.clear();
 					CM8toOWL CM8 = new CM8toOWL();
-			
-					Config.THR1.setCM8(CM8);
-					Config.HR1.setCM8(CM8);
-					Config.HR2.setCM8(CM8);
 					
 					long startTime = System.currentTimeMillis();
-
-					Config.THR1.assertDataForObjsInLayer();
-					Config.HR1.assertDataForObjsInLayer();
-					Config.HR2.assertDataForObjsInLayer();
-
-					Config.THR1.makeObjsDifferent();
-					Config.HR1.makeObjsDifferent();
-					Config.HR2.makeObjsDifferent();
 					
-					Config.THR1.getAssertedDataInLayer();
-					Config.HR1.getAssertedDataInLayer();
-					Config.HR2.getAssertedDataInLayer();
+					for (Layer layer : Config.LAYERS)
+						layer.setCM8(CM8);
 					
-					Config.THR1.getInferredDataInLayer();
-					Config.HR1.getInferredDataInLayer();
-					Config.HR2.getInferredDataInLayer();
+					for (Layer layer : Config.LAYERS)
+						layer.assertDataForObjsInLayer();
 					
+					for (Layer layer : Config.LAYERS)
+						layer.makeObjsDifferent();
+					
+					for (Layer layer : Config.LAYERS)
+						layer.getAssertedDataInLayer();
+						
+					for (Layer layer : Config.LAYERS)
+						layer.getInferredDataInLayer();
+										
 					if (!CM8.checkConsistency())
 						JOptionPane.showMessageDialog(null,"Inconsistent Ontology","Error",JOptionPane.ERROR_MESSAGE);
-						//new ErrorOWL(panelPrincipal,"Inconsistent Ontology. Please check!");
-						
-					Config.OUT.addAll(Config.THR1.OUT);
-					Config.OUT.addAll(Config.HR1.OUT);
-					Config.OUT.addAll(Config.HR2.OUT);
 					
+					for (Layer layer : Config.LAYERS)
+						Config.OUT.addAll(layer.OUT);
+						
 					long endTime = System.currentTimeMillis();
 					
 					Config.OUT.add("Total Time: "+(endTime - startTime)+" milliseconds");
@@ -134,9 +123,9 @@ public class Simulator extends JFrame{
 		Button btnCleanAll = new Button("Clean All");
 		btnCleanAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Config.THR1.clean();
-				Config.HR1.clean();
-				Config.HR2.clean();
+				for (Layer layer : Config.LAYERS)
+					layer.clean();
+				
 				Config.OBJCOUNT = 0;
 				panelPrincipal.repaint();
 			}
@@ -144,137 +133,133 @@ public class Simulator extends JFrame{
 		btnCleanAll.setFocusable(false);
 		btnCleanAll.setBounds(215, 5, 100, 35);
 		panel_1.add(btnCleanAll);
+	
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_2.setBounds(810, 45, 350, 600);
-		getContentPane().add(panel_2);
-		panel_2.setLayout(null);
+		/********************************************************************
+		 * INICIO PANEL DE CAPAS											*
+		 ********************************************************************/
 		
-		Label label = new Label("Regions Detected");
-		label.setBounds(5, 5, 150, 17);
-		panel_2.add(label);
+		JPanel panelLayers = new JPanel();
+		panelLayers.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelLayers.setBounds(810, 45, 350, 295);
+		getContentPane().add(panelLayers);
+		panelLayers.setLayout(null);
 		
-		CheckboxGroup cg = new CheckboxGroup ();
-		radioButtonTHR1 = new Checkbox("THR1",cg,true);
-		radioButtonTHR1.setBounds(5, 50, 141, 23);
-		radioButtonTHR1.setFocusable(false);
-		
-		radioButtonHR1 = new Checkbox("HR1",cg,false);
-		radioButtonHR1.setBounds(5, 230, 141, 23);
-		radioButtonHR1.setFocusable(false);
-		
-		radioButtonHR2 = new Checkbox("HR2",cg,false);
-		radioButtonHR2.setBounds(5, 410, 141, 23);
-		radioButtonHR2.setFocusable(false);
-		
-		panel_2.add(radioButtonTHR1);
-		panel_2.add(radioButtonHR1);
-		panel_2.add(radioButtonHR2);
-		
-		final JList listTHR1 = new JList(Config.THR1.getDefaultList());
-		listTHR1.setFont(new Font("",0,10));
-		listTHR1.setBounds(30, 80, 300, 120);
-		listTHR1.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        if (evt.getClickCount() == 2) {
-		        	ObjGeom obj = Config.THR1.getObj(listTHR1.getSelectedIndex());
-		        	if (obj != null)
-		        		new SetClass(obj, Config.THR1);
-		        }
-		    }
-		});
-		
-		ScrollPane scrollPaneTHR1 = new ScrollPane();
-		scrollPaneTHR1.add(listTHR1);
-		scrollPaneTHR1.setBounds(30, 80, 300, 120);
-		panel_2.add(scrollPaneTHR1);
-		
-		final JList listHR1 = new JList(Config.HR1.getDefaultList());
-		listHR1.setFont(new Font("",0,10));
-		listHR1.setBounds(30, 440, 300, 120);
-		listHR1.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        if (evt.getClickCount() == 2) {
-		        	ObjGeom obj = Config.HR1.getObj(listHR1.getSelectedIndex());
-		        	if (obj != null)
-		        		new SetClass(obj, Config.HR1);
-		        }
-		    }
-		});
-		
-		ScrollPane scrollPaneHR1 = new ScrollPane();
-		scrollPaneHR1.add(listHR1);
-		scrollPaneHR1.setBounds(30, 260, 300, 120);
-		panel_2.add(scrollPaneHR1);
-		
-		final JList listHR2 = new JList(Config.HR2.getDefaultList());
-		listHR2.setFont(new Font("",0,10));
-		listHR2.setBounds(30, 260, 300, 120);
-		listHR2.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent evt) {
-		        if (evt.getClickCount() == 2) {
-		        	ObjGeom obj = Config.HR2.getObj(listHR2.getSelectedIndex());
-		        	if (obj != null)
-		        		new SetClass(obj, Config.HR2);
-		        }
-		    }
-		});
-		
-		ScrollPane scrollPaneHR2 = new ScrollPane();
-		scrollPaneHR2.add(listHR2);
-		scrollPaneHR2.setBounds(30, 440, 300, 120);
-		panel_2.add(scrollPaneHR2);
-		
-		
-		radioButtonTHR1.addItemListener(new ItemListener() {
+		Button btnAdd = new Button("+");
+		btnAdd.setFocusable(false);
+		btnAdd.setBounds(60, 5, 30, 30);
+		btnAdd.addActionListener(new ActionListener() {
 			
 			@Override
-			public void itemStateChanged(ItemEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (e.getStateChange() == e.SELECTED) {
-					radioButtonHR1.setState(false);
-					radioButtonHR2.setState(false);
-					System.out.println("THR1 selected!");
-					Config.ACTIVELAYER = Config.THR1;
-					panelPrincipal.repaint();
-				}	
+				new NewLayer(ventana,null);
+				
 			}
 		});
+		panelLayers.add(btnAdd);
 		
-		radioButtonHR1.addItemListener(new ItemListener() {
-					
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						// TODO Auto-generated method stub
-						if (e.getStateChange() == e.SELECTED) {
-							radioButtonTHR1.setState(false);
-							radioButtonHR2.setState(false);
-							System.out.println("HR1 selected!");
-							Config.ACTIVELAYER = Config.HR1;
-							panelPrincipal.repaint();
-						}	
-					}
-				});
+		Button btnRemove = new Button("-");
+		btnRemove.setFocusable(false);
+		btnRemove.setBounds(95, 5, 30, 30);
+		panelLayers.add(btnRemove);
 		
-		radioButtonHR2.addItemListener(new ItemListener() {
+		Label labelLayers = new Label("Layers" );
+		labelLayers.setBounds(5, 10, 150, 17);
+		panelLayers.add(labelLayers);
+		
+		Button btnEdit = new Button("Edit");
+		btnEdit.setFocusable(false);
+		btnEdit.setBounds(130, 5, 50, 30);
+		panelLayers.add(btnEdit);
+			
+		final JList listLayers = new JList(Config.LISTLAYERS);
+		listLayers.setFont(new Font("",0,14));
+		listLayers.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        	Config.getLayer(listLayers.getSelectedIndex());
+		        	repaint();
+		    }
+		});
+		
+		ScrollPane scrollPaneLayers = new ScrollPane();
+		scrollPaneLayers.add(listLayers);
+		scrollPaneLayers.setBounds(30, 50, 300, 220);
+		panelLayers.add(scrollPaneLayers);
+		
+		btnRemove.addActionListener(new ActionListener() {
 			
 			@Override
-			public void itemStateChanged(ItemEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				if (e.getStateChange() == e.SELECTED) {
-					radioButtonTHR1.setState(false);
-					radioButtonHR1.setState(false);
-					System.out.println("HR2 selected!");
-					Config.ACTIVELAYER = Config.HR2;
-					panelPrincipal.repaint();
-				}	
+				if (Config.LISTLAYERS.size() == 1) {
+					JOptionPane.showMessageDialog(null, "Can not remove last Layer!");
+					return;
+				}
+				
+				if (!listLayers.isSelectionEmpty())		
+					if (JOptionPane.showConfirmDialog(null, "Delete layer?") == 0)
+						Config.removeLayer(listLayers.getSelectedIndex());
 			}
 		});
+
+		btnEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				if (!listLayers.isSelectionEmpty())
+					new NewLayer(ventana,Config.getLayer(listLayers.getSelectedIndex()));
+					//JOptionPane.showMessageDialog(null, "Can not remove last Layer!");
+				
+			}
+		});
+		/********************************************************************
+		 * FIN PANEL DE CAPAS												*
+		 ********************************************************************/
+		
+		
+		/********************************************************************
+		 * INICIO PANEL DE OBJETOS											*
+		 ********************************************************************/
+		
+		JPanel panelObjs = new JPanel();
+		panelObjs.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelObjs.setBounds(810, 345, 350, 300);
+		getContentPane().add(panelObjs);
+		panelObjs.setLayout(null);
+		
+		Label label = new Label("Objects Detected in Layer :");
+		label.setBounds(5, 10, 150, 17);
+		panelObjs.add(label);
+		
+		final JList listLayer  = new JList(Config.OBJSLIST);
+		
+		listLayer.setFont(new Font("",0,10));
+		listLayer.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        if (evt.getClickCount() == 2) {
+		        	if (Config.ACTIVELAYER != null) {
+		        		ObjGeom obj = Config.ACTIVELAYER.getObj(listLayer.getSelectedIndex());
+		        		if (obj != null)
+		        			new SetClass(obj, Config.ACTIVELAYER);
+		        	}	
+		        }
+		    }
+		});
+		
+		ScrollPane scrollPaneObjs = new ScrollPane();
+		scrollPaneObjs.add(listLayer);
+		scrollPaneObjs.setBounds(30, 50, 300, 220);
+		panelObjs.add(scrollPaneObjs);
+		
+		/********************************************************************
+		 * FIN PANEL DE OBJETOS												*
+		 ********************************************************************/
+		
 				
 		addKeyListener(new KeyActions(this));
-		Config.ACTIVELAYER = Config.THR1;
-		setMenuBar(new MenuBarAWT(this,Config.THR1, Config.HR1, Config.HR2).createMenuBar());
+		setMenuBar(new MenuBarAWT(this).createMenuBar());
 		panelPrincipal = new MainPanel(800, 600);
 		panel.add(panelPrincipal);
 		
@@ -283,13 +268,6 @@ public class Simulator extends JFrame{
 	
 	public void paint(Graphics g) {		
 		paintComponents(g);
-		
-		if (Config.ACTIVELAYER == Config.THR1)
-			radioButtonTHR1.setState(true);
-		else if (Config.ACTIVELAYER == Config.HR1)
-			radioButtonHR1.setState(true);
-		else if (Config.ACTIVELAYER == Config.HR2) 
-			radioButtonHR2.setState(true);
     }
 
 	public static void main(String[] args) {

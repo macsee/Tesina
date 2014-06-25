@@ -379,7 +379,7 @@ public class CM8toOWL {
 					if (myOWL.isSuperClass(myOWL.getClass(obj.getCLASE()), owlClass)) {
 						System.out.println(obj.getCLASE()+ " es superclase de "+owlClass.asOWLClass().getIRI().getFragment());
 						obj.setCLASE(renderer.render(owlClass));
-						Config.ACTIVELAYER.updateDefaultList(obj);
+						Config.updateDefaultList(obj);
 					}	
 				}
 			}	

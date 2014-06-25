@@ -170,9 +170,8 @@ public class SetClass extends Dialog{
 		
 		final LinkedList<ObjGeom> listObjs = new LinkedList<ObjGeom>();
 		
-		listObjs.addAll(Config.THR1.getObjsGeom());
-		listObjs.addAll(Config.HR1.getObjsGeom());
-		listObjs.addAll(Config.HR2.getObjsGeom());	
+		for (Layer LayerS : Config.LAYERS)
+			listObjs.addAll(LayerS.getObjsGeom());	
 		
 		for (ObjGeom objgeom : listObjs)
 			choiceSame.add("P"+objgeom.getId());
@@ -211,53 +210,6 @@ public class SetClass extends Dialog{
 		choiceDisc.select(obj.getDISCONTINUE());
 		panel.add(choiceDisc);
 		
-
-//		Label labelInput = new Label("Use it as input:");
-//		labelInput.setBounds(10,455,100,20);
-//		panel.add(labelInput);
-//		
-//		final Checkbox checkInput = new Checkbox();
-//		checkInput.setFocusable(false);
-//		checkInput.setBounds(120,450,30,30);
-//		checkInput.setState(obj.getUSE());
-//		panel.add(checkInput);
-//		
-//		choiceClass.addItemListener(new ItemListener() {
-//			
-//			@Override
-//			public void itemStateChanged(ItemEvent arg0) {
-//				
-//				choiceClass.setFocusable(false);
-//				
-//				if (choiceClass.getSelectedItem() != Config.BASIC_CLASS) {
-//					choiceSurface.setEnabled(false);
-//					choiceWidth.setEnabled(false);
-//					choiceLength.setEnabled(false);
-//					choiceElongation.setEnabled(false);
-//					choiceDensity.setEnabled(false);
-//					choiceForm.setEnabled(false);
-//					choiceTexture.setEnabled(false);
-//					choiceSame.setEnabled(false);
-//					choiceAlign.setEnabled(false);
-//					choiceDisc.setEnabled(false);
-//				}
-//				else {
-//					choiceSurface.setEnabled(true);
-//					choiceWidth.setEnabled(true);
-//					choiceLength.setEnabled(true);
-//					choiceElongation.setEnabled(true);
-//					choiceDensity.setEnabled(true);
-//					choiceForm.setEnabled(true);
-//					choiceTexture.setEnabled(true);
-//					choiceSame.setEnabled(true);
-//					choiceAlign.setEnabled(true);
-//					choiceDisc.setEnabled(true);
-//				}
-//				
-//			}
-//		});
-		
-		
 		Button button = new Button("Aceptar");
 		button.setBounds((getWidth()/2) - 50, (getHeight()-20-40) - 10, 100, 40);
 		button.setFocusable(true);
@@ -281,7 +233,8 @@ public class SetClass extends Dialog{
 				else
 					obj.setSAMEIND(null);
 				
-				layer.updateDefaultList(obj);
+				Config.updateDefaultList(obj);
+				Config.fillDefaultList();
 				dispose();
 			}
 		});
@@ -296,9 +249,26 @@ public class SetClass extends Dialog{
 				if(arg0.getKeyCode() == KeyEvent.VK_ENTER)
 	            {
 					obj.setCLASE(choiceClass.getSelectedItem());
-					layer.updateDefaultList(obj);
+					obj.setWIDTH(choiceWidth.getSelectedItem());
+					obj.setELONGATION(choiceElongation.getSelectedItem());
+					obj.setLENGTH(choiceLength.getSelectedItem());
+					obj.setSURFACE(choiceSurface.getSelectedItem());
+					obj.setTEXTURE(choiceTexture.getSelectedItem());
+					obj.setDENSITY(choiceDensity.getSelectedItem());
+					obj.setFORM(choiceForm.getSelectedItem());
+					obj.setALIGN(choiceAlign.getSelectedItem());
+					obj.setDISCONTINUE(choiceDisc.getSelectedItem());
+					
+					if (choiceSame.getSelectedIndex() != 0)
+						obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1));
+					else
+						obj.setSAMEIND(null);
+					
+					Config.updateDefaultList(obj);
+					Config.fillDefaultList();
 					dispose();
 	            }
+				
 				if(arg0.getKeyCode() == KeyEvent.VK_ESCAPE)
 				{
 					dispose();

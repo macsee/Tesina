@@ -45,7 +45,8 @@ public class Layer {
     private Point GLUE_POINT;
     private boolean DRAWING_ADJACENT_POLYGON_IN_PROGRESS;
     
-    private String LAYERID;
+    public String LAYER_RESOLUTION;
+    public String LAYERID;
     
     private Image IMAGE;
     private ObjGeom LAST_OBJ;
@@ -62,7 +63,7 @@ public class Layer {
     
     private CM8toOWL CM8;
     
-    public Layer(String layerid) {
+    public Layer(String layerid, String resolution) {
     	LINE = null;
         ACTUAL_POINT = null;
         //MOUSE_POINT = null;
@@ -76,6 +77,7 @@ public class Layer {
         DRAW_INTERSECTION = false;
         DRAW_DIFFERENCE = false;
         
+        LAYER_RESOLUTION = resolution;
         LAYERID = layerid;
     }
     
@@ -96,6 +98,7 @@ public class Layer {
     	GLUE_POINT = null;
     	LINE = null;
     	LAST_OBJ = null;
+    	Config.cleanDefaultList();
     	DISPLAYLIST.clear();
     }
      
@@ -114,20 +117,22 @@ public class Layer {
 	}
 	
 	public void setObjsGeom(LinkedList<ObjGeom> list) {
+		SHPS.clear();
 		for (ObjGeom obj : list) {
 			addObj(obj);
-			addToDefaultList(obj);
+			Config.cleanDefaultList();
+			Config.addToDefaultList(obj);
 		}
-		
+		reset();
 	}
 	
 	public LinkedList<ObjGeom> getObjsGeom() {
 		return SHPS;
 	}
 	
-	public DefaultListModel getDefaultList() {
-		return DISPLAYLIST;
-	}
+//	public DefaultListModel getDefaultList() {
+//		return DISPLAYLIST;
+//	}
 	
 	public void continuePolygon() {
 		NEW_POLYGON = false;
@@ -169,29 +174,16 @@ public class Layer {
 	
 	public void addObj(ObjGeom obj) {
 		obj.setId(Config.OBJCOUNT);
-		obj.setRESOLUTION(LAYERID);
+		obj.setRESOLUTION(LAYER_RESOLUTION);
 		Config.OBJCOUNT++;
 		obj.setLocalID(SHPS.size());
 		//SHPS.addFirst(obj);
 		SHPS.addLast(obj);
+		//Config.addToDefaultList(obj);
 		NEW_POLYGON = false;
 	}
 	
-	public void addToDefaultList(ObjGeom obj) {
-		
-		int i;
-		for (i=0;i<DISPLAYLIST.size();i++) {
-			if (((String) DISPLAYLIST.get(i)).contains(String.valueOf(obj.getId()))) //Compruebo que el objeto no este agregado a la lista
-				return;																 // esto ocurre al deshacer acciones	
-		}
-		DISPLAYLIST.addElement("Polygon "+obj.getId()+" - "+obj.getCLASE());
-	}
 	
-	
-	public void updateDefaultList(ObjGeom obj) {
-		DISPLAYLIST.remove(obj.getLocalID());
-		DISPLAYLIST.add(obj.getLocalID(), "Polygon "+obj.getId()+" - "+obj.getCLASE());
-	}
 	public Point getActualPoint() {
 		return ACTUAL_POINT;
 	}
@@ -242,7 +234,7 @@ public class Layer {
 		if (!SHPS.isEmpty()) {
 			//SHPS.removeFirst();
 			SHPS.removeLast();
-			DISPLAYLIST.remove(0);
+			Config.removeFromDefaultList(0);
 			Config.OBJCOUNT--;
 		}	
 	}
@@ -256,7 +248,7 @@ public class Layer {
 	}
 	
 	public void removeSelectedObject(ObjGeom obj) {
-		DISPLAYLIST.remove(obj.getLocalID());
+		Config.removeFromDefaultList(obj.getLocalID());
 		SHPS.remove(obj);
 		Config.OBJCOUNT--;
 		return;
@@ -524,7 +516,7 @@ public class Layer {
 		
 		int i;
 		
-		OUT.add("*********************************************** LAYER "+LAYERID+" ***********************************************");
+		OUT.add("*********************************************** LAYER "+LAYER_RESOLUTION+" ***********************************************");
 		OUT.add("*********************************************************************************************************\n");
 		
 		if (SHPS.isEmpty()) {
