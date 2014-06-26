@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import javax.swing.JOptionPane;
+
 import UTILS.*;
 
 
@@ -34,7 +36,7 @@ public class MenuBarAWT {
         
         Menu file = new Menu("File");
         
-        MenuItem open = new MenuItem("Open image");
+        MenuItem open = new MenuItem("Open Image");
         open.addActionListener(new ActionListener() {
 			
 			@Override
@@ -58,8 +60,22 @@ public class MenuBarAWT {
 		});
         file.add(load);
         
-//        MenuItem save = new MenuItem("Save segmentation");
-//        file.add(save);
+        MenuItem save = new MenuItem("Save clasification");
+        save.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (Config.ACTIVELAYER.emptyObjList()) {
+					JOptionPane.showMessageDialog(null, "No objects were found in the active Layer!");
+					return;
+				}
+				
+				new Save(ventana);
+				
+			}
+		});
+        file.add(save);
         
         MenuItem quit = new MenuItem("Quit"); 
         quit.addActionListener(new ActionListener() {
@@ -75,11 +91,7 @@ public class MenuBarAWT {
 
 		
         Menu edit = new Menu("Edit");
-        
-        
-        edit.add(new MenuItem("Copy"));
-        edit.add(new MenuItem("Paste"));
-        
+              
         MenuItem undo = new MenuItem("Undo");
         undo.addActionListener(new ActionListener() {
 			

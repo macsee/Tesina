@@ -149,15 +149,15 @@ public class CM8toOWL {
 		for (OWLNamedIndividual ind: IND_OBJ.keySet()) {
 			ObjGeom ob2 = IND_OBJ.get(ind);
 			if (ob1 != ob2)
-				if (ob1.getSAMEIND() != ob2)
-					makeIndividualsDifferent(ob1, ob2); //TERMINAR ESTO!!!!!!!!!
+				if (ob1.getSAMEIND() != ob2.getId())
+					makeIndividualsDifferent(ob1, ob2);
 		}
 		
 	}
 	
-	public void makeSameIndividual(ObjGeom ob1, ObjGeom ob2) {
-		if (ob2 != null)
-			myOWL.assertSameIndividual(getIndividual(ob1), getIndividual(ob2));
+	public void makeSameIndividual(ObjGeom ob1, Integer idOb2) {
+		if (idOb2 != null)
+			myOWL.assertSameIndividual(getIndividual(ob1), myOWL.getIndividual("P"+idOb2));
 	}
 	
 	public void assertMaxCard(ObjGeom ob, Integer cant, String clase, String prop) {

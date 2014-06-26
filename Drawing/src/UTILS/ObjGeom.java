@@ -44,7 +44,7 @@ public class ObjGeom implements Cloneable{
 	private String FORM = "";
 	private String TEXTURE = "";
 	private String DENSITY = "";
-	private ObjGeom SAMEIND = null;
+	private Integer SAMEIND = null;
 	private String RESOLUTION = "";
 	private String DISCONTINUE = "";
 	private String ALIGNED = "";
@@ -344,11 +344,11 @@ public class ObjGeom implements Cloneable{
 		DENSITY = dENSITY;
 	}
 	
-	public ObjGeom getSAMEIND() {
+	public Integer getSAMEIND() {
 		return SAMEIND;
 	}
 
-	public void setSAMEIND(ObjGeom IND) {
+	public void setSAMEIND(Integer IND) {
 		SAMEIND = IND;
 	}
 	

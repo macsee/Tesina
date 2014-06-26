@@ -1,37 +1,37 @@
 package GUI;
 
 import java.awt.Button;
-import java.awt.Checkbox;
 import java.awt.Choice;
-import java.awt.Dialog;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
 
+import javax.swing.JDialog;
+
+import UTILS.Config;
 import UTILS.Layer;
 import UTILS.ObjGeom;
-import UTILS.Config;
 
 
-public class SetClass extends Dialog{
+public class SetClass extends JDialog{
 	
 	public static int locationX = 700;
 	public static int locationY = 100;
 	
 	public SetClass(final ObjGeom obj, final Layer layer) {
 		
-		super(new Frame(), "Define attributes");
+		//super(new Frame(), "Define attributes");
+		setTitle("Define attributes");
 		setVisible(true);
 		setLocation(locationX, locationY);
+		//setLocationRelativeTo (null);
 		setSize(400, 550);
 		setResizable(false);
 		Panel panel = new Panel();
@@ -171,16 +171,15 @@ public class SetClass extends Dialog{
 		final LinkedList<ObjGeom> listObjs = new LinkedList<ObjGeom>();
 		
 		for (Layer LayerS : Config.LAYERS)
-			listObjs.addAll(LayerS.getObjsGeom());	
+			listObjs.addAll(LayerS.getObjsGeom());
 		
 		for (ObjGeom objgeom : listObjs)
 			choiceSame.add("P"+objgeom.getId());
 		
 		choiceSame.setFocusable(false);
-		ObjGeom same = obj.getSAMEIND();
 		
-		if (same != null)
-			choiceSame.select("P"+same.getId());
+		if (obj.getSAMEIND() != null)
+			choiceSame.select("P"+obj.getSAMEIND());
 		
 		panel.add(choiceSame);
 		
@@ -210,7 +209,7 @@ public class SetClass extends Dialog{
 		choiceDisc.select(obj.getDISCONTINUE());
 		panel.add(choiceDisc);
 		
-		Button button = new Button("Aceptar");
+		Button button = new Button("Ok");
 		button.setBounds((getWidth()/2) - 50, (getHeight()-20-40) - 10, 100, 40);
 		button.setFocusable(true);
 		button.addActionListener(new ActionListener() {
@@ -229,7 +228,7 @@ public class SetClass extends Dialog{
 				//obj.setUSE(checkInput.getState());
 				
 				if (choiceSame.getSelectedIndex() != 0)
-					obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1));
+					obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1).getId());
 				else
 					obj.setSAMEIND(null);
 				
@@ -260,7 +259,7 @@ public class SetClass extends Dialog{
 					obj.setDISCONTINUE(choiceDisc.getSelectedItem());
 					
 					if (choiceSame.getSelectedIndex() != 0)
-						obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1));
+						obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1).getId());
 					else
 						obj.setSAMEIND(null);
 					

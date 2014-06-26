@@ -7,12 +7,14 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Shape;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -680,6 +682,95 @@ public class Layer {
 	
 	public void setCM8(CM8toOWL cm8) {
 		CM8 = cm8;
+	}
+	
+	public LinkedList<String> createCSV() {
+		
+		LinkedList<String> listado = new LinkedList<String>();
+		
+		if (emptyObjList())
+			return listado;
+		
+		listado.add("ID;CLASS;WIDTH;LENGTH;SURFACE;ELONGATION;FORM;TEXTURE;DENSITY;SAMEIND;RESOLUTION;DISCONTINUE;ALIGN");
+		
+		for (ObjGeom obj : SHPS) {
+			
+			String sameInd = "";
+			
+			if (obj.getSAMEIND() != null)
+				 sameInd = String.valueOf(obj.getSAMEIND());
+			
+			listado.add(obj.getId()+";"+
+					obj.getCLASE()+";"+
+					obj.getWIDTH()+";"+
+					obj.getLENGTH()+";"+
+					obj.getSURFACE()+";"+
+					obj.getELONGATION()+";"+
+					obj.getFORM()+";"+
+					obj.getTEXTURE()+";"+
+					obj.getDENSITY()+";"+
+					sameInd+";"+
+					obj.getRESOLUTION()+";"+
+					obj.getDISCONTINUE()+";"+
+					obj.getALIGN());
+		}
+			
+		return listado;
+	}
+	
+	public void readCSV(String filename) {
+		
+		BufferedReader br = null;
+		
+		try {
+			 
+			String line = "";
+			boolean firstline = true;
+			
+			br = new BufferedReader(new FileReader(filename));
+			
+			String[] attr = new String[13]; 
+		
+			while ((line = br.readLine()) != null) {
+				
+				String[] orig = line.split(";");				
+				System.arraycopy(orig, 0, attr, 0, orig.length);
+				
+				if (!firstline) {
+					
+					ObjGeom obj = getObj(Integer.valueOf(attr[0]));
+					System.out.println(attr.length);
+					obj.setCLASE(attr[1]);
+					obj.setWIDTH(attr[2]);
+					obj.setLENGTH(attr[3]);
+					obj.setSURFACE(attr[4]);
+					obj.setELONGATION(attr[5]);
+					obj.setFORM(attr[6]);
+					obj.setTEXTURE(attr[7]);
+					obj.setDENSITY(attr[8]);
+					obj.setSAMEIND(Integer.valueOf(attr[9]));
+					obj.setDISCONTINUE(attr[11]);
+					obj.setALIGN(attr[12]);
+					
+				}
+				
+				firstline = false;
+					
+			}
+	 
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}	
 	}
 	
 	public void printMatrix(IntersectionMatrix patern, ObjGeom ob1, ObjGeom ob2) {
