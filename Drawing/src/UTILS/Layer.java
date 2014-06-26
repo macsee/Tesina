@@ -739,7 +739,12 @@ public class Layer {
 				if (!firstline) {
 					
 					ObjGeom obj = getObj(Integer.valueOf(attr[0]));
-					System.out.println(attr.length);
+					
+					if (obj == null) {
+						br.close();
+						return;
+					}
+					
 					obj.setCLASE(attr[1]);
 					obj.setWIDTH(attr[2]);
 					obj.setLENGTH(attr[3]);
