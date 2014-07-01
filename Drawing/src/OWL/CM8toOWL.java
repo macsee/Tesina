@@ -33,7 +33,7 @@ public class CM8toOWL {
 	 * @param args
 	 */
 	
-	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/Ontology.owl";
+	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyMod.owl";
 	private static String output_ontology = "/Users/Macsee/Desktop/Examples/New/Out_Ontology.owl";
 	private myOWL myOWL;
 	
@@ -149,7 +149,7 @@ public class CM8toOWL {
 		for (OWLNamedIndividual ind: IND_OBJ.keySet()) {
 			ObjGeom ob2 = IND_OBJ.get(ind);
 			if (ob1 != ob2)
-				if (ob1.getSAMEIND() != ob2.getId())
+				if ((ob1.getSAMEIND() != null) && (ob1.getSAMEIND() != ob2.getId()))
 					makeIndividualsDifferent(ob1, ob2);
 		}
 		
@@ -200,7 +200,7 @@ public class CM8toOWL {
 	
 	public void assertObjProperty(ObjGeom ob, String prop, String value) {
 		
-		if (value == "")
+		if (value.equals(""))
 			return;
 		
 		OWLNamedIndividual indObj = getIndividual(ob);
@@ -226,14 +226,21 @@ public class CM8toOWL {
 	
 	public void assertBooleanProperty(ObjGeom ob, String prop, String value) {
 		
-		if (value == "")
+		System.out.println("Value: "+value);
+		
+		if (value.equals(""))
 			return;
+		
+		Boolean valueB = false;
+		
+		if (value.equals("Yes"))
+			valueB = true;
 		
 		OWLNamedIndividual indObj = getIndividual(ob);
 		OWLDataProperty indRel = myOWL.getDataProperty(prop);
 		Map<OWLDataPropertyExpression, OWLLiteral> mapObj = new HashMap();
 		
-		OWLLiteral lit = myOWL.getBooleanLiteral(Boolean.valueOf(value));
+		OWLLiteral lit = myOWL.getBooleanLiteral(valueB);
 		
 		myOWL.defineDataProperty(indRel, indObj, lit);	
 	
@@ -241,41 +248,6 @@ public class CM8toOWL {
 		ASSERTED_DATA_OBJS.put(indObj,mapObj);
 	}
 	
-//	public void countObjsOfClass(String clase, String prop) {
-//		
-//		String propInv = "";
-//		
-//		if (prop.contentEquals("to"))
-//			propInv = "to-1";
-//		else if (prop.contentEquals("to-1"))
-//			propInv = "to";
-//		if (prop.contentEquals("from"))
-//			propInv = "from-1";
-//		else if (prop.contentEquals("from-1"))
-//			propInv = "from";
-//		
-//		Map<OWLNamedIndividual,Integer> count = new HashMap<OWLNamedIndividual,Integer>();
-//		
-//		Set<OWLNamedIndividual> setRel = myOWL.getInstancesOf(myOWL.getClass(clase)); // Busco los primitivas CM8 que son miembros de la clase "clase"
-//		
-//		if (setRel != null) {
-//			for (OWLNamedIndividual ind : setRel) {
-//				
-//				Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>> map = ASSERTED_PROP_RELS.get(ind); // Obtengo las object properties y los individuos relacionados con ind
-//				Set<OWLNamedIndividual> setOWLInd = map.get(myOWL.getObjectProperty(propInv)); // Me quedo solo con los objetos geograficos que se relacionan mediante "to" con la primitiva CM8
-//				
-//				for (OWLNamedIndividual owlInd : setOWLInd)
-//					if (!count.containsKey(owlInd))
-//						count.put(owlInd, 1);
-//					else
-//						count.put(owlInd, count.get(owlInd)+1);
-//			}
-//			
-//				assertCardinalityRestriccions(count, clase, prop);
-//
-//		}	
-//		
-//	}
 	
 	public void countObjsRelatedWith(ObjGeom obj, String prop) {
 		

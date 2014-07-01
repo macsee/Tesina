@@ -1,7 +1,6 @@
 package GUI;
 import java.awt.Button;
 import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -9,24 +8,23 @@ import java.awt.Label;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.concurrent.ExecutionException;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
-import javax.xml.crypto.dsig.TransformException;
-
-import org.opengis.geometry.MismatchedDimensionException;
-import org.opengis.referencing.FactoryException;
 
 import OWL.CM8toOWL;
-import UTILS.*;
+import UTILS.Config;
+import UTILS.Layer;
+import UTILS.ObjGeom;
+import UTILS.MyThread;
+import UTILS.MyTask;
 		
 
 public class Simulator extends JFrame{
@@ -43,7 +41,7 @@ public class Simulator extends JFrame{
 	
 	public Simulator() {
 		
-		Config.addLayer("Layer0", "THR1"); // Capa inicial
+		Config.addLayer("Layer0", "HR2"); // Capa inicial
 		ventana = this;
 		setFocusable(true);
 		setTitle("Tesina");
@@ -65,44 +63,26 @@ public class Simulator extends JFrame{
 		Button btnRun = new Button("Run");
 		btnRun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-					System.out.println("Running.....");
+					
 					Config.OUT.clear();
-					CM8toOWL CM8 = new CM8toOWL();
 					
-					long startTime = System.currentTimeMillis();
-					
-					for (Layer layer : Config.LAYERS)
-						layer.setCM8(CM8);
+//					CM8toOWL CM8 = new CM8toOWL();
+							
+					boolean emptyLayers = true;
 					
 					for (Layer layer : Config.LAYERS)
-						layer.assertDataForObjsInLayer();
+						if (!layer.emptyObjList())
+							emptyLayers = false;
 					
-					for (Layer layer : Config.LAYERS)
-						layer.makeObjsDifferent();
+					if (emptyLayers) {
+						JOptionPane.showMessageDialog(null,"There are no objects to run!","Error",JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 					
-					for (Layer layer : Config.LAYERS)
-						layer.getAssertedDataInLayer();
-						
-					for (Layer layer : Config.LAYERS)
-						layer.getInferredDataInLayer();
-										
-					if (!CM8.checkConsistency())
-						JOptionPane.showMessageDialog(null,"Inconsistent Ontology","Error",JOptionPane.ERROR_MESSAGE);
+					System.out.println("Running.....");
 					
-					for (Layer layer : Config.LAYERS)
-						Config.OUT.addAll(layer.OUT);
-						
-					long endTime = System.currentTimeMillis();
-					
-					Config.OUT.add("Total Time: "+(endTime - startTime)+" milliseconds");
-					
-					CM8.saveOnto();
-					
-					for (String val : Config.OUT) {
-			        	System.out.println(val);  
-			        }
-					
-					panelPrincipal.repaint();				
+					new MyProgressBar(panelPrincipal);
+	
 			}
 		});
 		btnRun.setFocusable(false);
@@ -302,4 +282,5 @@ public class Simulator extends JFrame{
 		
 				
 	}
+	
 }

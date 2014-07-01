@@ -9,7 +9,10 @@ import UTILS.Config;
 
 
 public class MainPanel extends JPanel{
-		
+	
+	MouseActions ma;
+	MouseMotion mm;
+	
 	public MainPanel(int width, int height) {
 			
 		setBounds(5, 45, width, height);
@@ -17,12 +20,24 @@ public class MainPanel extends JPanel{
 		setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		setBackground(Color.WHITE);
 		
-		addMouseListener(new MouseActions(this));
-		addMouseMotionListener(new MouseMotion(this));
+		ma = new MouseActions(this);
+		mm = new MouseMotion(this);
+		addMouseListener(ma);
+		addMouseMotionListener(mm);
+	}
+	
+	public void mouseOFF() {
+		removeMouseListener(ma);
+		removeMouseMotionListener(mm);
+	}
+	
+	public void MouseON() {
+		addMouseListener(ma);
+		addMouseMotionListener(mm);
 	}
 	
 	public void paint(Graphics g) {
-				
+		
 		super.paint(g);
 		
     	g.drawImage(Config.ACTIVELAYER.getImage(),0,0,800,600,this);

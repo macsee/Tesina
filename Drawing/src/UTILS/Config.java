@@ -7,12 +7,13 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 
-import org.semanticweb.owlapi.model.OWLClassExpression;
+import GUI.MyProgressBar;
 
 
 public class Config {
+	
+	public static MyProgressBar PROGRESSBAR;
 	
 	public static LinkedList<Layer> LAYERS = new LinkedList<Layer>();
 	

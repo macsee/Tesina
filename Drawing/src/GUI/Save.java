@@ -72,6 +72,7 @@ public class Save extends JDialog{
 						
 						fw.close();
 						dispose();
+						System.out.println("Saved!");
 					} catch (IOException e2) {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
@@ -89,8 +90,6 @@ public class Save extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("Opening...");
-					
 				FileDialog chooser = new FileDialog(frame,"Save",FileDialog.SAVE);
 				chooser.setVisible(true);
 			    textField.setText(chooser.getDirectory()+chooser.getFile()+".csv");

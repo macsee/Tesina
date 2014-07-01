@@ -20,6 +20,7 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 import OWL.CM8toOWL;
 
@@ -475,8 +476,10 @@ public class Layer {
 		// Hago esto para asegurarme de solo afirmar la resolucion en aquellos objetos en los que estoy interesado en clasificar
 		// De otra forma, si lo coloco en todos, puedo tener inconsistencias.
 		
-		if ((obj.getELONGATION() != "") | (obj.getWIDTH() != "") | (obj.getLENGTH() != "") | (obj.getFORM() != "") | (obj.getTEXTURE() != "") | (obj.getDENSITY() != "") | (obj.getSURFACE() != ""))
+		if (!obj.getELONGATION().equals("") || !obj.getWIDTH().equals("") || !obj.getLENGTH().equals("") || !obj.getFORM().equals("") || !obj.getTEXTURE().equals("") || !obj.getDENSITY().equals("") || !obj.getSURFACE().equals("")) {
 			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+			System.out.println("P"+obj.getId());
+		}	
 		//if (obj.getUSE())
 			
 		
@@ -523,7 +526,7 @@ public class Layer {
 		
 		if (SHPS.isEmpty()) {
 			OUT.add("");
-			OUT.add("No objects detected on this layer");
+			OUT.add("No objects detected in this layer");
 			OUT.add("");
 			return;
 		}
@@ -729,22 +732,31 @@ public class Layer {
 			
 			br = new BufferedReader(new FileReader(filename));
 			
-			String[] attr = new String[13]; 
+			String[] attr = {"","","","","","","","","","","","",""};
+			Integer sameInd = null;
+			int i = 0;
 		
 			while ((line = br.readLine()) != null) {
-				
-				String[] orig = line.split(";");				
-				System.arraycopy(orig, 0, attr, 0, orig.length);
-				
+								
 				if (!firstline) {
 					
-					ObjGeom obj = getObj(Integer.valueOf(attr[0]));
+					String[] orig = line.split(";");				
+					System.arraycopy(orig, 0, attr, 0, orig.length);
+					
+					ObjGeom obj = getObj(i);
+					i++;
 					
 					if (obj == null) {
 						br.close();
+						JOptionPane.showMessageDialog(null,"There are more objects in file than polygons in the selected Layer","Warning",JOptionPane.WARNING_MESSAGE);
 						return;
 					}
 					
+					if (!attr[9].equals(""))
+						 sameInd = Integer.valueOf(attr[9]);
+					
+					System.out.println(orig[5]);
+				
 					obj.setCLASE(attr[1]);
 					obj.setWIDTH(attr[2]);
 					obj.setLENGTH(attr[3]);
@@ -753,16 +765,22 @@ public class Layer {
 					obj.setFORM(attr[6]);
 					obj.setTEXTURE(attr[7]);
 					obj.setDENSITY(attr[8]);
-					obj.setSAMEIND(Integer.valueOf(attr[9]));
+					obj.setSAMEIND(sameInd);
 					obj.setDISCONTINUE(attr[11]);
+					System.out.println("Discontinue:"+attr[11]);
 					obj.setALIGN(attr[12]);
+					System.out.println("Align:"+attr[12]);
 					
 				}
 				
-				firstline = false;
-					
+				firstline = false;	
 			}
-	 
+			
+			if (!attr[10].contentEquals(LAYER_RESOLUTION))
+				if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null,"Objects in file have different resolution than active Layer.\n Change active Layer resolution?","Warning",JOptionPane.OK_CANCEL_OPTION)) {
+					LAYER_RESOLUTION = attr[10];
+					Config.refreshLayerList(this);
+				}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

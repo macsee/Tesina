@@ -20,6 +20,7 @@ import javax.swing.border.EtchedBorder;
 
 import UTILS.Config;
 import UTILS.Layer;
+import UTILS.ObjGeom;
 
 public class NewLayer extends JDialog {
 
@@ -148,6 +149,9 @@ public class NewLayer extends JDialog {
 						if (layer != null) {
 							layer.LAYERID = textField.getText();
 							layer.LAYER_RESOLUTION = resolution;
+							for (ObjGeom obj : layer.getObjsGeom())
+								obj.setRESOLUTION(resolution); //Actualizo la resolucion en los objetos de la capa actualizada
+								
 							Config.refreshLayerList(layer);
 						}	
 						else

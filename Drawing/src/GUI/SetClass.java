@@ -191,8 +191,8 @@ public class SetClass extends JDialog{
 		choiceAlign.setFocusable(false);
 		choiceAlign.setBounds(100,370,100,30);
 		choiceAlign.add("");
-		choiceAlign.add("True");
-		choiceAlign.add("False");
+		choiceAlign.add("Yes");
+		choiceAlign.add("No");
 		choiceAlign.select(obj.getALIGN());
 		panel.add(choiceAlign);
 		
@@ -204,8 +204,8 @@ public class SetClass extends JDialog{
 		choiceDisc.setFocusable(false);
 		choiceDisc.setBounds(100,410,100,30);
 		choiceDisc.add("");
-		choiceDisc.add("True");
-		choiceDisc.add("False");
+		choiceDisc.add("Yes");
+		choiceDisc.add("No");
 		choiceDisc.select(obj.getDISCONTINUE());
 		panel.add(choiceDisc);
 		

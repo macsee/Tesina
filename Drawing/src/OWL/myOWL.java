@@ -35,7 +35,6 @@ import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
 import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
-import GUI.ErrorOWL;
 import UTILS.Config;
 import UTILS.ObjGeom;
 
