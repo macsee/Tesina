@@ -1,6 +1,4 @@
 package OWL;
-import java.awt.Dialog;
-import java.awt.Frame;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +6,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import javax.swing.plaf.OptionPaneUI;
-import javax.swing.text.html.Option;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
@@ -31,7 +26,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
-import org.semanticweb.owlapi.reasoner.NodeSet;
+import org.semanticweb.owlapi.model.OWLSameIndividualAxiom;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 
 import uk.ac.manchester.cs.owlapi.dlsyntax.DLSyntaxObjectRenderer;
@@ -352,6 +347,8 @@ public class myOWL {
     
     public void assertDifferentIndividuals(Set<OWLNamedIndividual> inds) {
     	MANAGER.addAxiom(ONTOLOGY, FACTORY.getOWLDifferentIndividualsAxiom(inds));
+    	
+    	OWLObjectRenderer renderer = new DLSyntaxObjectRenderer();
     	//REASONER.flush();
     } 
    
@@ -365,6 +362,7 @@ public class myOWL {
     	//REASONER.flush();
     }
     
+  
     /****************************************************
      * Asserting ind1 different from ind2				*
      ****************************************************/
@@ -407,6 +405,21 @@ public class myOWL {
     		System.out.println("Error: some arguments are null");
     	else {
     		MANAGER.addAxiom(ONTOLOGY, FACTORY.getOWLObjectPropertyAssertionAxiom(op, ind1, ind2));
+    		//REASONER.flush();
+    	}	
+    	
+    }
+    
+    /*********************************************************************************
+     * Remove role involving individuals ind1 and ind2 through object property "op"  *
+     *********************************************************************************/
+    
+    public void removeObjectProperty(OWLObjectPropertyExpression op, OWLNamedIndividual ind1, OWLNamedIndividual ind2) {
+    	
+    	if (ind1 == null | ind2 == null | op == null)
+    		System.out.println("Error: some arguments are null");
+    	else {
+    		MANAGER.removeAxiom(ONTOLOGY, FACTORY.getOWLObjectPropertyAssertionAxiom(op, ind1, ind2));
     		//REASONER.flush();
     	}	
     	

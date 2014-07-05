@@ -472,22 +472,11 @@ public class Layer {
 		CM8.assertObjProperty(obj, "hasTexture", obj.getTEXTURE());
 		CM8.assertObjProperty(obj, "hasDensity", obj.getDENSITY());
 		CM8.assertObjProperty(obj, "hasSurface", obj.getSURFACE());
-		
-		// Hago esto para asegurarme de solo afirmar la resolucion en aquellos objetos en los que estoy interesado en clasificar
-		// De otra forma, si lo coloco en todos, puedo tener inconsistencias.
-		
-		if (!obj.getELONGATION().equals("") || !obj.getWIDTH().equals("") || !obj.getLENGTH().equals("") || !obj.getFORM().equals("") || !obj.getTEXTURE().equals("") || !obj.getDENSITY().equals("") || !obj.getSURFACE().equals("")) {
-			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
-			System.out.println("P"+obj.getId());
-		}	
-		//if (obj.getUSE())
-			
-		
+				
 		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
 		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
-		CM8.makeSameIndividual(obj, obj.getSAMEIND());
-		checkCM8PrimitivesForPolygon(obj); // 
-	
+//		CM8.assertSameIndividuals(obj, obj.getSAMEIND());
+		checkCM8PrimitivesForPolygon(obj);	
 	}
 	
 	public void assertDataForObjsInLayer() {
@@ -512,9 +501,19 @@ public class Layer {
 		
 	}	
 	
-	public void  makeObjsDifferent () {
+	public void  makeObjsDifferentInLayer() {
 		for (ObjGeom obj : SHPS)
 			CM8.makeAllIndsDifferentFrom(obj);
+	}
+	
+	public void asertSameIndividualsInLayer() {
+		for (ObjGeom obj : SHPS)
+			CM8.assertSameIndividuals(obj);
+	}
+	
+	public void assertLayerResolution() {
+		for (ObjGeom obj : SHPS)
+			CM8.assertResolution(obj);
 	}
 	
 	public void getAssertedDataInLayer() {
@@ -560,15 +559,15 @@ public class Layer {
 		if (SHPS.isEmpty())
 			return;
 		
-		boolean ok = CM8.checkConsistency(); 
+//		boolean ok = CM8.checkConsistency(); 
 	
 		OUT.add("*********************************************************************************************************");
 		OUT.add("*************************************** Inferred Data for Objects ****************************************");
 		OUT.add("**********************************************************************************************************\n");
 		
-		if (!ok)
-			OUT.add("Inconsistent");
-		else
+//		if (!ok)
+//			OUT.add("Inconsistent");
+//		else
 			for (ObjGeom objgeom : SHPS)
 					OUT.addAll(CM8.getInferredDataForObject(objgeom));
 		
@@ -578,16 +577,16 @@ public class Layer {
 		OUT.add("******************************* Inferred Data for Spatial Relationships *********************************");
 		OUT.add("*********************************************************************************************************\n");
 		
-		if (!ok)
-			OUT.add("Inconsistent");
-		else
+//		if (!ok)
+//			OUT.add("Inconsistent");
+//		else
 			for (String rel : RELATIONS)
 				OUT.addAll(CM8.getInferredDataForSpatialRelation(rel));
 	
 		OUT.add("");
 		
-		if (!ok)
-			return;
+//		if (!ok)
+//			return;
 	}
 		
 	/**********************************************************************************
@@ -755,8 +754,6 @@ public class Layer {
 					if (!attr[9].equals(""))
 						 sameInd = Integer.valueOf(attr[9]);
 					
-					System.out.println(orig[5]);
-				
 					obj.setCLASE(attr[1]);
 					obj.setWIDTH(attr[2]);
 					obj.setLENGTH(attr[3]);
@@ -767,9 +764,7 @@ public class Layer {
 					obj.setDENSITY(attr[8]);
 					obj.setSAMEIND(sameInd);
 					obj.setDISCONTINUE(attr[11]);
-					System.out.println("Discontinue:"+attr[11]);
 					obj.setALIGN(attr[12]);
-					System.out.println("Align:"+attr[12]);
 					
 				}
 				

@@ -10,6 +10,8 @@ import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.util.LinkedList;
 
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
+
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -48,7 +50,7 @@ public class ObjGeom implements Cloneable{
 	private String RESOLUTION = "";
 	private String DISCONTINUE = "";
 	private String ALIGNED = "";
-    
+	
 	public ObjGeom() {
 		System.out.println("-------------------> Se creo un objeto nuevo");
 	}
@@ -262,6 +264,7 @@ public class ObjGeom implements Cloneable{
 		else
 			return null;
     }
+    
     
     public boolean containsPolygon(Point p) {
     	

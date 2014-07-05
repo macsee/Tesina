@@ -19,25 +19,22 @@ public class MyMultiTask extends SwingWorker<Void, Void> {
      */
 	
 	private MyProgressBar bar;
-	private MainPanel panel;
 	
-	public MyMultiTask(MainPanel panelPrincipal, MyProgressBar progressBar) {
+	public MyMultiTask(MyProgressBar progressBar) {
 		
 		bar = progressBar;
-		panel = panelPrincipal;
 //		addPropertyChangeListener(procedure);
 	}
 
 	@Override
     public Void doInBackground() throws InterruptedException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchMethodException {
     	System.out.println("Empezando task");
-    	Thread.sleep(500);
     	    	
     	Integer total = 0;
     	
     	bar.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     	
-    	long startTime = System.currentTimeMillis();
+    	long initTime = System.currentTimeMillis();
     	
     	CM8toOWL CM8 = new CM8toOWL();
     	
@@ -46,37 +43,54 @@ public class MyMultiTask extends SwingWorker<Void, Void> {
     			layer.setCM8(CM8);
     	}
     	
-//    	MyThread[] threads = new MyThread[Config.LAYERS.size()];
     	
+    	long startTime = System.currentTimeMillis();
     	doProcess(Layer.class.getMethod("assertDataForObjsInLayer"));
-		System.out.println("Asserting Objs");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>Asserting Objs");
+		System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 
-    	doProcess(Layer.class.getMethod("makeObjsDifferent"));
-    	System.out.println("Different Objs");
+		startTime = System.currentTimeMillis();
+    	doProcess(Layer.class.getMethod("asertSameIndividualsInLayer"));
+    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Same Objs");
+    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 		
-    	doProcess(Layer.class.getMethod("getAssertedDataInLayer"));	
-		System.out.println("Getting Asserted Objs");
-		
-		if (!CM8.checkConsistency()) {
+    	startTime = System.currentTimeMillis();
+    	doProcess(Layer.class.getMethod("assertLayerResolution"));
+    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Asserting Resolution");
+    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
+    	
+		startTime = System.currentTimeMillis();
+    	doProcess(Layer.class.getMethod("makeObjsDifferentInLayer"));
+    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Different Objs");
+    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
+    	
+    	
+		CM8.saveOnto();
+    	
+    	if (!CM8.checkConsistency()) {
 			JOptionPane.showMessageDialog(null,"Inconsistent Ontology","Error",JOptionPane.ERROR_MESSAGE);
+			bar.updateProgress(100);
 			return null;
 		}	
+    	
+    	startTime = System.currentTimeMillis();
+    	doProcess(Layer.class.getMethod("getAssertedDataInLayer"));	
+    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Getting Asserted Objs");
+    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 		
+    	startTime = System.currentTimeMillis();
 		doProcess(Layer.class.getMethod("getInferredDataInLayer"));
-		System.out.println("Getting Inferred Objs");
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>Getting Inferred Objs");
+    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 		
 		for (Layer layer : Config.LAYERS)
 			Config.OUT.addAll(layer.OUT);
-		
-		long endTime = System.currentTimeMillis();
-	
-		Config.OUT.add("Total Time: "+(endTime - startTime)+" milliseconds");
+			
+		Config.OUT.add("Total Time: "+(System.currentTimeMillis() - initTime)+" milliseconds");
 		
 		for (String salida : Config.OUT)
 			System.out.println(salida);
-		
-		CM8.saveOnto();
-		
+				
 		System.out.println("Terminando task");
 		
 		return null;
@@ -89,9 +103,8 @@ public class MyMultiTask extends SwingWorker<Void, Void> {
     public void done() {
     	bar.finished();
     	bar.setCursor(null);
-    	panel.repaint();
     }
-    
+     
     public void doProcess(Method m) {
     	
     	MyThread[] threads = new MyThread[Config.LAYERS.size()];

@@ -13,8 +13,6 @@ import GUI.MyProgressBar;
 
 public class Config {
 	
-	public static MyProgressBar PROGRESSBAR;
-	
 	public static LinkedList<Layer> LAYERS = new LinkedList<Layer>();
 	
 	public static DefaultListModel LISTLAYERS = new DefaultListModel();
@@ -42,7 +40,7 @@ public class Config {
     public static ArrayList<String> OUT = new ArrayList<String>();
     
     public static String BASIC_CLASS = "SpatialObject";
-    
+        
     public static Layer getLayer(Integer index) {
     	Layer layer = LAYERS.get(index);
     	ACTIVELAYER = layer;

@@ -20,11 +20,10 @@ public class MyThread extends Thread {
 		public void run(){
 
 				try {
-					
-					Thread.sleep(200);
+					long start = System.currentTimeMillis();
 					method.invoke(layer);
-					System.out.println("Metodo invocado");
 					progressBar.updateProgress((int) Math.ceil(25.0/Config.LAYERS.size()));
+					System.out.println("Time thread: "+(System.currentTimeMillis()-start));
 					
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
@@ -35,11 +34,7 @@ public class MyThread extends Thread {
 				} catch (InvocationTargetException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					System.out.println("Thread interrupted");
-					e.printStackTrace();
-				}	
+				}
 				//layer.assertDataForObjsInLayer();
 					
 					

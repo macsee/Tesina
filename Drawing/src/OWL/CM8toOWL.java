@@ -33,8 +33,8 @@ public class CM8toOWL {
 	 * @param args
 	 */
 	
-	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyMod.owl";
-	private static String output_ontology = "/Users/Macsee/Desktop/Examples/New/Out_Ontology.owl";
+	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyJava.owl";
+	private static String output_ontology = "/Users/Macsee/Desktop/Examples/New/OutOntology.owl";
 	private myOWL myOWL;
 	
 	private Map<OWLNamedIndividual,Set<OWLClassExpression>> ASSERTED_CLASS_RELS = new HashMap<OWLNamedIndividual,Set<OWLClassExpression>>();
@@ -45,7 +45,7 @@ public class CM8toOWL {
 	private Map<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>> ASSERTED_PROP_RELS = new HashMap<OWLNamedIndividual, Map<OWLObjectPropertyExpression,Set<OWLNamedIndividual>>>();
 	
 	
-	//private Map<OWLNamedIndividual, Integer> CountObjs = new HashMap<OWLNamedIndividual, Integer>();
+	private Map<OWLNamedIndividual, Set<OWLNamedIndividual>> INCLUDED = new HashMap<OWLNamedIndividual, Set<OWLNamedIndividual>>();
 	private Map<OWLNamedIndividual, ObjGeom> IND_OBJ = new HashMap<OWLNamedIndividual, ObjGeom>();
 	
 	public CM8toOWL() {
@@ -57,19 +57,22 @@ public class CM8toOWL {
 	public OWLNamedIndividual assertIndividual(ObjGeom obj) {  // Convierto los poligonos en individuos
 	
 		Set<OWLClassExpression> set = new HashSet<OWLClassExpression>();
-		OWLNamedIndividual ind = myOWL.getIndividual("P"+obj.getId());
-		String clase = obj.getCLASE();
+	
+		OWLNamedIndividual ind = myOWL.defineInstance("P"+obj.getId(), myOWL.getClass(obj.getCLASE()));
+		set.add(myOWL.getClass(obj.getCLASE()));
 		
-		myOWL.addToIndividual(ind, myOWL.getClass(Config.BASIC_CLASS));
-		set.add(myOWL.getClass(Config.BASIC_CLASS));
-		
-		if (clase != Config.BASIC_CLASS) {	
-			myOWL.addToIndividual(ind, myOWL.getClass(clase));
-			set.add(myOWL.getClass(clase));
-		}	
+//		OWLNamedIndividual ind = myOWL.getIndividual("P"+obj.getId());
+//		String clase = obj.getCLASE();
+//		
+//		myOWL.addToIndividual(ind, myOWL.getClass(Config.BASIC_CLASS));
+//		set.add(myOWL.getClass(Config.BASIC_CLASS));
+//		
+//		if (clase != Config.BASIC_CLASS) {	
+//			myOWL.addToIndividual(ind, myOWL.getClass(clase));
+//			set.add(myOWL.getClass(clase));
+//		}	
 			// PUEDO AGREGAR MAS TIPOS A UN INDIVIDUO CREANDO MUCHAS INSTANCIAS CON EL MISMO NOMBRE Y DISTINTOS TIPOS
 	
-		//CountObjs.put(ind, 0); //Cuento la cantidad de veces que se relaciona con una clase
 		ASSERTED_CLASS_OBJS.put(ind, set); // Guardo informaci—n de los individuos y sus clases
 		IND_OBJ.put(ind, obj); // Guardo la relaci—n entre un ObjGeom y un OWLIndividual
 		return ind;	
@@ -149,15 +152,69 @@ public class CM8toOWL {
 		for (OWLNamedIndividual ind: IND_OBJ.keySet()) {
 			ObjGeom ob2 = IND_OBJ.get(ind);
 			if (ob1 != ob2)
-				if ((ob1.getSAMEIND() != null) && (ob1.getSAMEIND() != ob2.getId()))
+				if ((ob1.getSAMEIND() == null) || (ob1.getSAMEIND() != ob2.getId()))
 					makeIndividualsDifferent(ob1, ob2);
 		}
-		
 	}
 	
-	public void makeSameIndividual(ObjGeom ob1, Integer idOb2) {
-		if (idOb2 != null)
-			myOWL.assertSameIndividual(getIndividual(ob1), myOWL.getIndividual("P"+idOb2));
+	
+	public void assertSameIndividuals(ObjGeom ob1) {
+			
+		Integer IDob2 = ob1.getSAMEIND();
+		
+		System.out.println("Entro con P"+ob1.getId()+" - P"+IDob2);
+		
+			if (IDob2 != null) {
+				System.out.println("Hasta aca");
+				OWLNamedIndividual ind1 = getIndividual(ob1);
+				OWLNamedIndividual ind2 = myOWL.getIndividual("P"+IDob2);
+				myOWL.assertSameIndividual(ind1, ind2);
+				System.out.println("Same inds P"+ob1.getId()+" - P"+IDob2);
+			}	
+
+	}
+	
+	public boolean isIncludedIn(ObjGeom ob1) {
+		
+		OWLNamedIndividual ind1 = getIndividual(ob1);
+//		OWLNamedIndividual ind2 = getIndividual(ob2);
+		
+		Set<OWLNamedIndividual> indSetInc = null;
+		Set<OWLNamedIndividual> indSetComp = null;
+		
+		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> set = ASSERTED_PROP_OBJS.get(ind1);
+		
+		if (set.containsKey(myOWL.getObjectProperty("isIncludedIn")))
+			indSetInc = ASSERTED_PROP_OBJS.get(ind1).get(myOWL.getObjectProperty("isIncludedIn"));
+		
+//		if (set.containsKey(myOWL.getObjectProperty("isComposedOf")))
+//			indSetComp = ASSERTED_PROP_OBJS.get(ind1).get(myOWL.getObjectProperty("isComposedOf"));
+		
+		if (indSetInc != null)
+			return indSetInc.size() > 0;
+					
+		return false;
+			
+	}
+	
+	public void assertResolution(ObjGeom ob1) {
+		
+		Integer IDob2 = ob1.getSAMEIND();
+		
+		if (IDob2 != null) {
+			ObjGeom ob2 = getObjGeom(myOWL.getIndividual("P"+IDob2));
+			
+			if (ob1.getRESOLUTION() != ob2.getRESOLUTION()) {
+				System.out.println("Diferentes resoluciones P"+ob1.getId()+" y P"+ob2.getId());
+				if (isIncludedIn(ob1)) {
+					ob1.setRESOLUTION("");
+					System.out.println("Quintando resolucion a objeto P"+ob1.getId());
+				}
+			}
+		}
+		
+		assertObjProperty(ob1, "hasResolution", ob1.getRESOLUTION());
+			
 	}
 	
 	public void assertMaxCard(ObjGeom ob, Integer cant, String clase, String prop) {
@@ -225,9 +282,7 @@ public class CM8toOWL {
 	}
 	
 	public void assertBooleanProperty(ObjGeom ob, String prop, String value) {
-		
-		System.out.println("Value: "+value);
-		
+				
 		if (value.equals(""))
 			return;
 		
@@ -259,9 +314,13 @@ public class CM8toOWL {
 		
 		if (indSet != null) {
 			
+			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> mapObj = new HashMap();
+			mapObj.put(myOWL.getObjectProperty(prop), indSet);
+			
 			count.put(ind, indSet.size());
 			assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
-
+			ASSERTED_PROP_OBJS.put(ind, mapObj);
+			
 		}	
 		
 	}

@@ -30,11 +30,11 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 	private Label label;
 	private int total = 0;
 	private MyMultiTask mytask = null;
+	private MyTask myTask = null;
 	
 	public MyProgressBar(MainPanel frame) {
 		// TODO Auto-generated constructor stub
 		
-		setAlwaysOnTop(true);
 		frmMain = frame;
 		pane = getContentPane();
 		setSize(350, 150);
@@ -59,7 +59,8 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				mytask.cancel(true); // Cancelo la operacion
+//				mytask.cancel(true); // Cancelo la operacion
+				myTask.cancel(true);
 				frmMain.repaint();
 				frmMain.MouseON(); // Activo el mouse
 				dispose();
@@ -72,20 +73,23 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 		
 		//Aca hago todo!!!!!
     	frmMain.mouseOFF(); // Desactivo el mouse
-		mytask = new MyMultiTask(frmMain, this);
-		mytask.execute();
+//		mytask = new MyMultiTask(this);
+//		mytask.execute();
+    	
+    	myTask = new MyTask(this);
+		myTask.execute();
 	}
 	
 	public void updateProgress(int value) {
 		// TODO Auto-generated method stub
 		total+= value;
-		System.out.println(total);
 		barDo.setValue(total);
 		repaint();
 	}
 	
 	public void finished() {
 		label.setText("Finished");
+		updateProgress(100);
 	}
 	
 	@Override

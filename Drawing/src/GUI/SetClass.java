@@ -28,7 +28,7 @@ public class SetClass extends JDialog{
 	public SetClass(final ObjGeom obj, final Layer layer) {
 		
 		//super(new Frame(), "Define attributes");
-		setTitle("Define attributes");
+		setTitle("Define attributes for P"+obj.getId());
 		setVisible(true);
 		setLocation(locationX, locationY);
 		//setLocationRelativeTo (null);
@@ -173,6 +173,8 @@ public class SetClass extends JDialog{
 		for (Layer LayerS : Config.LAYERS)
 			listObjs.addAll(LayerS.getObjsGeom());
 		
+		listObjs.remove(obj); // Quito el objeto actual de la lista de Same
+		
 		for (ObjGeom objgeom : listObjs)
 			choiceSame.add("P"+objgeom.getId());
 		
@@ -227,8 +229,11 @@ public class SetClass extends JDialog{
 				obj.setDISCONTINUE(choiceDisc.getSelectedItem());
 				//obj.setUSE(checkInput.getState());
 				
-				if (choiceSame.getSelectedIndex() != 0)
-					obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1).getId());
+				if (choiceSame.getSelectedIndex() != 0) {
+					ObjGeom obj1 = listObjs.get(choiceSame.getSelectedIndex()-1);
+					obj.setSAMEIND(obj1.getId()); // Seteo mutuamente los mismos individuos
+					obj1.setSAMEIND(obj.getId());
+				}	
 				else
 					obj.setSAMEIND(null);
 				
@@ -298,8 +303,5 @@ public class SetClass extends JDialog{
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		new SetClass(null, null);
-	}
 
 }
