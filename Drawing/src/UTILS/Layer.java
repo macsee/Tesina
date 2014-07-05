@@ -497,6 +497,7 @@ public class Layer {
 				CM8.countObjsRelatedWith(obj, "isAdjacentTo");
 				CM8.countObjsRelatedWith(obj, "isComposedOf");
 				CM8.countObjsRelatedWith(obj, "isIncludedIn");
+				CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
 			}
 		
 	}	
@@ -511,10 +512,10 @@ public class Layer {
 			CM8.assertSameIndividuals(obj);
 	}
 	
-	public void assertLayerResolution() {
-		for (ObjGeom obj : SHPS)
-			CM8.assertResolution(obj);
-	}
+//	public void assertLayerResolution() {
+//		for (ObjGeom obj : SHPS)
+//			CM8.assertResolution(obj);
+//	}
 	
 	public void getAssertedDataInLayer() {
 		

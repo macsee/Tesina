@@ -10,11 +10,13 @@ public class MyThread extends Thread {
 		Method method;
 		Layer layer;
 		MyProgressBar progressBar;
+		double percent;
 		
-		public MyThread(MyProgressBar p, Method m, Layer l) {
+		public MyThread(MyProgressBar p, Method m, Layer l, double perc) {
 			method = m;
 			layer = l;
 			progressBar = p;
+			percent = perc;
 		}
 		
 		public void run(){
@@ -22,7 +24,7 @@ public class MyThread extends Thread {
 				try {
 					long start = System.currentTimeMillis();
 					method.invoke(layer);
-					progressBar.updateProgress((int) Math.ceil(25.0/Config.LAYERS.size()));
+					progressBar.updateProgress((int) Math.ceil(percent/Config.LAYERS.size()));
 					System.out.println("Time thread: "+(System.currentTimeMillis()-start));
 					
 				} catch (IllegalArgumentException e) {

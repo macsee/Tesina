@@ -34,11 +34,11 @@ public class LoadRasterShape extends JFrame {
 	/**
 	 * @param args
 	 */
-	private Frame ventana;
+	private Simulator ventana;
 	private String resolution = "";
 	
-	public LoadRasterShape(Frame frame) {
-		ventana = frame;
+	public LoadRasterShape(JFrame frame) {
+		ventana = (Simulator) frame;
 		setTitle("Load Images");
 		setResizable(false);
 		setSize(550,350);
@@ -255,6 +255,7 @@ public class LoadRasterShape extends JFrame {
 								layer = Config.getLayer(choiceLayer.getSelectedIndex()-1); //OBTENGO LA CAPA DE LA LISTA
 								layer.setImage(textField.getText());
 								layer.setObjsGeom(shp2obj.adjustProyection());
+								ventana.selectActiveLayerInList();
 								//layer.allowDrawing();
 								if (!textField_3.getText().equals(""))
 									layer.readCSV(textField_3.getText());

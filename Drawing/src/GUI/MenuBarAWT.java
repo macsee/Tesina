@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import UTILS.*;
@@ -17,14 +18,14 @@ import UTILS.*;
 
 public class MenuBarAWT {
 
-	private Frame ventana;
+	private Simulator ventana;
 	private Layer thr1;
 	private Layer hr1;
 	private Layer hr2;
 	
-	public MenuBarAWT (Frame frame) {
+	public MenuBarAWT (JFrame frame) {
 		
-		ventana = frame;
+		ventana = (Simulator) frame;
 
 	}
 

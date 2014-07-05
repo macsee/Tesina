@@ -50,7 +50,7 @@ public class MyTask extends SwingWorker<Void, Void> {
     	
 		for (Layer layer : Config.LAYERS) {
 			layer.assertDataForObjsInLayer();
-			total += (int) Math.ceil(16.0/Config.LAYERS.size());
+			total += (int) Math.ceil(30.0/Config.LAYERS.size());
 			setProgress(total);
 			System.out.println(total);
 		}	
@@ -66,7 +66,7 @@ public class MyTask extends SwingWorker<Void, Void> {
     	
 		for (Layer layer : Config.LAYERS) {
 			layer.asertSameIndividualsInLayer();
-			total += (int) Math.ceil(16.0/Config.LAYERS.size());
+			total += (int) Math.ceil(10.0/Config.LAYERS.size());
 			setProgress(total);
 			System.out.println(total);
 		}	
@@ -78,17 +78,17 @@ public class MyTask extends SwingWorker<Void, Void> {
 		/*********************************************************************************************/
 
 		
-		startTime = System.currentTimeMillis();
-    	
-    	for (Layer layer : Config.LAYERS) {
-			layer.assertLayerResolution();
-			total += (int) Math.ceil(16.0/Config.LAYERS.size()); 
-			setProgress(total);
-			System.out.println(total);
-		}
-    	
-    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Setting Resolution");
-    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds");
+//		startTime = System.currentTimeMillis();
+//    	
+//    	for (Layer layer : Config.LAYERS) {
+//			layer.assertLayerResolution();
+//			total += (int) Math.ceil(16.0/Config.LAYERS.size()); 
+//			setProgress(total);
+//			System.out.println(total);
+//		}
+//    	
+//    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Setting Resolution");
+//    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds");
     	
     
     	/*********************************************************************************************/
@@ -98,7 +98,7 @@ public class MyTask extends SwingWorker<Void, Void> {
 		
 		for (Layer layer : Config.LAYERS) {
 			layer.makeObjsDifferentInLayer();
-			total += (int) Math.ceil(16.0/Config.LAYERS.size()); 
+			total += (int) Math.ceil(10.0/Config.LAYERS.size()); 
 			setProgress(total);
 			System.out.println(total);
 		}
@@ -118,11 +118,14 @@ public class MyTask extends SwingWorker<Void, Void> {
 		}
     	
     	
+    	/*********************************************************************************************/
+    	
+    	
     	startTime = System.currentTimeMillis();
     	
     	for (Layer layer : Config.LAYERS) {
 			layer.getAssertedDataInLayer();
-			total += (int) Math.ceil(18/Config.LAYERS.size()); 
+			total += (int) Math.ceil(20.0/Config.LAYERS.size()); 
 			setProgress(total);
 			System.out.println(total);
 		}	
@@ -131,11 +134,14 @@ public class MyTask extends SwingWorker<Void, Void> {
     	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds");
 		
     	
+    	/*********************************************************************************************/
+    	
+    	
     	startTime = System.currentTimeMillis();
     	
 		for (Layer layer : Config.LAYERS) {
 			layer.getInferredDataInLayer();
-			total += (int) Math.ceil(18/Config.LAYERS.size()); 
+			total += (int) Math.ceil(30/Config.LAYERS.size()); 
 			setProgress(total);
 			System.out.println(total);
 		}	
@@ -143,6 +149,9 @@ public class MyTask extends SwingWorker<Void, Void> {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>Getting Inferred");
     	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds");
 		
+    	
+    	/*********************************************************************************************/
+    	
     	
 		for (Layer layer : Config.LAYERS)
 			Config.OUT.addAll(layer.OUT);

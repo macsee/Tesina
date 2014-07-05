@@ -23,10 +23,10 @@ public class LoadImages extends JFrame {
 	/**
 	 * @param args
 	 */
-	private Frame ventana; 
+	private Simulator ventana; 
 	
-	public LoadImages(Frame frame) {
-		ventana = frame;
+	public LoadImages(JFrame frame) {
+		ventana = (Simulator) frame;
 		setTitle("Load Image");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,6 +116,7 @@ public class LoadImages extends JFrame {
 				Layer layer = Config.getLayer(choiceLayer.getSelectedIndex()-1);
 				Config.ACTIVELAYER = layer;
 				layer.setImage(textField.getText());
+				ventana.selectActiveLayerInList();
 				
 				ventana.repaint();
 				dispose();

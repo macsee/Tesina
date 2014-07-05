@@ -33,11 +33,12 @@ public class Simulator extends JFrame{
 	 * @param args
 	 */
 	private static MainPanel panelPrincipal;
-	private static Layer LAYER; 
+//	private static Layer LAYER; 
 	private static Checkbox radioButtonTHR1;
 	private static Checkbox radioButtonHR1;
 	private static Checkbox radioButtonHR2;
-	private static JFrame ventana;
+	private static Simulator ventana;
+	private static JList listLayers;
 	
 	public Simulator() {
 		
@@ -81,7 +82,7 @@ public class Simulator extends JFrame{
 					
 					System.out.println("Running.....");
 					
-					new MyProgressBar(panelPrincipal);
+					new MyProgressBar(ventana);
 	
 			}
 		});
@@ -153,7 +154,7 @@ public class Simulator extends JFrame{
 		btnEdit.setBounds(130, 5, 50, 30);
 		panelLayers.add(btnEdit);
 			
-		final JList listLayers = new JList(Config.LISTLAYERS);
+		listLayers = new JList(Config.LISTLAYERS);
 		listLayers.setFont(new Font("",0,14));
 		listLayers.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
@@ -244,6 +245,18 @@ public class Simulator extends JFrame{
 		panel.add(panelPrincipal);
 		
 		setVisible(true);
+	}
+	
+	public void selectActiveLayerInList() {
+		listLayers.setSelectedIndex(Config.getActiveLayerIndex());
+	}
+	
+	public void disableMouseActions() {
+		panelPrincipal.mouseOFF();
+	}
+	
+	public void enableMouseActions() {
+		panelPrincipal.mouseON();
 	}
 	
 	public void paint(Graphics g) {		

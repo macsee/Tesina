@@ -40,7 +40,11 @@ public class Config {
     public static ArrayList<String> OUT = new ArrayList<String>();
     
     public static String BASIC_CLASS = "SpatialObject";
-        
+    
+    public static Integer getActiveLayerIndex() {
+    	return LAYERS.indexOf(ACTIVELAYER);
+    }
+    
     public static Layer getLayer(Integer index) {
     	Layer layer = LAYERS.get(index);
     	ACTIVELAYER = layer;
@@ -79,13 +83,21 @@ public class Config {
         
     public static void addToDefaultList(ObjGeom obj) {
 		
-		int i;
-		for (i=0;i < OBJSLIST.size();i++) {
-			if (((String) OBJSLIST.get(i)).contains(String.valueOf(obj.getId()))) //Compruebo que el objeto no este agregado a la lista
-				return;																 // esto ocurre al deshacer acciones	
-		}
+    	String element = "Polygon"+obj.getId()+" - "+obj.getCLASE();
+    	
+    	if (OBJSLIST.contains(element))
+    		return;
+    	
+//		int i;
+//		for (i=0;i < OBJSLIST.size();i++) {
+//			if (((String) OBJSLIST.get(i)).contains(String.valueOf(obj.getId()))) //Compruebo que el objeto no este agregado a la lista
+//				return;																 // esto ocurre al deshacer acciones	
+//		}
 		
-		OBJSLIST.addElement("Polygon "+obj.getId()+" - "+obj.getCLASE());
+    	OBJSLIST.addElement(element);
+    	
+//		OBJSLIST.addElement("Polygon "+obj.getId()+" - "+obj.getCLASE());
+    	
 	}
     
     public static void removeFromDefaultList(Integer index) {
@@ -94,8 +106,10 @@ public class Config {
     
     
     public static void updateDefaultList(ObjGeom obj) { //Para cuando se cambia una clase
-		OBJSLIST.remove(obj.getLocalID());
-		OBJSLIST.add(obj.getLocalID(), "Polygon "+obj.getId()+" - "+obj.getCLASE());
+    	if (ACTIVELAYER.getObjsGeom().contains(obj)) { // Si el obj esta incluído en la capa actual refresco la lista, sino no.
+    		OBJSLIST.remove(obj.getLocalID());
+    		OBJSLIST.add(obj.getLocalID(), "Polygon "+obj.getId()+" - "+obj.getCLASE());
+    	}	
 	}
     
     public static void cleanDefaultList() {

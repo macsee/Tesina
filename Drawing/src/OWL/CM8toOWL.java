@@ -174,48 +174,6 @@ public class CM8toOWL {
 
 	}
 	
-	public boolean isIncludedIn(ObjGeom ob1) {
-		
-		OWLNamedIndividual ind1 = getIndividual(ob1);
-//		OWLNamedIndividual ind2 = getIndividual(ob2);
-		
-		Set<OWLNamedIndividual> indSetInc = null;
-		Set<OWLNamedIndividual> indSetComp = null;
-		
-		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> set = ASSERTED_PROP_OBJS.get(ind1);
-		
-		if (set.containsKey(myOWL.getObjectProperty("isIncludedIn")))
-			indSetInc = ASSERTED_PROP_OBJS.get(ind1).get(myOWL.getObjectProperty("isIncludedIn"));
-		
-//		if (set.containsKey(myOWL.getObjectProperty("isComposedOf")))
-//			indSetComp = ASSERTED_PROP_OBJS.get(ind1).get(myOWL.getObjectProperty("isComposedOf"));
-		
-		if (indSetInc != null)
-			return indSetInc.size() > 0;
-					
-		return false;
-			
-	}
-	
-	public void assertResolution(ObjGeom ob1) {
-		
-		Integer IDob2 = ob1.getSAMEIND();
-		
-		if (IDob2 != null) {
-			ObjGeom ob2 = getObjGeom(myOWL.getIndividual("P"+IDob2));
-			
-			if (ob1.getRESOLUTION() != ob2.getRESOLUTION()) {
-				System.out.println("Diferentes resoluciones P"+ob1.getId()+" y P"+ob2.getId());
-				if (isIncludedIn(ob1)) {
-					ob1.setRESOLUTION("");
-					System.out.println("Quintando resolucion a objeto P"+ob1.getId());
-				}
-			}
-		}
-		
-		assertObjProperty(ob1, "hasResolution", ob1.getRESOLUTION());
-			
-	}
 	
 	public void assertMaxCard(ObjGeom ob, Integer cant, String clase, String prop) {
 		
@@ -320,6 +278,9 @@ public class CM8toOWL {
 			count.put(ind, indSet.size());
 			assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
 			ASSERTED_PROP_OBJS.put(ind, mapObj);
+			
+			if (prop.equals("isIncludedIn") && (indSet.size() > 0))
+				obj.setRESOLUTION("");
 			
 		}	
 		

@@ -45,22 +45,22 @@ public class MyMultiTask extends SwingWorker<Void, Void> {
     	
     	
     	long startTime = System.currentTimeMillis();
-    	doProcess(Layer.class.getMethod("assertDataForObjsInLayer"));
+    	doProcess(Layer.class.getMethod("assertDataForObjsInLayer"),30.0);
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>Asserting Objs");
 		System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 
 		startTime = System.currentTimeMillis();
-    	doProcess(Layer.class.getMethod("asertSameIndividualsInLayer"));
+    	doProcess(Layer.class.getMethod("asertSameIndividualsInLayer"),10.0);
     	System.out.println(">>>>>>>>>>>>>>>>>>>>>Same Objs");
     	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 		
-    	startTime = System.currentTimeMillis();
-    	doProcess(Layer.class.getMethod("assertLayerResolution"));
-    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Asserting Resolution");
-    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
+//    	startTime = System.currentTimeMillis();
+//    	doProcess(Layer.class.getMethod("assertLayerResolution"));
+//    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Asserting Resolution");
+//    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
     	
 		startTime = System.currentTimeMillis();
-    	doProcess(Layer.class.getMethod("makeObjsDifferentInLayer"));
+    	doProcess(Layer.class.getMethod("makeObjsDifferentInLayer"),10.0);
     	System.out.println(">>>>>>>>>>>>>>>>>>>>>Different Objs");
     	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
     	
@@ -74,12 +74,12 @@ public class MyMultiTask extends SwingWorker<Void, Void> {
 		}	
     	
     	startTime = System.currentTimeMillis();
-    	doProcess(Layer.class.getMethod("getAssertedDataInLayer"));	
+    	doProcess(Layer.class.getMethod("getAssertedDataInLayer"),20.0);	
     	System.out.println(">>>>>>>>>>>>>>>>>>>>>Getting Asserted Objs");
     	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 		
     	startTime = System.currentTimeMillis();
-		doProcess(Layer.class.getMethod("getInferredDataInLayer"));
+		doProcess(Layer.class.getMethod("getInferredDataInLayer"),30.0);
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>Getting Inferred Objs");
     	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds\n");
 		
@@ -105,7 +105,7 @@ public class MyMultiTask extends SwingWorker<Void, Void> {
     	bar.setCursor(null);
     }
      
-    public void doProcess(Method m) {
+    public void doProcess(Method m, double d) {
     	
     	MyThread[] threads = new MyThread[Config.LAYERS.size()];
     	
@@ -114,7 +114,7 @@ public class MyMultiTask extends SwingWorker<Void, Void> {
 			try {
 				if (!isCancelled()) {
 					System.out.println("Thread: "+i);
-					threads[i] = new MyThread(bar,m,layer);
+					threads[i] = new MyThread(bar,m,layer, d);
 					threads[i].run();
 					i++;
 				}	

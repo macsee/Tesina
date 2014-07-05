@@ -23,7 +23,7 @@ import UTILS.MyThread;
 
 public class MyProgressBar extends JDialog  implements ActionListener, PropertyChangeListener {
 	
-	static MainPanel frmMain;
+	static Simulator frmMain;
 	static Container pane;
 	static JButton btnDo;
 	static JProgressBar barDo;
@@ -32,10 +32,10 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 	private MyMultiTask mytask = null;
 	private MyTask myTask = null;
 	
-	public MyProgressBar(MainPanel frame) {
+	public MyProgressBar(JFrame frame) {
 		// TODO Auto-generated constructor stub
 		
-		frmMain = frame;
+		frmMain = (Simulator) frame;
 		pane = getContentPane();
 		setSize(350, 150);
 		setLocationRelativeTo(null);
@@ -61,8 +61,8 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 				// TODO Auto-generated method stub
 //				mytask.cancel(true); // Cancelo la operacion
 				myTask.cancel(true);
-				frmMain.repaint();
-				frmMain.MouseON(); // Activo el mouse
+//				frmMain.repaint();
+				frmMain.enableMouseActions(); // Activo el mouse
 				dispose();
 			}
 		});
@@ -72,7 +72,7 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 		setVisible(true);
 		
 		//Aca hago todo!!!!!
-    	frmMain.mouseOFF(); // Desactivo el mouse
+    	frmMain.disableMouseActions(); // Desactivo el mouse
 //		mytask = new MyMultiTask(this);
 //		mytask.execute();
     	

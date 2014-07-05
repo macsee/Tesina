@@ -31,7 +31,7 @@ public class MainPanel extends JPanel{
 		removeMouseMotionListener(mm);
 	}
 	
-	public void MouseON() {
+	public void mouseON() {
 		addMouseListener(ma);
 		addMouseMotionListener(mm);
 	}
