@@ -1,10 +1,12 @@
 package GUI;
 
 import java.awt.Button;
+import java.awt.Checkbox;
 import java.awt.Choice;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -27,13 +29,13 @@ public class SetClass extends JDialog{
 	
 	public SetClass(final ObjGeom obj, final Layer layer) {
 		
-		//super(new Frame(), "Define attributes");
-		setTitle("Define attributes for P"+obj.getId());
-		setVisible(true);
+		setModal(true);
 		setLocation(locationX, locationY);
 		//setLocationRelativeTo (null);
-		setSize(400, 550);
+		setSize(400, 570);
 		setResizable(false);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		
 		Panel panel = new Panel();
 		panel.setLayout(null);
 		add(panel);
@@ -211,6 +213,18 @@ public class SetClass extends JDialog{
 		choiceDisc.select(obj.getDISCONTINUE());
 		panel.add(choiceDisc);
 		
+		
+		Label labelUse = new Label("Force object detection:");
+		labelUse.setBounds(10,455,150,20);
+		panel.add(labelUse);
+		
+		final Checkbox chk = new Checkbox();
+		chk.setBounds(180,450,100,30);
+		chk.setFocusable(false);
+		if (obj.getCLASIFIABLE().equals("Yes"))
+			chk.setState(true);
+		panel.add(chk);
+		
 		Button button = new Button("Ok");
 		button.setBounds((getWidth()/2) - 50, (getHeight()-20-40) - 10, 100, 40);
 		button.setFocusable(true);
@@ -227,7 +241,10 @@ public class SetClass extends JDialog{
 				obj.setFORM(choiceForm.getSelectedItem());
 				obj.setALIGN(choiceAlign.getSelectedItem());
 				obj.setDISCONTINUE(choiceDisc.getSelectedItem());
-				//obj.setUSE(checkInput.getState());
+				if (chk.getState())
+					obj.setCLASSIFIABLE("Yes");
+				else
+					obj.setCLASSIFIABLE("No");
 				
 				if (choiceSame.getSelectedIndex() != 0) {
 					ObjGeom obj1 = listObjs.get(choiceSame.getSelectedIndex()-1);
@@ -292,16 +309,16 @@ public class SetClass extends JDialog{
 			}
 		});
 		
-		addWindowListener(new WindowAdapter(){
-			  public void windowClosing(WindowEvent we){
-				//System.exit(0);
-				dispose();
-			  }
-		});
+	
+		setVisible(true);
 	}
 
 	/**
 	 * @param args
 	 */
+	
+	public static void main(String[] args) { 
+		new SetClass(new ObjGeom(), null);
+	}
 
 }

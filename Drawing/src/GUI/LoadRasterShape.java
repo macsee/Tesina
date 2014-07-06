@@ -1,10 +1,12 @@
 package GUI;
 import java.awt.Button;
 import java.awt.Choice;
+import java.awt.Dialog;
 import java.awt.FileDialog;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,6 +17,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,7 +32,7 @@ import UTILS.Layer;
 import UTILS.Shape2ObjGeom;
 
 
-public class LoadRasterShape extends JFrame {
+public class LoadRasterShape extends JDialog {
 
 	/**
 	 * @param args
@@ -38,11 +41,13 @@ public class LoadRasterShape extends JFrame {
 	private String resolution = "";
 	
 	public LoadRasterShape(JFrame frame) {
+		
+		setModal(true);
 		ventana = (Simulator) frame;
 		setTitle("Load Images");
 		setResizable(false);
 		setSize(550,350);
-		
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo (null);
 		getContentPane().setLayout(null);
 		
@@ -303,51 +308,7 @@ public class LoadRasterShape extends JFrame {
 		getContentPane().add(button_5);
 	
 		setVisible(true);
-		
-		addWindowListener(new WindowListener() {
 			
-			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-			}
-			
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
 		addKeyListener(new KeyListener() {
 			
 			@Override

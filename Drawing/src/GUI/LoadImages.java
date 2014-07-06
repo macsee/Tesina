@@ -5,11 +5,13 @@ import java.awt.FileDialog;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FilenameFilter;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,7 +20,7 @@ import javax.swing.border.EtchedBorder;
 import UTILS.Config;
 import UTILS.Layer;
 
-public class LoadImages extends JFrame {
+public class LoadImages extends JDialog {
 
 	/**
 	 * @param args
@@ -26,11 +28,13 @@ public class LoadImages extends JFrame {
 	private Simulator ventana; 
 	
 	public LoadImages(JFrame frame) {
+		
+		setModal(true);
 		ventana = (Simulator) frame;
 		setTitle("Load Image");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(540,220);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		setLocationRelativeTo (null);
 		getContentPane().setLayout(null);

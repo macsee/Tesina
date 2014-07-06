@@ -26,9 +26,11 @@ public class Save extends JDialog{
 		
 		// TODO Auto-generated constructor stub
 		
+		setModal(true);
 		setTitle("Save configuration");
-		setVisible(true);
 		setSize(500, 150);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		
 		//setLocation(frame.getWidth()/2 - 200, frame.getHeight()/2 - 100);
 		setResizable(false);
 		setLocationRelativeTo (null);
@@ -112,51 +114,7 @@ public class Save extends JDialog{
 		});
 		getContentPane().add(button_3);
 		
-		addWindowListener(new WindowListener() {
-			
-			@Override
-			public void windowOpened(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowIconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-			}
-			
-			@Override
-			public void windowClosed(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void windowActivated(WindowEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
+		setVisible(true);
 	}
 
 	public static void main(String[] args) {

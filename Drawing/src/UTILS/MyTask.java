@@ -73,23 +73,7 @@ public class MyTask extends SwingWorker<Void, Void> {
 		
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>Asserting Same Objs");
 		System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds");
-		
-		
-		/*********************************************************************************************/
-
-		
-//		startTime = System.currentTimeMillis();
-//    	
-//    	for (Layer layer : Config.LAYERS) {
-//			layer.assertLayerResolution();
-//			total += (int) Math.ceil(16.0/Config.LAYERS.size()); 
-//			setProgress(total);
-//			System.out.println(total);
-//		}
-//    	
-//    	System.out.println(">>>>>>>>>>>>>>>>>>>>>Setting Resolution");
-//    	System.out.println("Time: "+(System.currentTimeMillis() - startTime)+" milliseconds");
-    	
+			
     
     	/*********************************************************************************************/
     	

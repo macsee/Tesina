@@ -49,7 +49,7 @@ public class Config {
     	Layer layer = LAYERS.get(index);
     	ACTIVELAYER = layer;
     	fillDefaultList();
-    	layer.allowDrawing();
+//    	layer.allowDrawing();
     	return layer;
     }
     

@@ -34,12 +34,14 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 	
 	public MyProgressBar(JFrame frame) {
 		// TODO Auto-generated constructor stub
-		
+	
+		setModal(true);
 		frmMain = (Simulator) frame;
 		pane = getContentPane();
 		setSize(350, 150);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		
 		pane.setLayout(null); //Use the null layout
 		
 		label = new Label("Running...");
@@ -67,9 +69,6 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 			}
 		});
 		pane.add(btnCancel);
-
-		setResizable(false);
-		setVisible(true);
 		
 		//Aca hago todo!!!!!
     	frmMain.disableMouseActions(); // Desactivo el mouse
@@ -78,6 +77,9 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
     	
     	myTask = new MyTask(this);
 		myTask.execute();
+		
+		setResizable(false);
+		setVisible(true);
 	}
 	
 	public void updateProgress(int value) {

@@ -34,6 +34,8 @@ public class CM8toOWL {
 	 */
 	
 	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyJava.owl";
+//	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyJavaMultiRes.owl";
+	
 	private static String output_ontology = "/Users/Macsee/Desktop/Examples/New/OutOntology.owl";
 	private myOWL myOWL;
 	
@@ -279,8 +281,8 @@ public class CM8toOWL {
 			assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
 			ASSERTED_PROP_OBJS.put(ind, mapObj);
 			
-			if (prop.equals("isIncludedIn") && (indSet.size() > 0))
-				obj.setRESOLUTION("");
+//			if (prop.equals("isIncludedIn") && (indSet.size() > 0))
+//				obj.setRESOLUTION("");
 			
 		}	
 		

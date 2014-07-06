@@ -50,6 +50,7 @@ public class ObjGeom implements Cloneable{
 	private String RESOLUTION = "";
 	private String DISCONTINUE = "";
 	private String ALIGNED = "";
+	private boolean CLASSIFIABLE = false; 
 	
 	public ObjGeom() {
 		System.out.println("-------------------> Se creo un objeto nuevo");
@@ -377,5 +378,34 @@ public class ObjGeom implements Cloneable{
 	public void setDISCONTINUE(String disc) {
 		DISCONTINUE = disc;
 	}
+
+	public String getCLASIFIABLE() {
+		if (CLASSIFIABLE)
+			return "Yes";
+		else
+			return "No";
+	}
+
+	public void setCLASSIFIABLE(String s) {
+		if (s.equals("Yes"))
+			CLASSIFIABLE = true;
+		else
+			CLASSIFIABLE = false;
+	}
+	
+	public boolean isUsable() {
+		return ( 	!WIDTH.equals("") || 
+					!LENGTH.equals("") || 
+					!SURFACE.equals("") || 
+					!ELONGATION.equals("") || 
+					!FORM.equals("") || 
+					!TEXTURE.equals("") || 
+					!DENSITY.equals("") ||  
+					!DISCONTINUE.equals("") || 
+					!ALIGNED.equals("")
+				);
+ 	
+	}
+	
 	  
 }

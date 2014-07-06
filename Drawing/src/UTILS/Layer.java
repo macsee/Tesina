@@ -475,7 +475,13 @@ public class Layer {
 				
 		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
 		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
-//		CM8.assertSameIndividuals(obj, obj.getSAMEIND());
+		
+//		CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+		
+
+		if (obj.getCLASIFIABLE().equals("Yes") || obj.isUsable() )
+			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+		
 		checkCM8PrimitivesForPolygon(obj);	
 	}
 	
@@ -497,7 +503,6 @@ public class Layer {
 				CM8.countObjsRelatedWith(obj, "isAdjacentTo");
 				CM8.countObjsRelatedWith(obj, "isComposedOf");
 				CM8.countObjsRelatedWith(obj, "isIncludedIn");
-				CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
 			}
 		
 	}	
@@ -511,11 +516,6 @@ public class Layer {
 		for (ObjGeom obj : SHPS)
 			CM8.assertSameIndividuals(obj);
 	}
-	
-//	public void assertLayerResolution() {
-//		for (ObjGeom obj : SHPS)
-//			CM8.assertResolution(obj);
-//	}
 	
 	public void getAssertedDataInLayer() {
 		
@@ -694,14 +694,15 @@ public class Layer {
 		if (emptyObjList())
 			return listado;
 		
-		listado.add("ID;CLASS;WIDTH;LENGTH;SURFACE;ELONGATION;FORM;TEXTURE;DENSITY;SAMEIND;RESOLUTION;DISCONTINUE;ALIGN");
+		listado.add("ID;CLASS;WIDTH;LENGTH;SURFACE;ELONGATION;FORM;TEXTURE;DENSITY;RESOLUTION;DISCONTINUE;ALIGN;CLASSIFIABLE");
+//		listado.add("ID;CLASS;WIDTH;LENGTH;SURFACE;ELONGATION;FORM;TEXTURE;DENSITY;SAMEIND;RESOLUTION;DISCONTINUE;ALIGN");
 		
 		for (ObjGeom obj : SHPS) {
 			
-			String sameInd = "";
-			
-			if (obj.getSAMEIND() != null)
-				 sameInd = String.valueOf(obj.getSAMEIND());
+//			String sameInd = "";
+//			
+//			if (obj.getSAMEIND() != null)
+//				 sameInd = String.valueOf(obj.getSAMEIND());
 			
 			listado.add(obj.getId()+";"+
 					obj.getCLASE()+";"+
@@ -712,10 +713,10 @@ public class Layer {
 					obj.getFORM()+";"+
 					obj.getTEXTURE()+";"+
 					obj.getDENSITY()+";"+
-					sameInd+";"+
 					obj.getRESOLUTION()+";"+
 					obj.getDISCONTINUE()+";"+
-					obj.getALIGN());
+					obj.getALIGN()+";"+
+					obj.getCLASIFIABLE());
 		}
 			
 		return listado;
@@ -733,7 +734,7 @@ public class Layer {
 			br = new BufferedReader(new FileReader(filename));
 			
 			String[] attr = {"","","","","","","","","","","","",""};
-			Integer sameInd = null;
+//			Integer sameInd = null;
 			int i = 0;
 		
 			while ((line = br.readLine()) != null) {
@@ -752,9 +753,9 @@ public class Layer {
 						return;
 					}
 					
-					if (!attr[9].equals(""))
-						 sameInd = Integer.valueOf(attr[9]);
-					
+//					if (!attr[9].equals(""))
+//						 sameInd = Integer.valueOf(attr[9]);
+										
 					obj.setCLASE(attr[1]);
 					obj.setWIDTH(attr[2]);
 					obj.setLENGTH(attr[3]);
@@ -763,18 +764,19 @@ public class Layer {
 					obj.setFORM(attr[6]);
 					obj.setTEXTURE(attr[7]);
 					obj.setDENSITY(attr[8]);
-					obj.setSAMEIND(sameInd);
-					obj.setDISCONTINUE(attr[11]);
-					obj.setALIGN(attr[12]);
+//					obj.setSAMEIND(sameInd);
+					obj.setDISCONTINUE(attr[10]);
+					obj.setALIGN(attr[11]);
+					obj.setCLASSIFIABLE(attr[12]);
 					
 				}
 				
 				firstline = false;	
 			}
 			
-			if (!attr[10].contentEquals(LAYER_RESOLUTION))
+			if (!attr[9].contentEquals(LAYER_RESOLUTION))
 				if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null,"Objects in file have different resolution than active Layer.\n Change active Layer resolution?","Warning",JOptionPane.OK_CANCEL_OPTION)) {
-					LAYER_RESOLUTION = attr[10];
+					LAYER_RESOLUTION = attr[9];
 					Config.refreshLayerList(this);
 				}
 		} catch (FileNotFoundException e) {
