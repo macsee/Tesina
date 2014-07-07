@@ -479,8 +479,8 @@ public class Layer {
 //		CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
 		
 
-		if (obj.getCLASIFIABLE().equals("Yes") || obj.isUsable() )
-			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+//		if (obj.getCLASIFIABLE().equals("Yes") || obj.isUsable() )
+//			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
 		
 		checkCM8PrimitivesForPolygon(obj);	
 	}
@@ -503,6 +503,9 @@ public class Layer {
 				CM8.countObjsRelatedWith(obj, "isAdjacentTo");
 				CM8.countObjsRelatedWith(obj, "isComposedOf");
 				CM8.countObjsRelatedWith(obj, "isIncludedIn");
+				
+				if (obj.isUsable() )
+					CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
 			}
 		
 	}	
@@ -699,10 +702,10 @@ public class Layer {
 		
 		for (ObjGeom obj : SHPS) {
 			
-//			String sameInd = "";
-//			
-//			if (obj.getSAMEIND() != null)
-//				 sameInd = String.valueOf(obj.getSAMEIND());
+			String forced = "No";
+			if (obj.getCLASIFIABLE())
+				forced = "Yes";
+				
 			
 			listado.add(obj.getId()+";"+
 					obj.getCLASE()+";"+
@@ -716,7 +719,7 @@ public class Layer {
 					obj.getRESOLUTION()+";"+
 					obj.getDISCONTINUE()+";"+
 					obj.getALIGN()+";"+
-					obj.getCLASIFIABLE());
+					forced);
 		}
 			
 		return listado;
@@ -755,7 +758,7 @@ public class Layer {
 					
 //					if (!attr[9].equals(""))
 //						 sameInd = Integer.valueOf(attr[9]);
-										
+						
 					obj.setCLASE(attr[1]);
 					obj.setWIDTH(attr[2]);
 					obj.setLENGTH(attr[3]);
@@ -764,10 +767,11 @@ public class Layer {
 					obj.setFORM(attr[6]);
 					obj.setTEXTURE(attr[7]);
 					obj.setDENSITY(attr[8]);
-//					obj.setSAMEIND(sameInd);
 					obj.setDISCONTINUE(attr[10]);
 					obj.setALIGN(attr[11]);
-					obj.setCLASSIFIABLE(attr[12]);
+					
+					if (attr[12].equals("Yes"))
+						obj.setCLASSIFIABLE();
 					
 				}
 				

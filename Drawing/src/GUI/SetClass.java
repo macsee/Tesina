@@ -221,8 +221,7 @@ public class SetClass extends JDialog{
 		final Checkbox chk = new Checkbox();
 		chk.setBounds(180,450,100,30);
 		chk.setFocusable(false);
-		if (obj.getCLASIFIABLE().equals("Yes"))
-			chk.setState(true);
+		chk.setState(obj.getCLASIFIABLE());
 		panel.add(chk);
 		
 		Button button = new Button("Ok");
@@ -242,9 +241,9 @@ public class SetClass extends JDialog{
 				obj.setALIGN(choiceAlign.getSelectedItem());
 				obj.setDISCONTINUE(choiceDisc.getSelectedItem());
 				if (chk.getState())
-					obj.setCLASSIFIABLE("Yes");
+					obj.setCLASSIFIABLE();
 				else
-					obj.setCLASSIFIABLE("No");
+					obj.unSetCLASSIFIABLE();
 				
 				if (choiceSame.getSelectedIndex() != 0) {
 					ObjGeom obj1 = listObjs.get(choiceSame.getSelectedIndex()-1);

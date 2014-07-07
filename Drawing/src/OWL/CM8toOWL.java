@@ -280,8 +280,8 @@ public class CM8toOWL {
 			assertCardinalityRestriccions(count, Config.BASIC_CLASS, prop);
 			ASSERTED_PROP_OBJS.put(ind, mapObj);
 			
-//			if (prop.equals("isIncludedIn") && (indSet.size() > 0))
-//				obj.setRESOLUTION("");
+			if (prop.equals("isComposedOf") && (indSet.size() > 0))
+				obj.setCLASSIFIABLE();
 			
 		}	
 		

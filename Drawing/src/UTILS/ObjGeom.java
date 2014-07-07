@@ -379,18 +379,16 @@ public class ObjGeom implements Cloneable{
 		DISCONTINUE = disc;
 	}
 
-	public String getCLASIFIABLE() {
-		if (CLASSIFIABLE)
-			return "Yes";
-		else
-			return "No";
+	public boolean getCLASIFIABLE() {
+		return CLASSIFIABLE;
 	}
 
-	public void setCLASSIFIABLE(String s) {
-		if (s.equals("Yes"))
+	public void setCLASSIFIABLE() {
 			CLASSIFIABLE = true;
-		else
-			CLASSIFIABLE = false;
+	}
+	
+	public void unSetCLASSIFIABLE() {
+		CLASSIFIABLE = false;
 	}
 	
 	public boolean isUsable() {
@@ -402,7 +400,8 @@ public class ObjGeom implements Cloneable{
 					!TEXTURE.equals("") || 
 					!DENSITY.equals("") ||  
 					!DISCONTINUE.equals("") || 
-					!ALIGNED.equals("")
+					!ALIGNED.equals("") ||
+					CLASSIFIABLE
 				);
  	
 	}
