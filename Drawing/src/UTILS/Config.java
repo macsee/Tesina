@@ -148,6 +148,8 @@ public class Config {
     		"Place",
     		"Sol_Nu",
     		"Terrain_Sport",
+    		"Terrain_Sport_Football",
+    		"Terrain_Sport_Tennis",
     		"Tronçon_ou_Voie",
     		"Chemin",
     		"Chemin_de_Fer",

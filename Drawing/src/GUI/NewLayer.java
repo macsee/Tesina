@@ -55,7 +55,7 @@ public class NewLayer extends JDialog {
 		panel.setLayout(null);
 		
 		Label label = new Label("Name");
-		label.setBounds(10, 20, 150, 17);
+		label.setBounds(10, 20, 60, 17);
 		panel.add(label);
 		
 		final TextField textField = new TextField();

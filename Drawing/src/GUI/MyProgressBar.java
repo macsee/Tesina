@@ -45,11 +45,11 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 		pane.setLayout(null); //Use the null layout
 		
 		label = new Label("Running...");
-		label.setBounds(140,10,50,10);
+		label.setBounds(140,10,100,20);
 		pane.add(label);
 		
 		barDo = new JProgressBar(0, 100); //Min value: 0 Max value: 100
-		barDo.setBounds(15,25,320,50);
+		barDo.setBounds(15,40,320,20);
 		barDo.setValue(0);
 		barDo.setStringPainted(true);
 		pane.add(barDo);

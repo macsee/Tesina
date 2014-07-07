@@ -126,9 +126,13 @@ public class Simulator extends JFrame{
 		getContentPane().add(panelLayers);
 		panelLayers.setLayout(null);
 		
-		Button btnAdd = new Button("+");
+		Label labelLayers = new Label("Layers" );
+		labelLayers.setBounds(5, 10, 60, 17);
+		panelLayers.add(labelLayers);
+		
+		Button btnAdd = new Button("Add");
 		btnAdd.setFocusable(false);
-		btnAdd.setBounds(60, 5, 30, 30);
+		btnAdd.setBounds(60, 5, 50, 30);
 		btnAdd.addActionListener(new ActionListener() {
 			
 			@Override
@@ -140,18 +144,14 @@ public class Simulator extends JFrame{
 		});
 		panelLayers.add(btnAdd);
 		
-		Button btnRemove = new Button("-");
+		Button btnRemove = new Button("Del");
 		btnRemove.setFocusable(false);
-		btnRemove.setBounds(95, 5, 30, 30);
+		btnRemove.setBounds(112, 5, 50, 30);
 		panelLayers.add(btnRemove);
-		
-		Label labelLayers = new Label("Layers" );
-		labelLayers.setBounds(5, 10, 150, 17);
-		panelLayers.add(labelLayers);
-		
+				
 		Button btnEdit = new Button("Edit");
 		btnEdit.setFocusable(false);
-		btnEdit.setBounds(130, 5, 50, 30);
+		btnEdit.setBounds(164, 5, 50, 30);
 		panelLayers.add(btnEdit);
 			
 		listLayers = new JList(Config.LISTLAYERS);
@@ -211,7 +211,7 @@ public class Simulator extends JFrame{
 		panelObjs.setLayout(null);
 		
 		Label label = new Label("Objects Detected in Layer :");
-		label.setBounds(5, 10, 150, 17);
+		label.setBounds(5, 10, 180, 17);
 		panelObjs.add(label);
 		
 		final JList listLayer  = new JList(Config.OBJSLIST);
@@ -265,35 +265,7 @@ public class Simulator extends JFrame{
 
 	public static void main(String[] args) {
 		new Simulator();
-		System.gc();
-		
-//		Shape2ObjGeom shp2obj;
-//		try {
-//			shp2obj = new Shape2ObjGeom("/Users/Macsee/Desktop/Examples/Raster+Shp/polygons.shp", "/Users/Macsee/Desktop/Examples/Raster+Shp/tabla.points");
-//			Config.ACTIVELAYER.setImage("/Users/Macsee/Desktop/Examples/Raster+Shp/image.png");
-//			Config.ACTIVELAYER.allowDrawing();
-//			//Config.ACTIVELAYER = LAYER;
-//			Config.ACTIVELAYER.setObjsGeom(shp2obj.adjustProyection());
-//			panelPrincipal.repaint();
-//			
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (MismatchedDimensionException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (TransformException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (FactoryException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (org.opengis.referencing.operation.TransformException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-				
+		System.gc();				
 	}
 	
 }

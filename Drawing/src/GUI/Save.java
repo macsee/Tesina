@@ -43,12 +43,12 @@ public class Save extends JDialog{
 		panel.setLayout(null);
 		
 		Label labelClass = new Label("Save to:");
-		labelClass.setBounds(10,15,90,20);
+		labelClass.setBounds(10,15,70,20);
 		panel.add(labelClass);
 		
 		final TextField textField = new TextField();
 		textField.setFocusable(true);
-		textField.setBounds(70, 15, 280, 22);
+		textField.setBounds(80, 15, 280, 22);
 		panel.add(textField);
 		
 		final Button button_2 = new Button("Ok");

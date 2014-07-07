@@ -82,7 +82,7 @@ public class LoadImages extends JDialog {
 		panel.add(button);
 		
 		Label labelLayer = new Label("Select Layer");
-		labelLayer.setBounds(10, 75, 50, 30);
+		labelLayer.setBounds(10, 75, 100, 30);
 		panel.add(labelLayer);
 		
 		final Choice choiceLayer = new Choice();
@@ -94,7 +94,7 @@ public class LoadImages extends JDialog {
 			choiceLayer.add(Config.LISTLAYERS.get(index).toString());
 		
 		
-		choiceLayer.setBounds(100,75,200,30);
+		choiceLayer.setBounds(128,75,200,30);
 		panel.add(choiceLayer);
 		
 		

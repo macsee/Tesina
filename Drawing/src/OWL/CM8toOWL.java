@@ -33,10 +33,12 @@ public class CM8toOWL {
 	 * @param args
 	 */
 	
-	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyJava.owl";
-//	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyJavaMultiRes.owl";
+//	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyJava.owl";
+	private static String input_ontology = "./Ontologies/OntologyJava.owl";
+
+	private static String output_ontology = "./Ontologies/OutOntology.owl";
+//	private static String output_ontology = "/Users/Macsee/Desktop/Examples/New/OutOntology.owl";
 	
-	private static String output_ontology = "/Users/Macsee/Desktop/Examples/New/OutOntology.owl";
 	private myOWL myOWL;
 	
 	private Map<OWLNamedIndividual,Set<OWLClassExpression>> ASSERTED_CLASS_RELS = new HashMap<OWLNamedIndividual,Set<OWLClassExpression>>();
@@ -54,6 +56,7 @@ public class CM8toOWL {
 		// TODO Auto-generated constructor stub
 		myOWL = new myOWL();
 		myOWL.loadOntologyFromFile(new File(input_ontology));
+		System.out.println();
 	}
 	
 	public OWLNamedIndividual assertIndividual(ObjGeom obj) {  // Convierto los poligonos en individuos
@@ -164,14 +167,10 @@ public class CM8toOWL {
 			
 		Integer IDob2 = ob1.getSAMEIND();
 		
-		System.out.println("Entro con P"+ob1.getId()+" - P"+IDob2);
-		
 			if (IDob2 != null) {
-				System.out.println("Hasta aca");
 				OWLNamedIndividual ind1 = getIndividual(ob1);
 				OWLNamedIndividual ind2 = myOWL.getIndividual("P"+IDob2);
 				myOWL.assertSameIndividual(ind1, ind2);
-				System.out.println("Same inds P"+ob1.getId()+" - P"+IDob2);
 			}	
 
 	}

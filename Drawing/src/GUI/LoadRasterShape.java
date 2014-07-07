@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -206,7 +207,7 @@ public class LoadRasterShape extends JDialog {
 		panel.add(button_3);
 		
 		Label labelLayer = new Label("Select Layer");
-		labelLayer.setBounds(20, 230, 50, 30);
+		labelLayer.setBounds(20, 230, 110, 30);
 		getContentPane().add(labelLayer);
 		
 		final Choice choiceLayer = new Choice();
@@ -218,7 +219,7 @@ public class LoadRasterShape extends JDialog {
 			choiceLayer.add(Config.LISTLAYERS.get(index).toString());
 		
 		
-		choiceLayer.setBounds(105,225,200,30);
+		choiceLayer.setBounds(128,225,200,30);
 		getContentPane().add(choiceLayer);
 				
 		Button button_4 = new Button("Aceptar");
@@ -336,6 +337,7 @@ public class LoadRasterShape extends JDialog {
 		});
 		
 		this.setFocusable(true);
+		
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
