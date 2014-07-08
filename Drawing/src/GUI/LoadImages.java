@@ -1,19 +1,19 @@
 package GUI;
 import java.awt.Button;
 import java.awt.Choice;
+import java.awt.FileDialog;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FilenameFilter;
 
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import UTILS.Config;
 import UTILS.Layer;
@@ -59,31 +59,34 @@ public class LoadImages extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				JFileChooser chooser = new JFileChooser(new File("."));
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG & TIFF Images", "png", "tiff");
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(ventana);
-				
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					textField.setText(chooser.getSelectedFile().getAbsolutePath());
-				}
-				
-//				FileDialog chooser = new FileDialog(ventana);
-//				chooser.setVisible(true);
+//				JFileChooser chooser = new JFileChooser(new File("."));
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG & TIFF Images", "png", "tiff");
+//				chooser.setFileFilter(filter);
+//				int returnVal = chooser.showOpenDialog(ventana);
 //				
-//				chooser.setFilenameFilter(new FilenameFilter() {
-//					
-//					@Override
-//					public boolean accept(File dir, String name) {
-//						// TODO Auto-generated method stub
-//						return name.endsWith(".png");
-//					}
-//				});
-//				
-//				if (chooser.getFile() != null)
-//					textField.setText(chooser.getDirectory()+chooser.getFile());
-//				else
-//					textField.setText("");
+//				if(returnVal == JFileChooser.APPROVE_OPTION) {
+//					textField.setText(chooser.getSelectedFile().getAbsolutePath());
+//				}
+				
+				FileDialog chooser = new FileDialog(ventana);
+				chooser.setDirectory(Config.ACTIVELAYER.CURRENTDIR);
+				chooser.setVisible(true);
+				
+				chooser.setFilenameFilter(new FilenameFilter() {
+					
+					@Override
+					public boolean accept(File dir, String name) {
+						// TODO Auto-generated method stub
+						return name.endsWith(".png");
+					}
+				});
+				
+				if (chooser.getFile() != null) {
+					textField.setText(chooser.getDirectory()+chooser.getFile());
+					Config.ACTIVELAYER.CURRENTDIR = chooser.getDirectory();
+				}	
+				else
+					textField.setText("");
 			}
 		});
 		panel.add(button);

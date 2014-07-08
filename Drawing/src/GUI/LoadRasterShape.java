@@ -38,6 +38,7 @@ public class LoadRasterShape extends JDialog {
 	 */
 	private Simulator ventana;
 	private String resolution = "";
+	private File currentDirectory = new File(".");
 	
 	public LoadRasterShape(JFrame frame) {
 		
@@ -72,33 +73,38 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				JFileChooser chooser = new JFileChooser(new File("."));
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG & TIF Images", "png", "tif");
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(ventana);
-				
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					textField.setText(chooser.getSelectedFile().getAbsolutePath());
-				}
+//				JFileChooser chooser = new JFileChooser();
+//				chooser.setCurrentDirectory(currentDirectory);
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG & TIF Images", "png", "tif");
+//				chooser.setFileFilter(filter);
+//				int returnVal = chooser.showOpenDialog(ventana);
+//				
+//				if(returnVal == JFileChooser.APPROVE_OPTION) {
+//					textField.setText(chooser.getSelectedFile().getAbsolutePath());
+//					currentDirectory = new File(chooser.getSelectedFile().getParent());
+//				}
 				 
 				
-//				FileDialog chooser = new FileDialog(ventana);
-//				chooser.setVisible(true);
-//				
-//				chooser.setFilenameFilter(new FilenameFilter() {
-//					
-//					@Override
-//					public boolean accept(File dir, String name) {
-//						// TODO Auto-generated method stub
-//						System.out.println(dir);
-//						return name.endsWith(".tif");
-//					}
-//				});
-//				
-//				if (chooser.getFile() != null)
-//					textField.setText(chooser.getDirectory()+chooser.getFile());
-//				else
-//					textField.setText("");
+				FileDialog chooser = new FileDialog(ventana);
+				chooser.setDirectory(Config.ACTIVELAYER.CURRENTDIR);
+				chooser.setVisible(true);
+				
+				chooser.setFilenameFilter(new FilenameFilter() {
+					
+					@Override
+					public boolean accept(File dir, String name) {
+						// TODO Auto-generated method stub
+						System.out.println(dir);
+						return name.endsWith(".tif");
+					}
+				});
+				
+				if (chooser.getFile() != null) {
+					textField.setText(chooser.getDirectory()+chooser.getFile());
+					Config.ACTIVELAYER.CURRENTDIR = chooser.getDirectory();
+				}	
+				else
+					textField.setText("");
 			}
 		});
 		panel.add(button);
@@ -119,31 +125,38 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				JFileChooser chooser = new JFileChooser(new File("."));
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Shape files *.shp", "shp");
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(ventana);
-				
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					textField_1.setText(chooser.getSelectedFile().getAbsolutePath());
-				}
-				
-//				FileDialog chooser = new FileDialog(ventana);
-//				chooser.setVisible(true);
+//				JFileChooser chooser = new JFileChooser();
+//				chooser.setCurrentDirectory(currentDirectory);
 //				
-//				chooser.setFilenameFilter(new FilenameFilter() {
-//					
-//					@Override
-//					public boolean accept(File dir, String name) {
-//						// TODO Auto-generated method stub
-//						return name.endsWith(".shp");
-//					}
-//				});
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("Shape files *.shp", "shp");
+//				chooser.setFileFilter(filter);
+//				int returnVal = chooser.showOpenDialog(ventana);
 //				
-//				if (chooser.getFile() != null)
-//					textField_1.setText(chooser.getDirectory()+chooser.getFile());
-//				else
-//					textField_1.setText("");
+//				if(returnVal == JFileChooser.APPROVE_OPTION) {
+//					textField_1.setText(chooser.getSelectedFile().getAbsolutePath());
+//					currentDirectory = new File(chooser.getSelectedFile().getParent());
+//				}
+				
+				FileDialog chooser = new FileDialog(ventana);
+				chooser.setDirectory(Config.ACTIVELAYER.CURRENTDIR);
+				chooser.setVisible(true);
+				
+				chooser.setFilenameFilter(new FilenameFilter() {
+					
+					@Override
+					public boolean accept(File dir, String name) {
+						// TODO Auto-generated method stub
+						return name.endsWith(".shp");
+					}
+				});
+				
+				if (chooser.getFile() != null) {
+					textField_1.setText(chooser.getDirectory()+chooser.getFile());
+					Config.ACTIVELAYER.CURRENTDIR = chooser.getDirectory();
+				}	
+				
+				else
+					textField_1.setText("");
 				
 			}
 		});
@@ -165,31 +178,37 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				JFileChooser chooser = new JFileChooser(new File("."));
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Coordinates files *.points", "points");
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(ventana);
-				
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					textField_2.setText(chooser.getSelectedFile().getAbsolutePath());
-				}
-				
-//				FileDialog chooser = new FileDialog(ventana);
-//				chooser.setVisible(true);
+//				JFileChooser chooser = new JFileChooser();
+//				chooser.setCurrentDirectory(currentDirectory);
 //				
-//				chooser.setFilenameFilter(new FilenameFilter() {
-//					
-//					@Override
-//					public boolean accept(File dir, String name) {
-//						// TODO Auto-generated method stub
-//						return name.endsWith(".points");
-//					}
-//				});
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("Coordinates files *.points", "points");
+//				chooser.setFileFilter(filter);
+//				int returnVal = chooser.showOpenDialog(ventana);
 //				
-//				if (chooser.getFile() != null)
-//					textField_2.setText(chooser.getDirectory()+chooser.getFile());
-//				else
-//					textField_2.setText("");
+//				if(returnVal == JFileChooser.APPROVE_OPTION) {
+//					textField_2.setText(chooser.getSelectedFile().getAbsolutePath());
+//					currentDirectory = new File(chooser.getSelectedFile().getParent());
+//				}
+				
+				FileDialog chooser = new FileDialog(ventana);
+				chooser.setDirectory(Config.ACTIVELAYER.CURRENTDIR);
+				chooser.setVisible(true);
+				
+				chooser.setFilenameFilter(new FilenameFilter() {
+					
+					@Override
+					public boolean accept(File dir, String name) {
+						// TODO Auto-generated method stub
+						return name.endsWith(".points");
+					}
+				});
+				
+				if (chooser.getFile() != null) {
+					textField_2.setText(chooser.getDirectory()+chooser.getFile());
+					Config.ACTIVELAYER.CURRENTDIR = chooser.getDirectory();
+				}	
+				else
+					textField_2.setText("");
 //				
 			}
 		});
@@ -212,31 +231,36 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				JFileChooser chooser = new JFileChooser(new File("."));
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Configuration files *.csv", "csv");
-				chooser.setFileFilter(filter);
-				int returnVal = chooser.showOpenDialog(ventana);
-				
-				if(returnVal == JFileChooser.APPROVE_OPTION) {
-					textField_3.setText(chooser.getSelectedFile().getAbsolutePath());
-				}
-				
-//				FileDialog chooser = new FileDialog(ventana);
-//				chooser.setVisible(true);
+//				JFileChooser chooser = new JFileChooser();
+//				chooser.setCurrentDirectory(currentDirectory);
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("Configuration files *.csv", "csv");
+//				chooser.setFileFilter(filter);
+//				int returnVal = chooser.showOpenDialog(ventana);
 //				
-//				chooser.setFilenameFilter(new FilenameFilter() {
-//					
-//					@Override
-//					public boolean accept(File dir, String name) {
-//						// TODO Auto-generated method stub
-//						return name.endsWith(".csv");
-//					}
-//				});
-//				
-//				if (chooser.getFile() != null)
-//					textField_3.setText(chooser.getDirectory()+chooser.getFile());
-//				else
-//					textField_3.setText("");
+//				if(returnVal == JFileChooser.APPROVE_OPTION) {
+//					textField_3.setText(chooser.getSelectedFile().getAbsolutePath());
+//					currentDirectory = new File(chooser.getSelectedFile().getParent());
+//				}
+				
+				FileDialog chooser = new FileDialog(ventana);
+				chooser.setDirectory(Config.ACTIVELAYER.CURRENTDIR);
+				chooser.setVisible(true);
+				
+				chooser.setFilenameFilter(new FilenameFilter() {
+					
+					@Override
+					public boolean accept(File dir, String name) {
+						// TODO Auto-generated method stub
+						return name.endsWith(".csv");
+					}
+				});
+				
+				if (chooser.getFile() != null) {
+					textField_3.setText(chooser.getDirectory()+chooser.getFile());
+					Config.ACTIVELAYER.CURRENTDIR = chooser.getDirectory();
+				}	
+				else
+					textField_3.setText("");
 //				
 			}
 		});

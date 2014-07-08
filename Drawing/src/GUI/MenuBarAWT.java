@@ -19,14 +19,15 @@ import UTILS.*;
 public class MenuBarAWT {
 
 	private Simulator ventana;
-	private Layer thr1;
-	private Layer hr1;
-	private Layer hr2;
+	Menu file;
+	Menu edit;
+	Menu debug;
+	MenuBarAWT myMenu;
 	
 	public MenuBarAWT (JFrame frame) {
 		
 		ventana = (Simulator) frame;
-
+		myMenu = this;
 	}
 
     public MenuBar createMenuBar()
@@ -35,16 +36,16 @@ public class MenuBarAWT {
         MenuBar menuBar = new MenuBar();
         //Add a JMenu
         
-        Menu file = new Menu("File");
+        file = new Menu("File");
         
-        MenuItem open = new MenuItem("Open Image");
+        final MenuItem open = new MenuItem("Open Image");
         open.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				new LoadImages(ventana);
-				
+//				ventana.repaint();
 			}
 		});
         
@@ -91,7 +92,7 @@ public class MenuBarAWT {
         file.add(quit);
 
 		
-        Menu edit = new Menu("Edit");
+        edit = new Menu("Edit");
               
         MenuItem undo = new MenuItem("Undo");
         undo.addActionListener(new ActionListener() {
@@ -127,7 +128,7 @@ public class MenuBarAWT {
         edit.add(undo);
         
         
-        Menu debug = new Menu("Debug");
+        debug = new Menu("Debug");
         
         CheckboxMenuItem chk1 = new CheckboxMenuItem("Show intersections"); 
         debug.add(chk1);
@@ -177,6 +178,12 @@ public class MenuBarAWT {
         menuBar.add(debug);
         
         return menuBar;
+    }
+    
+    public void enableMenu(){
+    	file.setEnabled(true);
+    	edit.setEnabled(true);
+    	debug.setEnabled(true);
     }
 
 }

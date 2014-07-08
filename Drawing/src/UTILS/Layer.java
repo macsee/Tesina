@@ -65,7 +65,8 @@ public class Layer {
     public ArrayList<String> AUX = new ArrayList<String>();
     
     private CM8toOWL CM8;
-    
+    public String CURRENTDIR = ".";
+  
     public Layer(String layerid, String resolution) {
     	LINE = null;
         ACTUAL_POINT = null;
