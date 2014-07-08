@@ -29,6 +29,7 @@ public class SetClass extends JDialog{
 	
 	public SetClass(final ObjGeom obj, final Layer layer) {
 		
+		setTitle("Settings for P"+obj.getId());
 		setModal(true);
 		setLocation(locationX, locationY);
 		//setLocationRelativeTo (null);
@@ -64,7 +65,7 @@ public class SetClass extends JDialog{
 		choiceSurface.add("");
 		choiceSurface.add("Small");
 		choiceSurface.add("Medium");
-		choiceSurface.add("Big");
+		choiceSurface.add("Large");
 		choiceSurface.setFocusable(false);
 		choiceSurface.select(obj.getSURFACE());
 		panel.add(choiceSurface);
@@ -79,7 +80,7 @@ public class SetClass extends JDialog{
 		choiceLength.add("");
 		choiceLength.add("Small");
 		choiceLength.add("Medium");
-		choiceLength.add("Big");
+		choiceLength.add("Large");
 		choiceLength.setFocusable(false);
 		choiceLength.select(obj.getLENGTH());
 		panel.add(choiceLength);
@@ -94,7 +95,7 @@ public class SetClass extends JDialog{
 		choiceWidth.add("");
 		choiceWidth.add("Small");
 		choiceWidth.add("Medium");
-		choiceWidth.add("Big");
+		choiceWidth.add("Large");
 		choiceWidth.setFocusable(false);
 		choiceWidth.select(obj.getWIDTH());
 		panel.add(choiceWidth);
@@ -109,7 +110,7 @@ public class SetClass extends JDialog{
 		choiceElongation.add("");
 		choiceElongation.add("Small");
 		choiceElongation.add("Medium");
-		choiceElongation.add("Big");
+		choiceElongation.add("Large");
 		choiceElongation.setFocusable(false);
 		choiceElongation.select(obj.getELONGATION());
 		panel.add(choiceElongation);
@@ -221,7 +222,7 @@ public class SetClass extends JDialog{
 		final Checkbox chk = new Checkbox();
 		chk.setBounds(180,450,100,30);
 		chk.setFocusable(false);
-		chk.setState(obj.getCLASIFIABLE());
+		chk.setState(obj.classificationForced());
 		panel.add(chk);
 		
 		Button button = new Button("Ok");

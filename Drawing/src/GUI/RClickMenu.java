@@ -71,7 +71,7 @@ public class RClickMenu {
 	    			 Config.OUT.clear();
 	    			 //Config.ACTIVELAYER.checkCM8FromRClick(obj);
 	    			 Config.ACTIVELAYER.checkCM8PrimitivesForPolygon(obj);
-	    			 //new ResultWindow();
+	    			 new ResultWindow();
 	    		 }	
 	    	 }
 	     });

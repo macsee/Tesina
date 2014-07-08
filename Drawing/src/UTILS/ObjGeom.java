@@ -379,7 +379,7 @@ public class ObjGeom implements Cloneable{
 		DISCONTINUE = disc;
 	}
 
-	public boolean getCLASIFIABLE() {
+	public boolean classificationForced() {
 		return CLASSIFIABLE;
 	}
 
@@ -400,8 +400,7 @@ public class ObjGeom implements Cloneable{
 					!TEXTURE.equals("") || 
 					!DENSITY.equals("") ||  
 					!DISCONTINUE.equals("") || 
-					!ALIGNED.equals("") ||
-					CLASSIFIABLE
+					!ALIGNED.equals("")
 				);
  	
 	}

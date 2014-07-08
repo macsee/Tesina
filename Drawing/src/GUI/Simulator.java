@@ -127,7 +127,7 @@ public class Simulator extends JFrame{
 		panelLayers.setLayout(null);
 		
 		Label labelLayers = new Label("Layers" );
-		labelLayers.setBounds(5, 10, 60, 17);
+		labelLayers.setBounds(5, 10, 50, 17);
 		panelLayers.add(labelLayers);
 		
 		Button btnAdd = new Button("Add");

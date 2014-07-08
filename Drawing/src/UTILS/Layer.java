@@ -388,9 +388,13 @@ public class Layer {
 	
 	public void checkCM8FromRClick(ObjGeom ob1) {
 		
-		setCM8(new CM8toOWL());
-		assertDataForObjGeom(ob1);
-
+//		setCM8(new CM8toOWL());
+//		assertDataForObjGeom(ob1);
+//		makeObjsDifferentInLayer();		
+//		asertSameIndividualsInLayer();		
+//		getAssertedDataInLayer();
+//		getInferredDataInLayer();
+		
 	}
 	
 	public void checkCM8PrimitivesForPolygon(ObjGeom ob1) {
@@ -476,7 +480,10 @@ public class Layer {
 		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
 		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
 		
-//		CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+		if (obj.isUsable() || obj.classificationForced()) {
+			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+			System.out.println("Setting resolution for object P"+obj.getId());
+		}	
 		
 
 //		if (obj.getCLASIFIABLE().equals("Yes") || obj.isUsable() )
@@ -499,13 +506,12 @@ public class Layer {
 		// de isComposedOf
 		
 		for (ObjGeom obj : SHPS)
-			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom
-				CM8.countObjsRelatedWith(obj, "isAdjacentTo");
-				CM8.countObjsRelatedWith(obj, "isComposedOf");
-				CM8.countObjsRelatedWith(obj, "isIncludedIn");
-				
-				if (obj.isUsable() )
-					CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
+			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom				
+				if (obj.classificationForced()) {
+					CM8.countObjsRelatedWith(obj, "isAdjacentTo");
+					CM8.countObjsRelatedWith(obj, "isComposedOf");
+					CM8.countObjsRelatedWith(obj, "isIncludedIn");
+				}	
 			}
 		
 	}	
@@ -703,7 +709,7 @@ public class Layer {
 		for (ObjGeom obj : SHPS) {
 			
 			String forced = "No";
-			if (obj.getCLASIFIABLE())
+			if (obj.classificationForced())
 				forced = "Yes";
 				
 			

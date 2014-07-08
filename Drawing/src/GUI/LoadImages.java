@@ -1,21 +1,19 @@
 package GUI;
 import java.awt.Button;
 import java.awt.Choice;
-import java.awt.FileDialog;
-import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
-import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FilenameFilter;
 
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import UTILS.Config;
 import UTILS.Layer;
@@ -61,28 +59,37 @@ public class LoadImages extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				FileDialog chooser = new FileDialog(ventana);
-				chooser.setVisible(true);
+				JFileChooser chooser = new JFileChooser(new File("."));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG & TIFF Images", "png", "tiff");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(ventana);
 				
-				chooser.setFilenameFilter(new FilenameFilter() {
-					
-					@Override
-					public boolean accept(File dir, String name) {
-						// TODO Auto-generated method stub
-						return name.endsWith(".png");
-					}
-				});
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					textField.setText(chooser.getSelectedFile().getAbsolutePath());
+				}
 				
-				if (chooser.getFile() != null)
-					textField.setText(chooser.getDirectory()+chooser.getFile());
-				else
-					textField.setText("");
+//				FileDialog chooser = new FileDialog(ventana);
+//				chooser.setVisible(true);
+//				
+//				chooser.setFilenameFilter(new FilenameFilter() {
+//					
+//					@Override
+//					public boolean accept(File dir, String name) {
+//						// TODO Auto-generated method stub
+//						return name.endsWith(".png");
+//					}
+//				});
+//				
+//				if (chooser.getFile() != null)
+//					textField.setText(chooser.getDirectory()+chooser.getFile());
+//				else
+//					textField.setText("");
 			}
 		});
 		panel.add(button);
 		
 		Label labelLayer = new Label("Select Layer");
-		labelLayer.setBounds(10, 75, 100, 30);
+		labelLayer.setBounds(10, 75, 80, 30);
 		panel.add(labelLayer);
 		
 		final Choice choiceLayer = new Choice();

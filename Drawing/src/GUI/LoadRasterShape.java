@@ -1,28 +1,26 @@
 package GUI;
 import java.awt.Button;
 import java.awt.Choice;
-import java.awt.Dialog;
 import java.awt.FileDialog;
-import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
-import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EtchedBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.crypto.dsig.TransformException;
 
 import org.opengis.geometry.MismatchedDimensionException;
@@ -74,22 +72,33 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				FileDialog chooser = new FileDialog(ventana);
-				chooser.setVisible(true);
+				JFileChooser chooser = new JFileChooser(new File("."));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG & TIF Images", "png", "tif");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(ventana);
 				
-				chooser.setFilenameFilter(new FilenameFilter() {
-					
-					@Override
-					public boolean accept(File dir, String name) {
-						// TODO Auto-generated method stub
-						return name.endsWith(".tif");
-					}
-				});
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					textField.setText(chooser.getSelectedFile().getAbsolutePath());
+				}
+				 
 				
-				if (chooser.getFile() != null)
-					textField.setText(chooser.getDirectory()+chooser.getFile());
-				else
-					textField.setText("");
+//				FileDialog chooser = new FileDialog(ventana);
+//				chooser.setVisible(true);
+//				
+//				chooser.setFilenameFilter(new FilenameFilter() {
+//					
+//					@Override
+//					public boolean accept(File dir, String name) {
+//						// TODO Auto-generated method stub
+//						System.out.println(dir);
+//						return name.endsWith(".tif");
+//					}
+//				});
+//				
+//				if (chooser.getFile() != null)
+//					textField.setText(chooser.getDirectory()+chooser.getFile());
+//				else
+//					textField.setText("");
 			}
 		});
 		panel.add(button);
@@ -110,22 +119,31 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				FileDialog chooser = new FileDialog(ventana);
-				chooser.setVisible(true);
+				JFileChooser chooser = new JFileChooser(new File("."));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Shape files *.shp", "shp");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(ventana);
 				
-				chooser.setFilenameFilter(new FilenameFilter() {
-					
-					@Override
-					public boolean accept(File dir, String name) {
-						// TODO Auto-generated method stub
-						return name.endsWith(".shp");
-					}
-				});
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					textField_1.setText(chooser.getSelectedFile().getAbsolutePath());
+				}
 				
-				if (chooser.getFile() != null)
-					textField_1.setText(chooser.getDirectory()+chooser.getFile());
-				else
-					textField_1.setText("");
+//				FileDialog chooser = new FileDialog(ventana);
+//				chooser.setVisible(true);
+//				
+//				chooser.setFilenameFilter(new FilenameFilter() {
+//					
+//					@Override
+//					public boolean accept(File dir, String name) {
+//						// TODO Auto-generated method stub
+//						return name.endsWith(".shp");
+//					}
+//				});
+//				
+//				if (chooser.getFile() != null)
+//					textField_1.setText(chooser.getDirectory()+chooser.getFile());
+//				else
+//					textField_1.setText("");
 				
 			}
 		});
@@ -147,23 +165,32 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				FileDialog chooser = new FileDialog(ventana);
-				chooser.setVisible(true);
+				JFileChooser chooser = new JFileChooser(new File("."));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Coordinates files *.points", "points");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(ventana);
 				
-				chooser.setFilenameFilter(new FilenameFilter() {
-					
-					@Override
-					public boolean accept(File dir, String name) {
-						// TODO Auto-generated method stub
-						return name.endsWith(".points");
-					}
-				});
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					textField_2.setText(chooser.getSelectedFile().getAbsolutePath());
+				}
 				
-				if (chooser.getFile() != null)
-					textField_2.setText(chooser.getDirectory()+chooser.getFile());
-				else
-					textField_2.setText("");
-				
+//				FileDialog chooser = new FileDialog(ventana);
+//				chooser.setVisible(true);
+//				
+//				chooser.setFilenameFilter(new FilenameFilter() {
+//					
+//					@Override
+//					public boolean accept(File dir, String name) {
+//						// TODO Auto-generated method stub
+//						return name.endsWith(".points");
+//					}
+//				});
+//				
+//				if (chooser.getFile() != null)
+//					textField_2.setText(chooser.getDirectory()+chooser.getFile());
+//				else
+//					textField_2.setText("");
+//				
 			}
 		});
 		panel.add(button_2);
@@ -185,29 +212,38 @@ public class LoadRasterShape extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Opening...");
 				
-				FileDialog chooser = new FileDialog(ventana);
-				chooser.setVisible(true);
+				JFileChooser chooser = new JFileChooser(new File("."));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Configuration files *.csv", "csv");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showOpenDialog(ventana);
 				
-				chooser.setFilenameFilter(new FilenameFilter() {
-					
-					@Override
-					public boolean accept(File dir, String name) {
-						// TODO Auto-generated method stub
-						return name.endsWith(".csv");
-					}
-				});
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					textField_3.setText(chooser.getSelectedFile().getAbsolutePath());
+				}
 				
-				if (chooser.getFile() != null)
-					textField_3.setText(chooser.getDirectory()+chooser.getFile());
-				else
-					textField_3.setText("");
-				
+//				FileDialog chooser = new FileDialog(ventana);
+//				chooser.setVisible(true);
+//				
+//				chooser.setFilenameFilter(new FilenameFilter() {
+//					
+//					@Override
+//					public boolean accept(File dir, String name) {
+//						// TODO Auto-generated method stub
+//						return name.endsWith(".csv");
+//					}
+//				});
+//				
+//				if (chooser.getFile() != null)
+//					textField_3.setText(chooser.getDirectory()+chooser.getFile());
+//				else
+//					textField_3.setText("");
+//				
 			}
 		});
 		panel.add(button_3);
 		
 		Label labelLayer = new Label("Select Layer");
-		labelLayer.setBounds(20, 230, 110, 30);
+		labelLayer.setBounds(20, 230, 80, 30);
 		getContentPane().add(labelLayer);
 		
 		final Choice choiceLayer = new Choice();
@@ -262,7 +298,7 @@ public class LoadRasterShape extends JDialog {
 								layer.setImage(textField.getText());
 								layer.setObjsGeom(shp2obj.adjustProyection());
 								ventana.selectActiveLayerInList();
-								//layer.allowDrawing();
+								layer.allowDrawing();
 								if (!textField_3.getText().equals(""))
 									layer.readCSV(textField_3.getText());
 								
@@ -339,8 +375,11 @@ public class LoadRasterShape extends JDialog {
 		this.setFocusable(true);
 		
 	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new LoadRasterShape(null).setVisible(true);
+	
+			new LoadRasterShape(null).setVisible(true);
+		
 	}
 }

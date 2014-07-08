@@ -1,22 +1,22 @@
 package GUI;
 
 import java.awt.Button;
-import java.awt.FileDialog;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import UTILS.Config;
 
@@ -92,9 +92,18 @@ public class Save extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				FileDialog chooser = new FileDialog(frame,"Save",FileDialog.SAVE);
-				chooser.setVisible(true);
-			    textField.setText(chooser.getDirectory()+chooser.getFile()+".csv");
+//				FileDialog chooser = new FileDialog(frame,"Save",FileDialog.SAVE);
+//				chooser.setVisible(true);
+//			    textField.setText(chooser.getDirectory()+chooser.getFile()+".csv");
+				
+				JFileChooser chooser = new JFileChooser(new File("."));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Configuration file *.csv", "csv");
+				chooser.setFileFilter(filter);
+				int returnVal = chooser.showSaveDialog(frame);
+				
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					textField.setText(chooser.getSelectedFile().getAbsolutePath()+".csv");
+				}
 			    
 			    button_2.requestFocus();
 			}
