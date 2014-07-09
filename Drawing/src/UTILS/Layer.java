@@ -481,15 +481,11 @@ public class Layer {
 		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
 		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
 		
-		if (obj.isUsable() || obj.classificationForced()) {
+		if (obj.isUsable() || obj.classificationForced() || Config.FORCEDETECTION) {
 			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
 			System.out.println("Setting resolution for object P"+obj.getId());
 		}	
-		
-
-//		if (obj.getCLASIFIABLE().equals("Yes") || obj.isUsable() )
-//			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
-		
+				
 		checkCM8PrimitivesForPolygon(obj);	
 	}
 	
@@ -508,7 +504,7 @@ public class Layer {
 		
 		for (ObjGeom obj : SHPS)
 			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom				
-				if (obj.classificationForced()) {
+				if (obj.classificationForced() || Config.FORCEDETECTION) {
 					CM8.countObjsRelatedWith(obj, "isAdjacentTo");
 					CM8.countObjsRelatedWith(obj, "isComposedOf");
 					CM8.countObjsRelatedWith(obj, "isIncludedIn");
@@ -569,35 +565,27 @@ public class Layer {
 		
 		if (SHPS.isEmpty())
 			return;
-		
-//		boolean ok = CM8.checkConsistency(); 
 	
 		OUT.add("*********************************************************************************************************");
 		OUT.add("*************************************** Inferred Data for Objects ****************************************");
 		OUT.add("**********************************************************************************************************\n");
 		
-//		if (!ok)
-//			OUT.add("Inconsistent");
-//		else
-			for (ObjGeom objgeom : SHPS)
-					OUT.addAll(CM8.getInferredDataForObject(objgeom));
+		for (ObjGeom objgeom : SHPS)
+				OUT.addAll(CM8.getInferredDataForObject(objgeom));
 		
 		OUT.add("");
+		
+		System.out.println("Inferred data for objects finished");
 		
 		OUT.add("*********************************************************************************************************");
 		OUT.add("******************************* Inferred Data for Spatial Relationships *********************************");
 		OUT.add("*********************************************************************************************************\n");
 		
-//		if (!ok)
-//			OUT.add("Inconsistent");
-//		else
-			for (String rel : RELATIONS)
-				OUT.addAll(CM8.getInferredDataForSpatialRelation(rel));
+		for (String rel : RELATIONS)
+			OUT.addAll(CM8.getInferredDataForSpatialRelation(rel));
 	
 		OUT.add("");
 		
-//		if (!ok)
-//			return;
 	}
 		
 	/**********************************************************************************
@@ -697,6 +685,14 @@ public class Layer {
 		CM8 = cm8;
 	}
 	
+	public void changeResolution(String newRes) {
+		LAYER_RESOLUTION = newRes;
+		for (ObjGeom obj : SHPS)
+			obj.setRESOLUTION(newRes);
+		
+		Config.refreshLayerList(this);
+	}
+	
 	public LinkedList<String> createCSV() {
 		
 		LinkedList<String> listado = new LinkedList<String>();
@@ -714,7 +710,7 @@ public class Layer {
 				forced = "Yes";
 				
 			
-			listado.add(obj.getId()+";"+
+			listado.add(obj.getLocalID()+";"+
 					obj.getCLASE()+";"+
 					obj.getWIDTH()+";"+
 					obj.getLENGTH()+";"+
@@ -763,9 +759,8 @@ public class Layer {
 						return;
 					}
 					
-//					if (!attr[9].equals(""))
-//						 sameInd = Integer.valueOf(attr[9]);
-						
+					//"ID;CLASS;WIDTH;LENGTH;SURFACE;ELONGATION;FORM;TEXTURE;DENSITY;RESOLUTION;DISCONTINUE;ALIGN;FORCECLASSIF"
+					
 					obj.setCLASE(attr[1]);
 					obj.setWIDTH(attr[2]);
 					obj.setLENGTH(attr[3]);
@@ -786,10 +781,9 @@ public class Layer {
 			}
 			
 			if (!attr[9].contentEquals(LAYER_RESOLUTION))
-				if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null,"Objects in file have different resolution than active Layer.\n Change active Layer resolution?","Warning",JOptionPane.OK_CANCEL_OPTION)) {
-					LAYER_RESOLUTION = attr[9];
-					Config.refreshLayerList(this);
-				}
+				if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null,"Objects in file have different resolution than active Layer.\n Change active Layer resolution?","Warning",JOptionPane.OK_CANCEL_OPTION))
+					changeResolution(attr[9]);
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

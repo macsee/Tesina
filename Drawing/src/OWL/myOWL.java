@@ -59,7 +59,7 @@ public class myOWL {
 			this.FACTORY = MANAGER.getOWLDataFactory();
 	        this.VARBASEIRI = DEFAULT_VARIABLES_BASE_IRI;
 	        this.FILE = file;
-	        System.out.println(IRI.getNamespace()+IRI.getFragment());
+	        System.out.println("Onotlogy: "+IRI.getNamespace()+IRI.getFragment());
 	        
 		} catch (OWLOntologyCreationException e) {
 			// TODO Auto-generated catch block

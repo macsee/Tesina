@@ -307,13 +307,18 @@ public class CM8toOWL {
 	
 	public ArrayList<String> getInferredDataForObject(ObjGeom obj) {
 		
-		OWLNamedIndividual ind = getIndividual(obj);
-		Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(ind);
-		Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = myOWL.getInferredObjPropertiesFor(ind);
-		Map<OWLDataPropertyExpression, OWLLiteral> setLit = myOWL.getInferredDataPropertiesFor(ind);
-		
-		return printAll(set, setRel, setLit, obj, "Polygon P"+obj.getId()); //Imprimo todos los resultados
-	    	
+		if (obj.isUsable() || obj.classificationForced() || Config.FORCEDETECTION || Config.GETINFERRED || obj.getSAMEIND() != null) {
+			OWLNamedIndividual ind = getIndividual(obj);
+			Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(ind);
+			Map<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> setRel = myOWL.getInferredObjPropertiesFor(ind);
+			Map<OWLDataPropertyExpression, OWLLiteral> setLit = myOWL.getInferredDataPropertiesFor(ind);
+			
+			System.out.println("Getting inferred data for P"+obj.getId());
+			
+			return printAll(set, setRel, setLit, obj, "Polygon P"+obj.getId()); //Imprimo todos los resultados
+		}
+		else 
+			return printAll(null, null, null, obj, "Polygon P"+obj.getId()); //Imprimo todos los resultados 
 	}
 	
 	public boolean checkConsistency() {
@@ -331,12 +336,16 @@ public class CM8toOWL {
 	}
 	
 	public ArrayList<String> getInferredDataForSpatialRelation(String rel) {
-			
+		
 		OWLNamedIndividual relInd = myOWL.getIndividual(rel);
-    	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(relInd);
-    	
-    	return printAll(set,new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>(), new HashMap<OWLDataPropertyExpression, OWLLiteral>(), null,relInd.getIRI().getFragment());
-	
+		
+		if (Config.GETINFERREDREL) { 	
+	    	Set<OWLClassExpression> set = myOWL.getInferredMembershipForInd(relInd);
+	    	System.out.println("Getting inferred data for spatial relationship "+rel);
+	    	return printAll(set,new HashMap<OWLObjectPropertyExpression, Set<OWLNamedIndividual>>(), new HashMap<OWLDataPropertyExpression, OWLLiteral>(), null,relInd.getIRI().getFragment());
+		}
+		else
+			return printAll(null, null, null, null, relInd.getIRI().getFragment()); //Imprimo todos los resultados
 	}
 	
 	ArrayList<String> printHeader(String header) {
@@ -425,6 +434,12 @@ public class CM8toOWL {
 		ArrayList<String> out = new ArrayList<String>();
 		
 		out.addAll(printHeader(header));
+		
+		if (set == null && setRel == null && setLit == null) {
+			out.add("No inferred data. Object not selected for classification");
+			return out;
+		}	
+			
 		out.addAll(printClasses(set,obj));
 		out.add("");
 		out.add("...........................................................................................................");

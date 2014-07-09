@@ -34,9 +34,9 @@ public class Simulator extends JFrame{
 	 */
 	private static MainPanel panelPrincipal;
 //	private static Layer LAYER; 
-	private static Checkbox radioButtonTHR1;
-	private static Checkbox radioButtonHR1;
-	private static Checkbox radioButtonHR2;
+	private static Checkbox chkForced;
+	private static Checkbox chkGetInf;
+	private static Checkbox chkGetRel;
 	private static Simulator ventana;
 	private static JList listLayers;
 	
@@ -53,8 +53,6 @@ public class Simulator extends JFrame{
 		setLocationRelativeTo (null);
 		Container panel = getContentPane();
 		panel.setLayout(null);
-		System.out.println(getHeight());
-		System.out.println(getWidth());
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 0, 800, 40);
@@ -81,6 +79,10 @@ public class Simulator extends JFrame{
 					}
 					
 					System.out.println("Running.....");
+					
+					Config.FORCEDETECTION = chkForced.getState();
+					Config.GETINFERRED = chkGetInf.getState();
+					Config.GETINFERREDREL = chkGetRel.getState();
 					
 					new MyProgressBar(ventana);
 	
@@ -114,7 +116,41 @@ public class Simulator extends JFrame{
 		btnCleanAll.setFocusable(false);
 		btnCleanAll.setBounds(215, 5, 100, 35);
 		panel_1.add(btnCleanAll);
-	
+				
+		/********************************************************************
+		 * INICIO PANEL DE OPCIONES											*
+		 ********************************************************************/
+		
+		JPanel panelOptions = new JPanel();
+		panelOptions.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panelOptions.setBounds(810, 45, 350, 100);
+		getContentPane().add(panelOptions);
+		panelOptions.setLayout(null);
+		
+		Label labelOptions = new Label("Options" );
+		labelOptions.setBounds(5, 10, 50, 17);
+		panelOptions.add(labelOptions);
+		
+		chkForced = new Checkbox("Force detection for all objects");
+		chkForced.setBounds(10,25,210,30);
+		chkForced.setFocusable(false);
+		panelOptions.add(chkForced);
+		
+		chkGetInf = new Checkbox("Get inferred data for all objects");
+		chkGetInf.setBounds(10,45,220,30);
+		chkGetInf.setFocusable(false);
+		panelOptions.add(chkGetInf);
+		
+		chkGetRel = new Checkbox("Get inferred for all SR");
+		chkGetRel.setBounds(10,65,220,30);
+		chkGetRel.setState(true);
+		chkGetRel.setFocusable(false);
+		panelOptions.add(chkGetRel);
+		
+		/********************************************************************
+		 * FIN PANEL DE OPCIONES											*
+		 ********************************************************************/
+		
 		
 		/********************************************************************
 		 * INICIO PANEL DE CAPAS											*
@@ -122,7 +158,7 @@ public class Simulator extends JFrame{
 		
 		JPanel panelLayers = new JPanel();
 		panelLayers.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panelLayers.setBounds(810, 45, 350, 295);
+		panelLayers.setBounds(810, 150, 350, 190);
 		getContentPane().add(panelLayers);
 		panelLayers.setLayout(null);
 		
@@ -165,7 +201,7 @@ public class Simulator extends JFrame{
 		
 		ScrollPane scrollPaneLayers = new ScrollPane();
 		scrollPaneLayers.add(listLayers);
-		scrollPaneLayers.setBounds(30, 50, 300, 220);
+		scrollPaneLayers.setBounds(30, 50, 300, 130);
 		panelLayers.add(scrollPaneLayers);
 		
 		btnRemove.addActionListener(new ActionListener() {

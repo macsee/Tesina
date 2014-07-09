@@ -41,6 +41,12 @@ public class Config {
     
     public static String BASIC_CLASS = "SpatialObject";
     
+    public static boolean FORCEDETECTION = false;
+    
+    public static boolean GETINFERRED = false;
+    
+    public static boolean GETINFERREDREL = false;
+    
     public static Integer getActiveLayerIndex() {
     	return LAYERS.indexOf(ACTIVELAYER);
     }
