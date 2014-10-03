@@ -460,8 +460,8 @@ public class Layer {
 			
 		}
 
-		AUX.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		AUX.add("");
+		AUX.add("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+		AUX.add("\n");
 	}
 	
 	
@@ -471,15 +471,17 @@ public class Layer {
 		
 		CM8.assertIndividual(obj); //asserting ob1 as individual
 		CM8.assertObjProperty(obj, "hasElongation", obj.getELONGATION());
-		CM8.assertObjProperty(obj, "hasWidth", obj.getWIDTH());
-		CM8.assertObjProperty(obj, "hasLength", obj.getLENGTH());
-		CM8.assertObjProperty(obj, "hasShape", obj.getFORM());
+		CM8.assertObjProperty(obj, "hasLargeur", obj.getWIDTH());
+		CM8.assertObjProperty(obj, "hasLongueur", obj.getLENGTH());
+		//CM8.assertObjProperty(obj, "hasWidth", obj.getWIDTH());
+		//CM8.assertObjProperty(obj, "hasLength", obj.getLENGTH());
+		CM8.assertObjProperty(obj, "hasForme", obj.getFORM());
 		CM8.assertObjProperty(obj, "hasTexture", obj.getTEXTURE());
-		CM8.assertObjProperty(obj, "hasDensity", obj.getDENSITY());
+		CM8.assertObjProperty(obj, "hasDensite", obj.getDENSITY());
 		CM8.assertObjProperty(obj, "hasSurface", obj.getSURFACE());
 				
-		CM8.assertBooleanProperty(obj, "hasAlignment", obj.getALIGN());
-		CM8.assertBooleanProperty(obj, "hasDiscontinuity", obj.getDISCONTINUE());
+		CM8.assertBooleanProperty(obj, "isAlignee", obj.getALIGN());
+		CM8.assertBooleanProperty(obj, "isDiscontinu", obj.getDISCONTINUE());
 		
 		if (obj.isUsable() || obj.classificationForced() || Config.FORCEDETECTION) {
 			CM8.assertObjProperty(obj, "hasResolution", obj.getRESOLUTION());
@@ -502,6 +504,9 @@ public class Layer {
 		// Lo tengo que hacer por separado porque sino no puedo utilizar la información de todos los objetos para el cálculo
 		// de isComposedOf
 		
+		/* La cuenta de relaciones no debería haberse hecho con datatype properties, sino con primitivas desde java
+		 * y con reglas SWRL en la ontología. Como todavia no encontre como hacer esto, lo quito.
+		 * 
 		for (ObjGeom obj : SHPS)
 			if (obj.getMyPolygon() != null) { //Hago esto para evitar que un click accidental sea considerado como ObjGeom				
 				if (obj.classificationForced() || Config.FORCEDETECTION) {
@@ -510,7 +515,7 @@ public class Layer {
 					CM8.countObjsRelatedWith(obj, "isIncludedIn");
 				}	
 			}
-		
+		*/
 	}	
 	
 	public void  makeObjsDifferentInLayer() {
@@ -527,37 +532,38 @@ public class Layer {
 		
 		int i;
 		
-		OUT.add("*********************************************** LAYER "+LAYER_RESOLUTION+" ***********************************************");
+		OUT.add("*********************************************** LAYER "+LAYER_RESOLUTION+" ***********************************************\n");
 		OUT.add("*********************************************************************************************************\n");
+		OUT.add("\n");
 		
 		if (SHPS.isEmpty()) {
-			OUT.add("");
-			OUT.add("No objects detected in this layer");
-			OUT.add("");
+			OUT.add("No objects detected in this layer \n");
+			OUT.add("\n");
 			return;
 		}
 		
 		for (i=0;i<AUX.size()-2;i++)
-			OUT.add(AUX.get(i));
+			OUT.add(AUX.get(i)+"\n");
 		
-		OUT.add("*********************************************************************************************************");
-		OUT.add("*************************************** Asserted Data for Objects ***************************************");
 		OUT.add("*********************************************************************************************************\n");
-	
+		OUT.add("*************************************** Asserted Data for Objects ***************************************\n");
+		OUT.add("*********************************************************************************************************\n");
+		OUT.add("\n");
 		
 		for (ObjGeom objgeom : SHPS)
 			OUT.addAll(CM8.getAssertedDataForObject(objgeom));
 		
-		OUT.add("");
+		OUT.add("\n");
 		
-		OUT.add("*********************************************************************************************************");
-		OUT.add("******************************** Asserted Data for Spatial Relationships ********************************");
 		OUT.add("*********************************************************************************************************\n");
+		OUT.add("******************************** Asserted Data for Spatial Relationships ********************************\n");
+		OUT.add("*********************************************************************************************************\n");
+		OUT.add("\n");
 		
 		for (String rel : RELATIONS)
 			OUT.addAll(CM8.getAssertedDataForSpatialRelation(rel));
 		
-		OUT.add("");
+		OUT.add("\n");
 		
 	}
 	
@@ -566,25 +572,27 @@ public class Layer {
 		if (SHPS.isEmpty())
 			return;
 	
-		OUT.add("*********************************************************************************************************");
-		OUT.add("*************************************** Inferred Data for Objects ****************************************");
 		OUT.add("**********************************************************************************************************\n");
+		OUT.add("*************************************** Inferred Data for Objects ****************************************\n");
+		OUT.add("**********************************************************************************************************\n");
+		OUT.add("\n");
 		
 		for (ObjGeom objgeom : SHPS)
 				OUT.addAll(CM8.getInferredDataForObject(objgeom));
 		
-		OUT.add("");
+		OUT.add("\n");
 		
 		System.out.println("Inferred data for objects finished");
 		
-		OUT.add("*********************************************************************************************************");
-		OUT.add("******************************* Inferred Data for Spatial Relationships *********************************");
 		OUT.add("*********************************************************************************************************\n");
+		OUT.add("******************************* Inferred Data for Spatial Relationships *********************************\n");
+		OUT.add("*********************************************************************************************************\n");
+		OUT.add("\n");
 		
 		for (String rel : RELATIONS)
 			OUT.addAll(CM8.getInferredDataForSpatialRelation(rel));
 	
-		OUT.add("");
+		OUT.add("\n");
 		
 	}
 		

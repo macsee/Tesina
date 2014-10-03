@@ -35,7 +35,7 @@ public class RClickMenu {
 	    	 }
 	     });		
 	     	 
-	     menuAddPolygon = new MenuItem("Set Class");
+	     menuAddPolygon = new MenuItem("Settings");
 	     menuAddPolygon.setEnabled(false);
 	     
 	     popup.add(menuAddPolygon); //.. y otro elemento

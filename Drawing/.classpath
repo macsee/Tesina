@@ -30,30 +30,7 @@
 	<classpathentry kind="lib" path="/Users/Macsee/.m2/repository/com/esri/geometry/esri-geometry-api/1.1/esri-geometry-api-1.1.jar"/>
 	<classpathentry kind="lib" path="/Users/Macsee/.m2/repository/org/json/json/20090211/json-20090211.jar"/>
 	<classpathentry kind="lib" path="/Users/Macsee/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.12/jackson-core-asl-1.9.12.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/GeoTools/geotools-11-RC2/gt-epsg-hsql-11-RC2.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/commons-codec-1.6.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/httpclient-4.2.3.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/httpcore-4.2.2.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/jcl-over-slf4j-1.6.4.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/jena-arq-2.10.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/jena-core-2.10.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/jena-iri-0.9.5.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/jena-tdb-0.10.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/slf4j-api-1.6.4.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/slf4j-log4j12-1.6.4.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/xercesImpl-2.10.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/apache-jena-2.10.0/lib/xml-apis-1.4.01.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/aterm-java-1.6.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/antlr/antlr-runtime-3.2.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/pellet-core.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/pellet-jena.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/pellet-rules.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/pellet-datatypes.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/pellet-owlapiv3.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/pellet-el.jar"/>
 	<classpathentry kind="lib" path="/Users/Macsee/Documents/HermiT/org.semanticweb.HermiT.jar"/>
 	<classpathentry kind="lib" path="/Users/Macsee/Documents/OWLAPI/owlapi-distribution-3.5.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Macsee/Documents/Pellet/jgrapht/jgrapht-jdk1.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

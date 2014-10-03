@@ -17,6 +17,8 @@ import java.util.LinkedList;
 
 import javax.swing.JDialog;
 
+//import com.hp.hpl.jena.sparql.vocabulary.DOAP;
+
 import UTILS.Config;
 import UTILS.Layer;
 import UTILS.ObjGeom;
@@ -26,6 +28,19 @@ public class SetClass extends JDialog{
 	
 	public static int locationX = 700;
 	public static int locationY = 100;
+	private Choice choiceClass;
+	private Choice choiceWidth;
+	private Choice choiceElongation;
+	private Choice choiceLength;
+	private Choice choiceSurface;
+	private Choice choiceTexture;
+	private Choice choiceDensity;
+	private Choice choiceForm;
+	private Choice choiceAlign;
+	private Choice choiceDisc;
+	private Choice choiceSame;
+	private LinkedList<ObjGeom> listObjs;
+	private Checkbox chk;
 	
 	public SetClass(final ObjGeom obj, final Layer layer) {
 		
@@ -45,7 +60,7 @@ public class SetClass extends JDialog{
 		labelClass.setBounds(10,15,90,20);
 		panel.add(labelClass);
 		
-		final Choice choiceClass = new Choice();
+		choiceClass = new Choice();
 		choiceClass.setBounds(100,10,250,30);
 		
 		for (String clase : Config.ONTCLASSES)
@@ -60,14 +75,14 @@ public class SetClass extends JDialog{
 		labelSurface.setBounds(10,55,90,20);
 		panel.add(labelSurface);
 		
-		final Choice choiceSurface = new Choice();
+		choiceSurface = new Choice();
 		choiceSurface.setBounds(100,50,100,30);
 		choiceSurface.add("");
 		choiceSurface.add("Small");
 		choiceSurface.add("Medium");
 		choiceSurface.add("Large");
 		choiceSurface.setFocusable(false);
-		choiceSurface.select(obj.getSURFACE());
+		choiceSurface.select(translateInv(obj.getSURFACE()));
 		panel.add(choiceSurface);
 		
 		
@@ -75,14 +90,14 @@ public class SetClass extends JDialog{
 		labelLength.setBounds(10,95,90,20);
 		panel.add(labelLength);
 		
-		final Choice choiceLength = new Choice();
+		choiceLength = new Choice();
 		choiceLength.setBounds(100,90,100,30);
 		choiceLength.add("");
 		choiceLength.add("Small");
 		choiceLength.add("Medium");
 		choiceLength.add("Large");
 		choiceLength.setFocusable(false);
-		choiceLength.select(obj.getLENGTH());
+		choiceLength.select(translateInv(obj.getLENGTH()));
 		panel.add(choiceLength);
 		
 		
@@ -90,14 +105,14 @@ public class SetClass extends JDialog{
 		labelWidth.setBounds(10,135,90,20);
 		panel.add(labelWidth);
 		
-		final Choice choiceWidth = new Choice();
+		choiceWidth = new Choice();
 		choiceWidth.setBounds(100,130,100,30);
 		choiceWidth.add("");
 		choiceWidth.add("Small");
 		choiceWidth.add("Medium");
 		choiceWidth.add("Large");
 		choiceWidth.setFocusable(false);
-		choiceWidth.select(obj.getWIDTH());
+		choiceWidth.select(translateInv(obj.getWIDTH()));
 		panel.add(choiceWidth);
 		
 		
@@ -105,14 +120,14 @@ public class SetClass extends JDialog{
 		labelElongation.setBounds(10,175,90,20);
 		panel.add(labelElongation);
 		
-		final Choice choiceElongation = new Choice();
+		choiceElongation = new Choice();
 		choiceElongation.setBounds(100,170,100,30);
 		choiceElongation.add("");
 		choiceElongation.add("Small");
 		choiceElongation.add("Medium");
 		choiceElongation.add("Large");
 		choiceElongation.setFocusable(false);
-		choiceElongation.select(obj.getELONGATION());
+		choiceElongation.select(translateInv(obj.getELONGATION()));
 		panel.add(choiceElongation);
 		
 		
@@ -120,7 +135,7 @@ public class SetClass extends JDialog{
 		labelForm.setBounds(10,215,90,20);
 		panel.add(labelForm);
 		
-		final Choice choiceForm = new Choice();
+		choiceForm = new Choice();
 		choiceForm.setBounds(100,210,100,30);
 		choiceForm.add("");
 		choiceForm.add("Other");
@@ -130,7 +145,7 @@ public class SetClass extends JDialog{
 		choiceForm.add("Rectangle");
 		choiceForm.add("Triangle");
 		choiceForm.setFocusable(false);
-		choiceForm.select(obj.getFORM());
+		choiceForm.select(translateInv(obj.getFORM()));
 		panel.add(choiceForm);
 		
 		
@@ -138,13 +153,13 @@ public class SetClass extends JDialog{
 		labelTexture.setBounds(10,255,90,20);
 		panel.add(labelTexture);
 		
-		final Choice choiceTexture= new Choice();
+		choiceTexture= new Choice();
 		choiceTexture.setBounds(100,250,100,30);
 		choiceTexture.add("");
 		choiceTexture.add("Heterogeneous");
 		choiceTexture.add("Homogeneous");
 		choiceTexture.setFocusable(false);
-		choiceTexture.select(obj.getTEXTURE());
+		choiceTexture.select(translateInv(obj.getTEXTURE()));
 		panel.add(choiceTexture);
 		
 		
@@ -152,14 +167,14 @@ public class SetClass extends JDialog{
 		labelDensity.setBounds(10,295,90,20);
 		panel.add(labelDensity);
 		
-		final Choice choiceDensity = new Choice();
+		choiceDensity = new Choice();
 		choiceDensity.setBounds(100,290,100,30);
 		choiceDensity.add("");
 		choiceDensity.add("Low");
 		choiceDensity.add("Medium");
 		choiceDensity.add("High");
 		choiceDensity.setFocusable(false);
-		choiceDensity.select(obj.getDENSITY());
+		choiceDensity.select(translateInv(obj.getDENSITY()));
 		panel.add(choiceDensity);
 		
 		
@@ -167,11 +182,11 @@ public class SetClass extends JDialog{
 		labelSame.setBounds(10,335,90,20);
 		panel.add(labelSame);
 		
-		final Choice choiceSame = new Choice();
+		choiceSame = new Choice();
 		choiceSame.setBounds(100,330,100,30);
 		choiceSame.add("");
 		
-		final LinkedList<ObjGeom> listObjs = new LinkedList<ObjGeom>();
+		listObjs = new LinkedList<ObjGeom>();
 		
 		for (Layer LayerS : Config.LAYERS)
 			listObjs.addAll(LayerS.getObjsGeom());
@@ -192,7 +207,7 @@ public class SetClass extends JDialog{
 		labelAlign.setBounds(10,375,90,20);
 		panel.add(labelAlign);
 		
-		final Choice choiceAlign = new Choice();
+		choiceAlign = new Choice();
 		choiceAlign.setFocusable(false);
 		choiceAlign.setBounds(100,370,100,30);
 		choiceAlign.add("");
@@ -205,7 +220,7 @@ public class SetClass extends JDialog{
 		labelDisc.setBounds(10,415,90,20);
 		panel.add(labelDisc);
 		
-		final Choice choiceDisc = new Choice();
+		choiceDisc = new Choice();
 		choiceDisc.setFocusable(false);
 		choiceDisc.setBounds(100,410,100,30);
 		choiceDisc.add("");
@@ -219,7 +234,7 @@ public class SetClass extends JDialog{
 		labelUse.setBounds(10,455,150,20);
 		panel.add(labelUse);
 		
-		final Checkbox chk = new Checkbox();
+		chk = new Checkbox();
 		chk.setBounds(180,450,100,30);
 		chk.setFocusable(false);
 		chk.setState(obj.classificationForced());
@@ -231,32 +246,9 @@ public class SetClass extends JDialog{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				obj.setCLASE(choiceClass.getSelectedItem());
-				obj.setWIDTH(choiceWidth.getSelectedItem());
-				obj.setELONGATION(choiceElongation.getSelectedItem());
-				obj.setLENGTH(choiceLength.getSelectedItem());
-				obj.setSURFACE(choiceSurface.getSelectedItem());
-				obj.setTEXTURE(choiceTexture.getSelectedItem());
-				obj.setDENSITY(choiceDensity.getSelectedItem());
-				obj.setFORM(choiceForm.getSelectedItem());
-				obj.setALIGN(choiceAlign.getSelectedItem());
-				obj.setDISCONTINUE(choiceDisc.getSelectedItem());
-				if (chk.getState())
-					obj.setCLASSIFIABLE();
-				else
-					obj.unSetCLASSIFIABLE();
-				
-				if (choiceSame.getSelectedIndex() != 0) {
-					ObjGeom obj1 = listObjs.get(choiceSame.getSelectedIndex()-1);
-					obj.setSAMEIND(obj1.getId()); // Seteo mutuamente los mismos individuos
-					obj1.setSAMEIND(obj.getId());
-				}	
-				else
-					obj.setSAMEIND(null);
-				
-				Config.updateDefaultList(obj);
-				Config.fillDefaultList();
+				saveParamsInObj(obj);
 				dispose();
+				
 			}
 		});
 		panel.add(button);
@@ -267,31 +259,12 @@ public class SetClass extends JDialog{
 			public void keyPressed(KeyEvent arg0) {
 				// TODO Auto-generated method stub
 
-				if(arg0.getKeyCode() == KeyEvent.VK_ENTER)
-	            {
-					obj.setCLASE(choiceClass.getSelectedItem());
-					obj.setWIDTH(choiceWidth.getSelectedItem());
-					obj.setELONGATION(choiceElongation.getSelectedItem());
-					obj.setLENGTH(choiceLength.getSelectedItem());
-					obj.setSURFACE(choiceSurface.getSelectedItem());
-					obj.setTEXTURE(choiceTexture.getSelectedItem());
-					obj.setDENSITY(choiceDensity.getSelectedItem());
-					obj.setFORM(choiceForm.getSelectedItem());
-					obj.setALIGN(choiceAlign.getSelectedItem());
-					obj.setDISCONTINUE(choiceDisc.getSelectedItem());
-					
-					if (choiceSame.getSelectedIndex() != 0)
-						obj.setSAMEIND(listObjs.get(choiceSame.getSelectedIndex()-1).getId());
-					else
-						obj.setSAMEIND(null);
-					
-					Config.updateDefaultList(obj);
-					Config.fillDefaultList();
+				if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+					saveParamsInObj(obj);
 					dispose();
 	            }
 				
-				if(arg0.getKeyCode() == KeyEvent.VK_ESCAPE)
-				{
+				if(arg0.getKeyCode() == KeyEvent.VK_ESCAPE) {
 					dispose();
 				}	
 			}
@@ -315,7 +288,117 @@ public class SetClass extends JDialog{
 
 	/**
 	 * @param args
+	 * 
 	 */
+	
+	public void saveParamsInObj(ObjGeom obj) {
+		
+		obj.setCLASE(choiceClass.getSelectedItem());
+		obj.setWIDTH(translate(choiceWidth.getSelectedItem()));
+		obj.setELONGATION(translate(choiceElongation.getSelectedItem()));
+		obj.setLENGTH(translate(choiceLength.getSelectedItem()));
+		obj.setSURFACE(translate(choiceSurface.getSelectedItem()));
+		obj.setTEXTURE(translate(choiceTexture.getSelectedItem()));
+		obj.setDENSITY(translate(choiceDensity.getSelectedItem()));
+		obj.setFORM(translate(choiceForm.getSelectedItem()));
+		obj.setALIGN(choiceAlign.getSelectedItem());
+		obj.setDISCONTINUE(choiceDisc.getSelectedItem());
+		
+		if (chk.getState())
+			obj.setCLASSIFIABLE();
+		else
+			obj.unSetCLASSIFIABLE();
+		
+		if (choiceSame.getSelectedIndex() != 0) {
+			ObjGeom obj1 = listObjs.get(choiceSame.getSelectedIndex()-1);
+			obj.setSAMEIND(obj1.getId()); // Seteo mutuamente los mismos individuos
+			obj1.setSAMEIND(obj.getId());
+		}	
+		else
+			obj.setSAMEIND(null);
+		
+		Config.updateDefaultList(obj);
+		Config.fillDefaultList();
+		
+	}
+	
+	public String translate(String s){
+		
+		if (s.equals("Small") || s.equals("Low"))
+			return "Petit";
+		
+		else if (s.equals("Medium"))
+			return "Moyen";
+		
+		else if (s.equals("Large") || s.equals("High"))
+			return "Grand";
+		
+		else if (s.equals("Heterogeneous"))
+			return "Heterogene";
+		
+		else if (s.equals("Homogeneous"))
+			return "Homogene";
+		
+		else if (s.equals("Other"))
+			return "Autre";
+		
+		else if (s.equals("Square"))
+			return "Carre";
+		
+		else if (s.equals("Circle"))
+			return "Circulaire";
+		
+		else if (s.equals("Lineal"))
+			return "Lineaire";
+		
+		else if (s.equals("Rectangle"))
+			return "Rectangulaire";
+		
+		else if (s.equals("Triangle"))
+			return "Triangulaire";
+		
+		else 
+			return "";
+	}
+	
+public int translateInv(String s){
+		
+		if (s.equals("Petit"))
+			return 1;
+		
+		else if (s.equals("Moyen"))
+			return 2;
+		
+		else if (s.equals("Grand"))
+			return 3;
+		
+		else if (s.equals("Heterogene"))
+			return 1;
+		
+		else if (s.equals("Homogene"))
+			return 2;
+				
+		else if (s.equals("Autre"))
+			return 1;
+		
+		else if (s.equals("Carre"))
+			return 2;
+		
+		else if (s.equals("Circulaire"))
+			return 3;
+		
+		else if (s.equals("Lineaire"))
+			return 4;
+		
+		else if (s.equals("Rectangulaire"))
+			return 5;
+		
+		else if (s.equals("Triangulaire"))
+			return 6;
+		
+		else 
+			return 0;
+	}
 	
 	public static void main(String[] args) { 
 		new SetClass(new ObjGeom(), null);

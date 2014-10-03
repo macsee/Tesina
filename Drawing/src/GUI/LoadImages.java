@@ -23,12 +23,12 @@ public class LoadImages extends JDialog {
 	/**
 	 * @param args
 	 */
-	private Simulator ventana; 
+	private Application ventana; 
 	
 	public LoadImages(JFrame frame) {
 		
 		setModal(true);
-		ventana = (Simulator) frame;
+		ventana = (Application) frame;
 		setTitle("Load Image");
 		setResizable(false);
 		setSize(540,220);
@@ -130,6 +130,7 @@ public class LoadImages extends JDialog {
 				Layer layer = Config.getLayer(choiceLayer.getSelectedIndex()-1);
 				Config.ACTIVELAYER = layer;
 				layer.setImage(textField.getText());
+				layer.allowDrawing(); //agregado porque faltaba?
 				ventana.selectActiveLayerInList();
 				
 				ventana.repaint();

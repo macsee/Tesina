@@ -23,7 +23,7 @@ import UTILS.MyThread;
 
 public class MyProgressBar extends JDialog  implements ActionListener, PropertyChangeListener {
 	
-	static Simulator frmMain;
+	static Application frmMain;
 	static Container pane;
 	static JButton btnDo;
 	static JProgressBar barDo;
@@ -36,7 +36,7 @@ public class MyProgressBar extends JDialog  implements ActionListener, PropertyC
 		// TODO Auto-generated constructor stub
 	
 		setModal(true);
-		frmMain = (Simulator) frame;
+		frmMain = (Application) frame;
 		pane = getContentPane();
 		setSize(350, 150);
 		setLocationRelativeTo(null);

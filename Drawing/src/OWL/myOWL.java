@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.swing.Renderer;
+
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat;
@@ -498,10 +500,17 @@ public class myOWL {
      
     public boolean isSuperClass(OWLClassExpression cla1, OWLClassExpression cla2) {
     	
+    	//OWLObjectRenderer renderer = new DLSyntaxObjectRenderer(); 
+    	
     	OWLClass SuperClase = cla1.asOWLClass();
     	OWLClass SubClase = cla2.asOWLClass();
     	
-    	return SuperClase.getSubClasses(ONTOLOGY).contains(cla2);
+    	/*System.out.println("SUBCLASES DE "+SuperClase.getIRI().getFragment()+":");
+    	for (OWLClassExpression owl : SuperClase.getSubClasses(ONTOLOGY)) {
+    		System.out.println(renderer.render(owl));
+    	}*/
+    	
+    	return SuperClase.getSubClasses(ONTOLOGY).contains(SubClase);
     	
     }
     

@@ -1,6 +1,11 @@
 package UTILS;
 
 import java.awt.Cursor;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -143,8 +148,22 @@ public class MyTask extends SwingWorker<Void, Void> {
 		
 		Config.OUT.add("Total Time: "+(System.currentTimeMillis() - initTime)+" milliseconds");
 		
-		for (String salida : Config.OUT)
-			System.out.println(salida);
+		
+
+		//Escritura
+		try{
+			File f= new File("results.txt");
+			FileWriter w = new FileWriter(f);
+			BufferedWriter bw = new BufferedWriter(w);
+			PrintWriter wr = new PrintWriter(bw);
+			wr.write("");
+			for (String salida : Config.OUT) {		
+				wr.append(salida);
+				System.out.println(salida);
+			}
+			wr.close();
+			bw.close();
+		}catch(IOException e){};
 		
 		System.out.println("Terminando task");
 

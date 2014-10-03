@@ -39,7 +39,7 @@ public class Config {
     
     public static ArrayList<String> OUT = new ArrayList<String>();
     
-    public static String BASIC_CLASS = "SpatialObject";
+    public static String BASIC_CLASS = "Objet_Geo";
     
     public static boolean FORCEDETECTION = false;
     
@@ -128,7 +128,7 @@ public class Config {
 //    		"House",
 //    		"uArea",
 //    		"wHousing",
-    		"SpatialObject",
+    		"Objet_Geo",
     		"Batiment",
     		"Batiment_Activite",
     		"Batiment Autre",

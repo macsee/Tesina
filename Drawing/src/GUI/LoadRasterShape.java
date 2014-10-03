@@ -36,15 +36,15 @@ public class LoadRasterShape extends JDialog {
 	/**
 	 * @param args
 	 */
-	private Simulator ventana;
+	private Application ventana;
 	private String resolution = "";
 	private File currentDirectory = new File(".");
 	
 	public LoadRasterShape(JFrame frame) {
 		
 		setModal(true);
-		ventana = (Simulator) frame;
-		setTitle("Load Images");
+		ventana = (Application) frame;
+		setTitle("Import Segmentation");
 		setResizable(false);
 		setSize(550,350);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

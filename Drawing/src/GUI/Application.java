@@ -27,7 +27,7 @@ import UTILS.MyThread;
 import UTILS.MyTask;
 		
 
-public class Simulator extends JFrame{
+public class Application extends JFrame{
 	
 	/**
 	 * @param args
@@ -37,15 +37,15 @@ public class Simulator extends JFrame{
 	private static Checkbox chkForced;
 	private static Checkbox chkGetInf;
 	private static Checkbox chkGetRel;
-	private static Simulator ventana;
+	private static Application ventana;
 	private static JList listLayers;
 	
-	public Simulator() {
+	public Application() {
 		
 		Config.addLayer("Layer0", "HR2"); // Capa inicial
 		ventana = this;
 		setFocusable(true);
-		setTitle("Tesina");
+		setTitle("Urban Objects Detection Tool v1.0");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1165,710);
@@ -300,7 +300,7 @@ public class Simulator extends JFrame{
     }
 
 	public static void main(String[] args) {
-		new Simulator();
+		new Application();
 		System.gc();				
 	}
 	

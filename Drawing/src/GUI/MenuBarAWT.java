@@ -18,7 +18,7 @@ import UTILS.*;
 
 public class MenuBarAWT {
 
-	private Simulator ventana;
+	private Application ventana;
 	Menu file;
 	Menu edit;
 	Menu debug;
@@ -26,7 +26,7 @@ public class MenuBarAWT {
 	
 	public MenuBarAWT (JFrame frame) {
 		
-		ventana = (Simulator) frame;
+		ventana = (Application) frame;
 		myMenu = this;
 	}
 
@@ -51,7 +51,7 @@ public class MenuBarAWT {
         
         file.add(open);
          
-        MenuItem load = new MenuItem("Load Raster");
+        MenuItem load = new MenuItem("Import Segmentation");
         load.addActionListener(new ActionListener() {
 			
 			@Override
@@ -62,7 +62,7 @@ public class MenuBarAWT {
 		});
         file.add(load);
         
-        MenuItem save = new MenuItem("Save clasification");
+        MenuItem save = new MenuItem("Save");
         save.addActionListener(new ActionListener() {
 			
 			@Override
@@ -130,7 +130,7 @@ public class MenuBarAWT {
         
         debug = new Menu("Debug");
         
-        CheckboxMenuItem chk1 = new CheckboxMenuItem("Show intersections"); 
+        CheckboxMenuItem chk1 = new CheckboxMenuItem("Show Intersections"); 
         debug.add(chk1);
         chk1.addItemListener(new ItemListener() {
 			
@@ -146,7 +146,7 @@ public class MenuBarAWT {
 			}
 		});
         
-        CheckboxMenuItem chk2 = new CheckboxMenuItem("Show differences"); 
+        CheckboxMenuItem chk2 = new CheckboxMenuItem("Show Differences"); 
         debug.add(chk2);
         chk2.addItemListener(new ItemListener() {
 			
@@ -163,7 +163,7 @@ public class MenuBarAWT {
 			}
 		});
         
-        MenuItem console = new MenuItem("Show result window"); 
+        MenuItem console = new MenuItem("Show Results"); 
         debug.add(console);
         console.addActionListener(new ActionListener() {
 			

@@ -35,7 +35,7 @@ public class ResultWindow extends Dialog{
         String out = "";
         
         for (String val : Config.OUT) {
-        	out += val+"\n";  
+        	out += val;  
         }
         	
         textArea.setText(out);

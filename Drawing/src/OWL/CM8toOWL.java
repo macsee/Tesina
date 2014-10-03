@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import org.mindswap.pellet.DependencySet;
+//import org.mindswap.pellet.DependencySet;
 import org.semanticweb.owlapi.io.OWLObjectRenderer;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
@@ -33,7 +33,7 @@ public class CM8toOWL {
 	 * @param args
 	 */
 	
-//	private static String input_ontology = "/Users/Macsee/Desktop/Examples/New/OntologyJava.owl";
+//	private static String input_ontology = "/Users/Macsee/Desktop/Simulator/Ontologies/OntologyJava.owl";
 	private static String input_ontology = "./Ontologies/OntologyJava.owl";
 
 	private static String output_ontology = "./Ontologies/OutOntology.owl";
@@ -350,7 +350,7 @@ public class CM8toOWL {
 	
 	ArrayList<String> printHeader(String header) {
 		ArrayList<String> out = new ArrayList<String>();
-		out.add("############################################## "+header+" ##############################################");
+		out.add("################################## "+header+" ##################################\n");
 		return out;
 	}
 	
@@ -360,33 +360,34 @@ public class CM8toOWL {
 		
 		ArrayList<String> out = new ArrayList<String>();
 		
-    	out.add("Classes: ");
-    	out.add("");
+    	out.add("Classes: \n");
+    	out.add("\n");
     	
     	if (set == null) {
-    		out.add("Inconsistent");
-    		out.add("");
+    		out.add("Inconsistent \n");
+    		out.add("\n");
     		return out;
     	}
     	
     	if (set.isEmpty()) {
-    		out.add("Nothing to infer");
-    		out.add("");
+    		out.add("Nothing to infer \n");
+    		out.add("\n");
     		return out;
     	}
     
 		for (OWLClassExpression owlClass : set) {
-			out.add(renderer.render(owlClass));
+			out.add(renderer.render(owlClass)+"\n");
 				if (Config.ONTCLASSES.contains(renderer.render(owlClass)) & obj != null){ // Imprimo el resultado en la lista de la capa activa
 					if (myOWL.isSuperClass(myOWL.getClass(obj.getCLASE()), owlClass)) {
 						System.out.println(obj.getCLASE()+ " es superclase de "+owlClass.asOWLClass().getIRI().getFragment());
 						obj.setCLASE(renderer.render(owlClass));
-						Config.updateDefaultList(obj);
+						//Config.updateDefaultList(obj);
 					}	
 				}
 			}	
-				
-    	out.add("");
+		
+		Config.updateDefaultList(obj);
+    	out.add("\n");
     	
     	return out;
 	}
@@ -397,34 +398,34 @@ public class CM8toOWL {
 		
 		ArrayList<String> out = new ArrayList<String>();
 		
-		out.add("Object Properties: ");
-    	out.add("");
+		out.add("Object Properties: \n");
+    	out.add("\n");
     	
     	if (setRel == null) {
-    		out.add("Nothing to infer");
-    		out.add("");
+    		out.add("Nothing to infer \n");
+    		out.add("\n");
     	}
     	else {	
 			for (Entry<OWLObjectPropertyExpression, Set<OWLNamedIndividual>> entry : setRel.entrySet())
 				for (OWLObject ind : entry.getValue())
-	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind));
+	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(ind)+"\n");
     	}
     	
-		out.add("");
-		out.add("");
-		out.add("Data Properties: ");
-    	out.add("");
+		out.add("\n");
+		out.add("\n");
+		out.add("Data Properties: \n");
+    	out.add("\n");
     	
     	if (setLit == null) {
-    		out.add("");
+    		out.add("\n");
     		return out;
     	}
     	else {
 	    	for (Entry<OWLDataPropertyExpression, OWLLiteral> entry : setLit.entrySet())
-	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(entry.getValue()));
+	    			out.add(renderer.render(entry.getKey())+" "+renderer.render(entry.getValue())+"\n");
     	}	
 		
-		out.add("");
+		out.add("\n");
     	
 		return out;
 	}
@@ -436,14 +437,14 @@ public class CM8toOWL {
 		out.addAll(printHeader(header));
 		
 		if (set == null && setRel == null && setLit == null) {
-			out.add("No inferred data. Object not selected for classification");
+			out.add("No inferred data. Object not selected for classification\n");
 			return out;
 		}	
 			
 		out.addAll(printClasses(set,obj));
-		out.add("");
-		out.add("...........................................................................................................");
-		out.add("");
+		out.add("\n");
+		out.add(".....................................................................................................................................................\n");
+		out.add("\n");
 		out.addAll(printRelations(setRel,setLit));
 		
 		return out;
