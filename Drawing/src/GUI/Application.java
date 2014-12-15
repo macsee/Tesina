@@ -69,9 +69,11 @@ public class Application extends JFrame{
 							
 					boolean emptyLayers = true;
 					
-					for (Layer layer : Config.LAYERS)
+					for (Layer layer : Config.LAYERS) {
+						layer.OUT.clear(); //tengo que borrar la lista de resultados de cada capa en cada ejecuci—n
 						if (!layer.emptyObjList())
 							emptyLayers = false;
+					}
 					
 					if (emptyLayers) {
 						JOptionPane.showMessageDialog(null,"There are no objects to run!","Error",JOptionPane.ERROR_MESSAGE);

@@ -1,0 +1,6865 @@
+*********************************************** LAYER HR2 ***********************************************
+*********************************************************************************************************
+
+x = Polygon 0, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 4 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 1, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 2, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 3, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 4, y = Polygon 0 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 4, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 4, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 4, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+*********************************************************************************************************
+*************************************** Asserted Data for Objects ***************************************
+*********************************************************************************************************
+
+################################## Polygon P0 ##################################
+Classes: 
+
+Surface_Vegetal
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P1 ##################################
+Classes: 
+
+TU
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P2 ##################################
+Classes: 
+
+TU
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P3 ##################################
+Classes: 
+
+TU
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P4 ##################################
+Classes: 
+
+TU
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+hasResolution iHR2
+
+
+Data Properties: 
+
+isDiscontinu true
+
+
+*********************************************************************************************************
+******************************** Asserted Data for Spatial Relationships ********************************
+*********************************************************************************************************
+
+################################## SR_P1_P0 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P2_P1 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P1
+
+
+Data Properties: 
+
+
+################################## SR_P2_P0 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P0_P3 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P0_P4 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P0_P1 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P1
+
+
+Data Properties: 
+
+
+################################## SR_P0_P2 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P3_P2 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P3_P1 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P1
+
+
+Data Properties: 
+
+
+################################## SR_P3_P0 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P3_P4 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P2_P4 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P2_P3 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P4_P0 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P1_P2 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P1_P3 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P1_P4 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P4_P3 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P4_P2 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P4_P1 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P1
+
+
+Data Properties: 
+
+
+
+**********************************************************************************************************
+*************************************** Inferred Data for Objects ****************************************
+**********************************************************************************************************
+
+################################## Polygon P0 ##################################
+Classes: 
+
+?
+Parc
+Objet_Geo
+Objet_Geo_Construit
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+isComposedOf P8
+isComposedOf P9
+isComposedOf P7
+isAdjacentTo P5
+isAdjacentTo P6
+Reified SR_P4_P0
+Reified SR_P8_P10
+Reified SR_P3_P0
+Reified SR_P2_P0
+Reified SR_P9_P10
+Reified SR_P5_P10
+Reified SR_P0_P2
+Reified SR_P0_P1
+Reified SR_P0_P4
+Reified SR_P1_P0
+Reified SR_P0_P3
+Reified SR_P6_P10
+Reified SR_P7_P10
+Reified SR_P10_P6
+Reified SR_P10_P7
+Reified SR_P10_P5
+Reified SR_P10_P8
+Reified SR_P10_P9
+to-1 SR_P6_P10
+to-1 SR_P4_P0
+to-1 SR_P8_P10
+to-1 SR_P3_P0
+to-1 SR_P7_P10
+to-1 SR_P2_P0
+to-1 SR_P9_P10
+to-1 SR_P5_P10
+to-1 SR_P1_P0
+isIncludedIn P4
+Attributes iTHR1
+from-1 SR_P10_P6
+from-1 SR_P10_P7
+from-1 SR_P10_P5
+from-1 SR_P0_P2
+from-1 SR_P0_P1
+from-1 SR_P10_P8
+from-1 SR_P0_P4
+from-1 SR_P10_P9
+from-1 SR_P0_P3
+SpatialRules P8
+SpatialRules P9
+SpatialRules P4
+SpatialRules P5
+SpatialRules P6
+SpatialRules P7
+hasResolution iTHR1
+
+
+Data Properties: 
+
+isAlignee false
+
+################################## Polygon P1 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P2 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P3 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P4 ##################################
+Classes: 
+
+?
+Objet_Geo
+Objet_Geo_Construit
+TU_Discontinu
+Surface_Artificiel
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+isComposedOf P0
+isComposedOf P10
+isAdjacentTo P1
+isAdjacentTo P2
+isAdjacentTo P3
+Reified SR_P3_P4
+Reified SR_P2_P4
+Reified SR_P4_P0
+Reified SR_P1_P4
+Reified SR_P4_P2
+Reified SR_P4_P1
+Reified SR_P0_P4
+Reified SR_P4_P3
+hasTexture iHeterogene
+to-1 SR_P3_P4
+to-1 SR_P2_P4
+to-1 SR_P1_P4
+to-1 SR_P0_P4
+Attributes iHeterogene
+Attributes iHR2
+from-1 SR_P4_P0
+from-1 SR_P4_P2
+from-1 SR_P4_P1
+from-1 SR_P4_P3
+SpatialRules P0
+SpatialRules P1
+SpatialRules P10
+SpatialRules P2
+SpatialRules P3
+hasResolution iHR2
+
+
+Data Properties: 
+
+isDiscontinu true
+
+
+*********************************************************************************************************
+******************************* Inferred Data for Spatial Relationships *********************************
+*********************************************************************************************************
+
+################################## SR_P1_P0 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P1 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P0 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P3 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP
+NTPP_TPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P1 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P2 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P2 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P1 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P0 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P3 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P0 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P1_P2 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P1_P3 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P1_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P3 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P2 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P1 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+
+*********************************************** LAYER HR2 ***********************************************
+*********************************************************************************************************
+
+x = Polygon 0, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 4 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 1, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 2, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 3, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 4, y = Polygon 0 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 4, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 4, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 4, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 0, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 0, y = Polygon 4 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 1, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 1, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 2, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 2, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 3, y = Polygon 0 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 3, y = Polygon 4 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 4, y = Polygon 0 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 4, y = Polygon 1 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 4, y = Polygon 2 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 4, y = Polygon 3 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+*********************************************************************************************************
+*************************************** Asserted Data for Objects ***************************************
+*********************************************************************************************************
+
+################################## Polygon P0 ##################################
+Classes: 
+
+Parc
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P1 ##################################
+Classes: 
+
+TU
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P2 ##################################
+Classes: 
+
+TU
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P3 ##################################
+Classes: 
+
+TU
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P4 ##################################
+Classes: 
+
+TU_Discontinu
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+hasResolution iHR2
+
+
+Data Properties: 
+
+isDiscontinu true
+
+
+*********************************************************************************************************
+******************************** Asserted Data for Spatial Relationships ********************************
+*********************************************************************************************************
+
+################################## SR_P1_P0 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P2_P1 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P1
+
+
+Data Properties: 
+
+
+################################## SR_P2_P0 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P0_P3 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P0_P4 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P0_P1 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P1
+
+
+Data Properties: 
+
+
+################################## SR_P0_P2 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P0
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P3_P2 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P3_P1 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P1
+
+
+Data Properties: 
+
+
+################################## SR_P3_P0 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P3_P4 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P3
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P2_P4 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P2_P3 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P2
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P4_P0 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P0
+
+
+Data Properties: 
+
+
+################################## SR_P1_P2 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P1_P3 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P1_P4 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P1
+to P4
+
+
+Data Properties: 
+
+
+################################## SR_P4_P3 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P3
+
+
+Data Properties: 
+
+
+################################## SR_P4_P2 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P2
+
+
+Data Properties: 
+
+
+################################## SR_P4_P1 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P4
+to P1
+
+
+Data Properties: 
+
+
+
+**********************************************************************************************************
+*************************************** Inferred Data for Objects ****************************************
+**********************************************************************************************************
+
+################################## Polygon P0 ##################################
+Classes: 
+
+?
+Objet_Geo
+Surface_Vegetal
+Objet_Geo_Construit
+Parc_Square
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+isComposedOf P8
+isComposedOf P9
+isComposedOf P7
+isAdjacentTo P5
+isAdjacentTo P6
+Reified SR_P4_P0
+Reified SR_P8_P10
+Reified SR_P3_P0
+Reified SR_P2_P0
+Reified SR_P9_P10
+Reified SR_P5_P10
+Reified SR_P0_P2
+Reified SR_P0_P1
+Reified SR_P0_P4
+Reified SR_P1_P0
+Reified SR_P0_P3
+Reified SR_P6_P10
+Reified SR_P7_P10
+Reified SR_P10_P6
+Reified SR_P10_P7
+Reified SR_P10_P5
+Reified SR_P10_P8
+Reified SR_P10_P9
+to-1 SR_P6_P10
+to-1 SR_P4_P0
+to-1 SR_P8_P10
+to-1 SR_P3_P0
+to-1 SR_P7_P10
+to-1 SR_P2_P0
+to-1 SR_P9_P10
+to-1 SR_P5_P10
+to-1 SR_P1_P0
+isIncludedIn P4
+Attributes iPetit
+Attributes iTHR1
+hasSurface iPetit
+from-1 SR_P10_P6
+from-1 SR_P10_P7
+from-1 SR_P10_P5
+from-1 SR_P0_P2
+from-1 SR_P0_P1
+from-1 SR_P10_P8
+from-1 SR_P0_P4
+from-1 SR_P10_P9
+from-1 SR_P0_P3
+SpatialRules P8
+SpatialRules P9
+SpatialRules P4
+SpatialRules P5
+SpatialRules P6
+SpatialRules P7
+hasResolution iTHR1
+
+
+Data Properties: 
+
+isAlignee false
+
+################################## Polygon P1 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P2 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P3 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P4 ##################################
+Classes: 
+
+?
+TU
+Objet_Geo
+Objet_Geo_Construit
+Surface_Artificiel
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+isComposedOf P0
+isComposedOf P10
+isAdjacentTo P1
+isAdjacentTo P2
+isAdjacentTo P3
+Reified SR_P3_P4
+Reified SR_P2_P4
+Reified SR_P4_P0
+Reified SR_P1_P4
+Reified SR_P4_P2
+Reified SR_P4_P1
+Reified SR_P0_P4
+Reified SR_P4_P3
+hasTexture iHeterogene
+to-1 SR_P3_P4
+to-1 SR_P2_P4
+to-1 SR_P1_P4
+to-1 SR_P0_P4
+Attributes iHeterogene
+Attributes iHR2
+from-1 SR_P4_P0
+from-1 SR_P4_P2
+from-1 SR_P4_P1
+from-1 SR_P4_P3
+SpatialRules P0
+SpatialRules P1
+SpatialRules P10
+SpatialRules P2
+SpatialRules P3
+hasResolution iHR2
+
+
+Data Properties: 
+
+isDiscontinu true
+
+
+*********************************************************************************************************
+******************************* Inferred Data for Spatial Relationships *********************************
+*********************************************************************************************************
+
+################################## SR_P1_P0 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P1 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P0 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P3 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP_TPP
+NTPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P1 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P0_P2 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P2 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P1 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P0 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P3_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P2_P3 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P0 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P1_P2 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P1_P3 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P1_P4 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P3 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P2 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P4_P1 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+
+*********************************************** LAYER THR1 ***********************************************
+*********************************************************************************************************
+
+x = Polygon 5, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 5, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 10 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 6, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 6, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 10 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 7, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 8, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 9, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 10, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 10, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 10, y = Polygon 7 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 10, y = Polygon 8 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 10, y = Polygon 9 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+*********************************************************************************************************
+*************************************** Asserted Data for Objects ***************************************
+*********************************************************************************************************
+
+################################## Polygon P5 ##################################
+Classes: 
+
+Route_Autre
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P6 ##################################
+Classes: 
+
+Route_Autre
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P7 ##################################
+Classes: 
+
+Groupe_Arbres
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P8 ##################################
+Classes: 
+
+Groupe_Arbres
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P9 ##################################
+Classes: 
+
+Alignement_Arbres
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P10 ##################################
+Classes: 
+
+Surface_Vegetal
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+hasResolution iTHR1
+
+
+Data Properties: 
+
+isAlignee false
+
+
+*********************************************************************************************************
+******************************** Asserted Data for Spatial Relationships ********************************
+*********************************************************************************************************
+
+################################## SR_P7_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P7_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P10_P9 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P10_P8 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P6_P10 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P9_P5 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P5_P10 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P10_P7 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P10_P6 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P9_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P10_P5 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P9_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P9_P6 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P6_P5 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P5_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P5_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P5_P6 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P8_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P5_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P8_P6 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P8_P5 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P8_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P8_P10 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P9_P10 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P6_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P6_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P6_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P7_P10 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P7_P6 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P7_P5 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P5
+
+
+Data Properties: 
+
+
+
+**********************************************************************************************************
+*************************************** Inferred Data for Objects ****************************************
+**********************************************************************************************************
+
+################################## Polygon P5 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P6 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P7 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P8 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P9 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P10 ##################################
+Classes: 
+
+?
+Parc
+Objet_Geo
+Objet_Geo_Construit
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+isComposedOf P8
+isComposedOf P9
+isComposedOf P7
+isAdjacentTo P5
+isAdjacentTo P6
+Reified SR_P4_P0
+Reified SR_P8_P10
+Reified SR_P3_P0
+Reified SR_P2_P0
+Reified SR_P9_P10
+Reified SR_P5_P10
+Reified SR_P0_P2
+Reified SR_P0_P1
+Reified SR_P0_P4
+Reified SR_P1_P0
+Reified SR_P0_P3
+Reified SR_P6_P10
+Reified SR_P7_P10
+Reified SR_P10_P6
+Reified SR_P10_P7
+Reified SR_P10_P5
+Reified SR_P10_P8
+Reified SR_P10_P9
+to-1 SR_P6_P10
+to-1 SR_P4_P0
+to-1 SR_P8_P10
+to-1 SR_P3_P0
+to-1 SR_P7_P10
+to-1 SR_P2_P0
+to-1 SR_P9_P10
+to-1 SR_P5_P10
+to-1 SR_P1_P0
+isIncludedIn P4
+Attributes iTHR1
+from-1 SR_P10_P6
+from-1 SR_P10_P7
+from-1 SR_P10_P5
+from-1 SR_P0_P2
+from-1 SR_P0_P1
+from-1 SR_P10_P8
+from-1 SR_P0_P4
+from-1 SR_P10_P9
+from-1 SR_P0_P3
+SpatialRules P8
+SpatialRules P9
+SpatialRules P4
+SpatialRules P5
+SpatialRules P6
+SpatialRules P7
+hasResolution iTHR1
+
+
+Data Properties: 
+
+isAlignee false
+
+
+*********************************************************************************************************
+******************************* Inferred Data for Spatial Relationships *********************************
+*********************************************************************************************************
+
+################################## SR_P7_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P9 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P8 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P5 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P7 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P6 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P5 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P6 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P5 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P6 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P6 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P5 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP_TPP
+NTPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP_TPP
+NTPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP_TPP
+NTPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P6 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P5 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+
+*********************************************** LAYER THR1 ***********************************************
+*********************************************************************************************************
+
+x = Polygon 5, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 5, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 10 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 6, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 6, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 10 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 7, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 8, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 9, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 10, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 10, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 10, y = Polygon 7 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 10, y = Polygon 8 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 10, y = Polygon 9 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 5, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 5, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 5, y = Polygon 10 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 6, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 6, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 6, y = Polygon 10 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 7, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 7, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 8, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 9 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 8, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 9, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 7 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 8 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 9, y = Polygon 10 :: 
+P(x,y) - NP-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ = ¯ ==> x is contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+x = Polygon 10, y = Polygon 5 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 10, y = Polygon 6 :: 
+NP(x,y) - NP-1(x,y) - DR(x,y) - A(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ ­ ¯ ==> x does not contain y 
+x¼ INTERSECT y¼ = ¯ ==> x interior disjoint from y 
+¶x INTERSECT ¶y ­ ¯ ==> x share boundary with y 
+
+x = Polygon 10, y = Polygon 7 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 10, y = Polygon 8 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+x = Polygon 10, y = Polygon 9 :: 
+NP(x,y) - P-1(x,y) - O(x,y) - NA(x,y)
+
+x¼ - y¼ ­ ¯ ==> x is not contained in y 
+y¼ - x¼ = ¯ ==> x contains y 
+x¼ INTERSECT y¼ ­ ¯ ==> x overlaps y 
+¶x INTERSECT ¶y = ¯ ==> x does not share boundary with y 
+
+*********************************************************************************************************
+*************************************** Asserted Data for Objects ***************************************
+*********************************************************************************************************
+
+################################## Polygon P5 ##################################
+Classes: 
+
+Route_Autre
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P6 ##################################
+Classes: 
+
+Route_Autre
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P7 ##################################
+Classes: 
+
+Groupe_Arbres
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P8 ##################################
+Classes: 
+
+Groupe_Arbres
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P9 ##################################
+Classes: 
+
+Alignement_Arbres
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+Nothing to infer 
+
+
+
+Data Properties: 
+
+
+################################## Polygon P10 ##################################
+Classes: 
+
+Parc
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+hasResolution iTHR1
+
+
+Data Properties: 
+
+isAlignee false
+
+
+*********************************************************************************************************
+******************************** Asserted Data for Spatial Relationships ********************************
+*********************************************************************************************************
+
+################################## SR_P7_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P7_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P10_P9 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P10_P8 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P6_P10 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P9_P5 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P5_P10 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P10_P7 ##################################
+Classes: 
+
+Pi
+O
+RCC8
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P10_P6 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P9_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P10_P5 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P10
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P9_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P9_P6 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P6_P5 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P5_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P5_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P5_P6 ##################################
+Classes: 
+
+A
+NPi
+RCC8
+DR
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P8_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P5_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P5
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P8_P6 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P8_P5 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P5
+
+
+Data Properties: 
+
+
+################################## SR_P8_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P8_P10 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P8
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P9_P10 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P9
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P6_P9 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P9
+
+
+Data Properties: 
+
+
+################################## SR_P6_P8 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P8
+
+
+Data Properties: 
+
+
+################################## SR_P6_P7 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P6
+to P7
+
+
+Data Properties: 
+
+
+################################## SR_P7_P10 ##################################
+Classes: 
+
+P
+O
+NPi
+RCC8
+NA
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P10
+
+
+Data Properties: 
+
+
+################################## SR_P7_P6 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P6
+
+
+Data Properties: 
+
+
+################################## SR_P7_P5 ##################################
+Classes: 
+
+NPi
+RCC8
+DR
+NA
+NP
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+from P7
+to P5
+
+
+Data Properties: 
+
+
+
+**********************************************************************************************************
+*************************************** Inferred Data for Objects ****************************************
+**********************************************************************************************************
+
+################################## Polygon P5 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P6 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P7 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P8 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P9 ##################################
+No inferred data. Object not selected for classification
+################################## Polygon P10 ##################################
+Classes: 
+
+?
+Objet_Geo
+Surface_Vegetal
+Objet_Geo_Construit
+Parc_Square
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+isComposedOf P8
+isComposedOf P9
+isComposedOf P7
+isAdjacentTo P5
+isAdjacentTo P6
+Reified SR_P4_P0
+Reified SR_P8_P10
+Reified SR_P3_P0
+Reified SR_P2_P0
+Reified SR_P9_P10
+Reified SR_P5_P10
+Reified SR_P0_P2
+Reified SR_P0_P1
+Reified SR_P0_P4
+Reified SR_P1_P0
+Reified SR_P0_P3
+Reified SR_P6_P10
+Reified SR_P7_P10
+Reified SR_P10_P6
+Reified SR_P10_P7
+Reified SR_P10_P5
+Reified SR_P10_P8
+Reified SR_P10_P9
+to-1 SR_P6_P10
+to-1 SR_P4_P0
+to-1 SR_P8_P10
+to-1 SR_P3_P0
+to-1 SR_P7_P10
+to-1 SR_P2_P0
+to-1 SR_P9_P10
+to-1 SR_P5_P10
+to-1 SR_P1_P0
+isIncludedIn P4
+Attributes iPetit
+Attributes iTHR1
+hasSurface iPetit
+from-1 SR_P10_P6
+from-1 SR_P10_P7
+from-1 SR_P10_P5
+from-1 SR_P0_P2
+from-1 SR_P0_P1
+from-1 SR_P10_P8
+from-1 SR_P0_P4
+from-1 SR_P10_P9
+from-1 SR_P0_P3
+SpatialRules P8
+SpatialRules P9
+SpatialRules P4
+SpatialRules P5
+SpatialRules P6
+SpatialRules P7
+hasResolution iTHR1
+
+
+Data Properties: 
+
+isAlignee false
+
+
+*********************************************************************************************************
+******************************* Inferred Data for Spatial Relationships *********************************
+*********************************************************************************************************
+
+################################## SR_P7_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P9 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P8 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P5 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P7 ##################################
+Classes: 
+
+?
+DC_EC_NTPP_NTPPi_PO_TPP
+EQ_NTPPi_PO_TPP_TPPi
+EC_NTPPi_PO_TPPi
+SpatialRelation
+NTPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+NTPPi_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P6 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P10_P5 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P6 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P5 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P6 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+EC_NTPPi_PO_TPPi
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+EC_EQ_NTPPi_PO_TPP_TPPi
+EC
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P5_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P6 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P5 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P8_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP
+NTPP_TPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P9_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP_TPP
+NTPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P9 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P8 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+DC
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P6_P7 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P10 ##################################
+Classes: 
+
+?
+EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+EC_NTPP_PO_TPP
+SpatialRelation
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+NTPP_TPP
+NTPP
+DC_EC_NTPP_NTPPi_PO_TPPi
+EC_EQ_NTPP_NTPPi_PO_TPP_TPPi
+EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+CM8
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P6 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+################################## SR_P7_P5 ##################################
+Classes: 
+
+?
+DC_EC_EQ_NTPP_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP
+DC_EC_EQ_NTPPi_PO_TPP_TPPi
+DC_EC_NTPP_NTPPi_PO_TPP_TPPi
+DC
+CM8
+DC_EC_EQ_PO_TPP_TPPi
+SpatialRelation
+
+
+.....................................................................................................................................................
+
+Object Properties: 
+
+
+
+Data Properties: 
+
+
+
+Total Time: 128885 milliseconds

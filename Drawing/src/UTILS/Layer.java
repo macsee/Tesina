@@ -41,7 +41,6 @@ public class Layer {
     private LinkedList<Shape> INTERSECTIONS = new LinkedList<Shape> ();
     private LinkedList<Shape> DIFFERENCES = new LinkedList<Shape> ();
     private Set<String> RELATIONS = new HashSet<String>();
-    
     private Geometry LINE;
     private Point ACTUAL_POINT;
     private Point MOUSE_POINT;

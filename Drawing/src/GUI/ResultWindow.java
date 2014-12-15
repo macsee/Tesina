@@ -19,7 +19,7 @@ public class ResultWindow extends Dialog{
 	public ResultWindow() {
 		super(new JFrame(), "Output");
         setResizable(false);
-        JTextArea textArea = new JTextArea(20, 50);
+        final JTextArea textArea = new JTextArea(20, 50);
         textArea.setEditable(false);
         JScrollPane textScroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -29,6 +29,7 @@ public class ResultWindow extends Dialog{
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 dispose();
+                textArea.setText("");
             }
         });
         

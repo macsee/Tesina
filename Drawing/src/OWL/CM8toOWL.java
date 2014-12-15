@@ -102,12 +102,18 @@ public class CM8toOWL {
 	public String assertRelation(String cm8, ObjGeom obj1, ObjGeom obj2) {
 		
 		String rel = "SR_P"+obj1.getId()+"_P"+obj2.getId();
-		
-		OWLClassExpression relClass = myOWL.getClass(cm8);
-		OWLNamedIndividual indRel = myOWL.defineInstance(rel, relClass); // hago una instancia representando la relacion CM8
-		
+		String rel_inv = "SR_P"+obj2.getId()+"_P"+obj1.getId();
+		OWLNamedIndividual indRel;
 		Set<OWLClassExpression> setRel = new HashSet<OWLClassExpression>();
-		setRel.add(relClass);
+		
+		if (!ASSERTED_CLASS_RELS.containsKey(myOWL.getIndividual(rel_inv))){ //agregado para no introducir individuos que representen relaciones inversas
+			OWLClassExpression relClass = myOWL.getClass(cm8);
+			indRel = myOWL.defineInstance(rel, relClass); // hago una instancia representando la relacion CM8			
+			setRel.add(relClass);
+		}
+		else {
+			indRel = myOWL.getIndividual(rel);
+		}
 		
 		if (!ASSERTED_CLASS_RELS.containsKey(indRel)){
 			
